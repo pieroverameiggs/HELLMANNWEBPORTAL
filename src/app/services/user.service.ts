@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Module } from '../interfaces/module.interface';
 import { User } from '../interfaces/user.interface';
+import { Observable, of } from 'rxjs';
 
 const base_url = environment.base_url_webapi;
 
@@ -20,6 +21,10 @@ export class UserService {
     private http: HttpClient,
     private router: Router
   ) { }
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
 
   saveLocalStorage(token: string, menu: Module[], user: User) {
     const modules = menu.map(module => {
@@ -38,7 +43,7 @@ export class UserService {
   }
 
   login(formData: any) {
-    return this.http.post(`${base_url}/Login/AuthenticatePortalCustomer`, formData)
+    return this.http.post(`${base_url}/Login/Authenticate`, formData)
       .pipe(
         tap((resp: any) => {          
           if(resp.Code == 200)
@@ -51,6 +56,24 @@ export class UserService {
             this.saveLocalStorage(resp.Object.Token, resp.Object.Modules, this.user);
           }
         })
+      );
+  }
+
+  // Use Guard
+  validateToken(): Observable<boolean> {
+
+    const requestValid = {
+      strValue: this.token,
+      boolValue: true
+    };
+
+    return this.http.post(`${base_url}/Login/VerifyToken`, requestValid)
+      .pipe(
+        map((resp: any) => {
+          //console.log(resp);          
+          return resp.Object.Correct;
+        }),
+        catchError(error => of(false))
       );
   }
 

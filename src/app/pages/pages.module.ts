@@ -6,6 +6,7 @@ import { SideNavOuterToolbarModule } from '../layouts';
 import { FooterModule } from '../shared/components';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ComponentsModule } from '../components/components.module';
     SideNavOuterToolbarModule,
     FooterModule,
     RouterModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ]
 })
 export class PagesModule { }

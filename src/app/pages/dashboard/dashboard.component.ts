@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  public urlReport: string = '';
+  
+  constructor() { 
+    this.urlReport = 'https://app.powerbi.com/view?r=eyJrIjoiMmRmMzVhOGItZjBjZS00MjQ3LWE0ZjgtYmQxMWRhYTVlOThiIiwidCI6IjZlMjI5NzZhLWIyMzYtNGFjMC1iNDc4LTNkYTZhYWM0YzA0MiJ9&pageName=ReportSection';
+  }
 
   ngOnInit(): void {
   }
