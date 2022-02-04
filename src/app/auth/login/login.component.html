@@ -1,3 +1,5 @@
+<app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
+
 <app-single-card title="Iniciar Sesión">
   <form class="login-form" (submit)="onSubmit($event)">
     <dx-form [formData]="formData" [disabled]="loading">

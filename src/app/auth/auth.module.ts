@@ -5,6 +5,7 @@ import { DxFormModule, DxLoadIndicatorModule } from 'devextreme-angular';
 import { SingleCardModule } from '../layouts';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     DxFormModule,
     SingleCardModule,
-    DxLoadIndicatorModule
+    DxLoadIndicatorModule,
+    ComponentsModule
   ]
 })
 export class AuthModule { }
