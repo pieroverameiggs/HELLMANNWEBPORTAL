@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'PCUSTOMER01 L01 Spa';
+    return 'Portal Cliente';
   }
 
   public get currentYear() {

@@ -19,8 +19,18 @@ export class UserService {
   ) { }
 
   saveLocalStorage(token: string, menu: Module[]) {
+    const modules = menu.map(module => {
+      return {
+        INT_MODULEID: module.INT_MODULEID,
+        INT_PARENTMODULE: module.INT_PARENTMODULE,
+        icon: module.VCH_IMAGE,
+        path: module.VCH_PAGE,
+        text: module.VCH_MODULENAME
+      }
+    });
+
     localStorage.setItem('token', token);
-    localStorage.setItem('menu', JSON.stringify(menu));
+    localStorage.setItem('menu', JSON.stringify(modules));
   }
 
   login(formData: any) {

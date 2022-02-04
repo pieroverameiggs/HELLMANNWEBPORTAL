@@ -12,7 +12,9 @@ const defaultUser = {
   avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png'
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   private _user: IUser | null = defaultUser;
   get loggedIn(): boolean {
@@ -118,7 +120,7 @@ export class AuthService {
 
   async logOut() {
     this._user = null;
-    this.router.navigate(['/login-form']);
+    this.router.navigate(['/login']);
   }
 }
 

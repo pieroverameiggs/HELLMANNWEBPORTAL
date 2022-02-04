@@ -1,7 +1,7 @@
 <ng-content></ng-content>
 
 <div class="menu-container">
-  <dx-tree-view
+  <!-- <dx-tree-view
     [items]="items"
     keyExpr="path"
     selectionMode="single"
@@ -9,5 +9,28 @@
     expandEvent="click"
     (onItemClick)="onItemClick($event)"
     width="100%">
+  </dx-tree-view> -->
+
+  <dx-tree-view
+    [dataSource]="modules"
+    dataStructure="plain"
+    keyExpr="INT_MODULEID"
+    [searchEnabled]="true"
+    selectionMode="single"
+    [focusStateEnabled]="false"
+    expandEvent="click"
+    searchMode="contains"
+    displayExpr="text"
+    parentIdExpr="INT_PARENTMODULE"
+    expandedExpr="false"
+    (onItemClick)="onItemClick($event)"
+    width="100%">
+
+    <dxo-search-editor-options
+        placeholder="Buscar"
+        width="100%">
+    </dxo-search-editor-options>
+
   </dx-tree-view>
+
 </div>

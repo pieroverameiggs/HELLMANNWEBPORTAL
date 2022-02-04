@@ -1,8 +1,9 @@
 
 export interface Module 
 {
-    VCH_MODULEID: string;
+    INT_MODULEID: number;
     VCH_MODULENAME: string;
-    INT_PARENTMODULE: string;
+    INT_PARENTMODULE: number;
     VCH_IMAGE: string;
+    VCH_PAGE: string;
 }

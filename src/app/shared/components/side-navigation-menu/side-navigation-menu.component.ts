@@ -34,7 +34,7 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
   private _items!: Record <string, unknown>[];
   get items() {
     if (!this._items) {
-      this._items = navigation.map((item) => {
+      this._items = this.modules.map((item) => {
         if(item.path && !(/^\//.test(item.path))){
           item.path = `/${item.path}`;
         }
@@ -64,7 +64,11 @@ export class SideNavigationMenuComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  constructor(private elementRef: ElementRef) { }
+  public modules:any[] = [];
+
+  constructor(private elementRef: ElementRef) { 
+    this.modules = JSON.parse(localStorage.getItem('menu') || '[]');
+  }
 
   onItemClick(event: ItemClickEvent) {
     this.selectedItemChanged.emit(event);

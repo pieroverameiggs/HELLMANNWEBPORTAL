@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { AppInfoService, ScreenService } from '../shared/services';
 
 @Component({
   selector: 'app-pages',
@@ -7,7 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  public loading = false;
+
+  @HostBinding('class') get getClass() {
+    return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
+  }
+  
+  constructor(
+    public appInfo: AppInfoService,
+    private screen: ScreenService,
+    private router: Router
+  ) { 
+
+    this.router.events.subscribe((event: any) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.loading = true;
+          break;
+        }
+        
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          this.loading = false;
+          break;
+        }
+
+        default:{
+          break;
+        }
+      }
+    })
+
+  }
 
   ngOnInit(): void {
   }

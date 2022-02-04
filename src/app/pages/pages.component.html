@@ -1,1 +1,18 @@
-<p>pages works!</p>
+<ng-container>
+
+    <app-side-nav-outer-toolbar title="{{appInfo.title}}">
+
+        <!-- Loading -->
+        <app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
+        
+        <!-- Rutas -->
+        <router-outlet></router-outlet>
+
+        <app-footer>
+            Copyright © {{appInfo.currentYear}} {{appInfo.title}} S.A.C.
+            <br/>
+            Todos los derechos reservados.
+        </app-footer>
+    </app-side-nav-outer-toolbar>
+
+</ng-container>
