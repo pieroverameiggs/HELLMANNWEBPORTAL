@@ -43,7 +43,7 @@ export class UserService {
   }
 
   login(formData: any) {
-    return this.http.post(`${base_url}/Login/Authenticate`, formData)
+    return this.http.post(`${base_url}/Login/AuthenticatePortalCustomer`, formData)
       .pipe(
         tap((resp: any) => {          
           if(resp.Code == 200)
