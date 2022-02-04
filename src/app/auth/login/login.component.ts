@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
 
         if (resp.Code == 200) {
           // Navegar al DashBoard          
+          // console.log(resp);
           this.router.navigateByUrl('/');
         }
         else {

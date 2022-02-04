@@ -7,6 +7,8 @@ import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/interfaces/user.interface';
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -23,31 +25,44 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-  user: IUser | null = { email: '' };
+  public user: User | any;
 
   userMenuItems = [{
-    text: 'Profile',
+    text: 'Perfil',
     icon: 'user',
     onClick: () => {
-      this.router.navigate(['/profile']);
+      const payload = this.parseJwt(localStorage.getItem('token'));
+      console.log(payload);
+      //this.router.navigate(['/profile']);
     }
   },
   {
-    text: 'Logout',
+    text: 'Cerrar Sesión',
     icon: 'runner',
     onClick: () => {
-      this.authService.logOut();
+      this.userService.logout();
     }
   }];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { 
+    this.user = JSON.parse(localStorage.getItem('user')||'');
+  }
 
   ngOnInit() {
-    this.authService.getUser().then((e) => this.user = e.data);
+    
   }
 
   toggleMenu = () => {
     this.menuToggle.emit();
+  }
+
+  parseJwt(token:any) {    
+    const objPayLoad = JSON.parse(atob(token.split('.')[1]));
+
+    return objPayLoad;
   }
 }
 

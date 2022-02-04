@@ -3,7 +3,7 @@
     <div class="image-container">
       <div class="user-image"></div>
     </div>
-    <div class="user-name">{{user?.email}}</div>
+    <div class="user-name text-wrap">{{ user.VCH_FULLNAME.length > 20 ? (user.VCH_FULLNAME | slice:0:18)+'..':(user.VCH_FULLNAME) }}</div>
   </div>
   <dx-context-menu
     *ngIf="menuMode === 'context'"
