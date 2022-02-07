@@ -7,12 +7,15 @@ import { FooterModule } from '../shared/components';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { TrackingsComponent } from './trackings/trackings.component';
+import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule } from 'devextreme-angular';
 
 
 @NgModule({
   declarations: [
     PagesComponent,
-    DashboardComponent    
+    DashboardComponent,
+    TrackingsComponent    
   ],
   exports: [
     PagesComponent
@@ -23,7 +26,11 @@ import { PipesModule } from '../pipes/pipes.module';
     FooterModule,
     RouterModule,
     ComponentsModule,
-    PipesModule
+    PipesModule,
+    DxAccordionModule,
+    DxFormModule,
+    DxDataGridModule,
+    DxButtonModule
   ]
 })
 export class PagesModule { }

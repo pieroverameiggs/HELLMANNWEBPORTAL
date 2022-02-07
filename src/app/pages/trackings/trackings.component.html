@@ -1,0 +1,184 @@
+<app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
+
+<div class="container-fluid mt-3">
+  <!-- Content here -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Seguimientos</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid">
+
+    <dx-accordion 
+    [multiple]="true"
+    [animationDuration]="300"
+    [collapsible]="true">
+
+    <dxi-item title="Criterios de Búsqueda">
+    <form #formSearch (keydown.enter)="$event.preventDefault()">
+        <dx-form id="form" 
+        [formData]="filters"
+        [minColWidth]="100"
+        colCount="4"
+        labelLocation="left">
+        
+            <dxi-item 
+                dataField="way" [label]="{ text: 'Vía' }"
+                editorType="dxTextBox"            
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Vía' }">
+            </dxi-item>
+
+            <dxi-item 
+                dataField="regime" [label]="{ text: 'Régimen' }"
+                editorType="dxTextBox"            
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Régimen' }">
+            </dxi-item>
+
+            <dxi-item 
+            dataField="entity" [label]="{ text: 'Entidad' }"
+            editorType="dxTextBox"            
+            [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad' }">
+            </dxi-item>
+
+            <dxi-item 
+                dataField="criteria" [label]="{ text: 'Criterio' }"
+                editorType="dxTextBox"            
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'PO-AWB-...' }">
+            </dxi-item>
+
+            <dxi-item
+            dataField="startdate" [label]="{ text: 'Fecha Inicio' }"
+            editorType="dxDateBox"
+            type="date"
+            [editorOptions]="{ width: '100%', placeholder: 'Seleccione Fecha Inicio', displayFormat:'dd/MM/yyyy' }"
+            >
+            </dxi-item>
+
+            <dxi-item
+            dataField="enddate" [label]="{ text: 'Fecha Fin' }"
+            editorType="dxDateBox"
+            type="date"          
+            [editorOptions]="{  width: '100%', placeholder: 'Seleccione Fecha Fin', displayFormat:'dd/MM/yyyy' }"
+            >
+            </dxi-item>
+
+        </dx-form>
+    </form>
+    </dxi-item>
+    </dx-accordion>
+
+    <dx-accordion 
+  #accordion
+  [multiple]="true"
+  [animationDuration]="300"
+  [collapsible]="true">
+
+  <dxi-item title="Lista de Resultados">
+    <dx-data-grid id="gridTracking" class="dx-card wide-card"
+    [dataSource]="trackings"
+    [showBorders]="false"
+    [focusedRowEnabled]="false"
+    [rowAlternationEnabled]="true"  
+    [allowColumnResizing]="true"
+    [columnAutoWidth]="true"
+    [allowColumnReordering]="true"
+    keyExpr="INT_SHIPMENTDOCUMENTID">
+  
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-pager 
+      [showPageSizeSelector]="true" 
+      [showInfo]="true" 
+      [allowedPageSizes]="[10, 25, 50, 100]"
+      infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel
+      [visible]="false"
+      [highlightCaseSensitive]="true"
+    ></dxo-search-panel>
+    <dxo-load-panel [enabled]="true"></dxo-load-panel>
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>  
+    <dxo-selection mode="single"></dxo-selection>
+    
+    <dxo-column-chooser
+        [enabled]="true"
+        mode="select"> <!-- or "dragAndDrop" -->
+    </dxo-column-chooser>
+  
+    <dxi-column
+      dataField="VCH_SHIPMENTDOCUMENTSERIE"
+      caption="Serie"
+      [fixed]="true"
+      [width]="110">
+    </dxi-column>
+
+    <dxi-column
+      dataField="VCH_SHIPMENTDOCUMENTNUMBER"
+      caption="Número"
+      [fixed]="true"
+      [width]="150">
+    </dxi-column>
+  
+    <dxi-column
+      dataField="VCH_REQUESTCODE"
+      caption="N° Solicitud"> 
+    </dxi-column>
+
+    <dxi-column
+      dataField="VCH_QUOTATIONCODE"
+      caption="N° Cotización"> 
+    </dxi-column>
+  
+    <dxi-column
+      dataField="VCH_SHIPMENTNUMBER"
+      caption="Embarque">
+    </dxi-column> 
+  
+    <dxi-column
+      dataField="DAT_DATECREATE"
+      caption="F. Creación"
+      alignment="center"
+      sortOrder="desc"
+      format="dd/MM/yyyy"
+      dataType="date">
+    </dxi-column>  
+
+    <dxi-column      
+      caption="Acciones"
+      type="buttons">      
+      <dxi-button icon="fas fa-route" hint="Ver Seguimiento" [onClick]="showTracking"></dxi-button>      
+      <dxi-button icon="fas fa-folder-open" hint="Ver Documentos" [onClick]="downloadHellData"></dxi-button>      
+    </dxi-column> 
+      
+    <dxo-toolbar>          
+      <dxi-item location="before">
+        <dx-button icon="refresh" hint="Refrescar" (onClick)="refreshDataGrid($event)">
+        </dx-button>
+      </dxi-item>
+      <dxi-item location="before" name="columnChooserButton"></dxi-item>
+   
+      <dxi-item location="after">
+        <dx-button
+          hint="Exportar"
+          icon="exportxlsx"
+          (onClick)="exportTrackings($event)"
+        >
+        </dx-button>
+      </dxi-item>
+      <dxi-item location="after">
+        <dx-button          
+          hint="Buscar"
+          icon="search"
+          (onClick)="searchTrackings($event)"
+        >
+        </dx-button>
+      </dxi-item>    
+      
+    </dxo-toolbar>
+
+    </dx-data-grid>
+  </dxi-item>
+</dx-accordion>
+</div>
