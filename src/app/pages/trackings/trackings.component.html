@@ -39,10 +39,11 @@
             >                             
             </dxi-item>
 
-            <dxi-item 
-            dataField="ENTITYID" [label]="{ text: 'Entidad' }"
-            editorType="dxTextBox"            
-            [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad' }">
+            <dxi-item
+                dataField="ENTITYID" [label]="{ text: 'Entidad' }"
+                editorType="dxSelectBox"                 
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad', items: entityList, searchEnabled: true, valueExpr:'INT_VALUEFIELD', displayExpr:'VCH_DISPLAYFIELD' }"
+            >                             
             </dxi-item>
 
             <dxi-item 
@@ -73,126 +74,187 @@
     </dx-accordion>
 
     <dx-accordion 
-  #accordion
-  [multiple]="true"
-  [animationDuration]="300"
-  [collapsible]="true">
+    #accordion
+    [multiple]="true"
+    [animationDuration]="300"
+    [collapsible]="true">
 
-  <dxi-item title="Lista de Resultados">
-    <dx-data-grid id="gridTracking" class="dx-card wide-card"
-    [dataSource]="trackings"
-    [showBorders]="false"
-    [focusedRowEnabled]="false"
-    [rowAlternationEnabled]="true"  
-    [allowColumnResizing]="true"
-    [columnAutoWidth]="true"
-    [allowColumnReordering]="true"
-    keyExpr="INT_SHIPMENTDOCUMENTID">
-  
-    <dxo-paging [pageSize]="10"></dxo-paging>
-    <dxo-pager 
-      [showPageSizeSelector]="true" 
-      [showInfo]="true" 
-      [allowedPageSizes]="[10, 25, 50, 100]"
-      infoText="Página {0} de {1} ({2} items)"></dxo-pager>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxo-search-panel
-      [visible]="false"
-      [highlightCaseSensitive]="true"
-    ></dxo-search-panel>
-    <dxo-load-panel [enabled]="true"></dxo-load-panel>
-    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>  
-    <dxo-selection mode="single"></dxo-selection>
+    <dxi-item title="Lista de Resultados">
+        <dx-data-grid id="gridTracking" class="dx-card wide-card"
+        [dataSource]="trackings"
+        [showBorders]="false"
+        [focusedRowEnabled]="false"
+        [rowAlternationEnabled]="true"  
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        keyExpr="INT_SHIPMENTDOCUMENTID">
     
-    <dxo-column-chooser
-        [enabled]="true"
-        mode="select"> <!-- or "dragAndDrop" -->
-    </dxo-column-chooser>
-  
-    <dxi-column
-      dataField="VCH_SHIPMENTDOCUMENTSERIE"
-      caption="Serie"
-      [fixed]="true"
-      [width]="60">
-    </dxi-column>
-
-    <dxi-column
-      dataField="VCH_SHIPMENTDOCUMENTNUMBER"
-      caption="Número"
-      [fixed]="true"
-      [width]="130">
-    </dxi-column>
-  
-    <dxi-column
-      dataField="VHC_WAY"      
-      caption="Vía"> 
-    </dxi-column>
-
-    <dxi-column
-      dataField="VHC_REGIME"
-      caption="Régimen"> 
-    </dxi-column>
-
-    <dxi-column
-      dataField="VCH_SERVICEREQUESTCODE"
-      caption="N° Solicitud"> 
-    </dxi-column>
-
-    <dxi-column
-      dataField="VCH_SHIPMENTNUMBER"
-      caption="Embarque">
-    </dxi-column> 
-  
-    <dxi-column
-      dataField="DAT_ARRIVALDATE"
-      caption="F. Llegada"
-      alignment="center"      
-      format="dd/MM/yyyy"
-      dataType="date">
-    </dxi-column> 
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager 
+        [showPageSizeSelector]="true" 
+        [showInfo]="true" 
+        [allowedPageSizes]="[10, 25, 50, 100]"
+        infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel
+        [visible]="false"
+        [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-column-fixing [enabled]="true"></dxo-column-fixing>  
+        <dxo-selection mode="single"></dxo-selection>
+        
+        <dxo-column-chooser
+            [enabled]="true"
+            mode="select"> <!-- or "dragAndDrop" -->
+        </dxo-column-chooser>
     
-    <dxi-column
-      dataField="DAT_DEPARTUREDATE"
-      caption="F. Salida"
-      alignment="center"      
-      format="dd/MM/yyyy"
-      dataType="date">
-    </dxi-column>
+        <dxi-column
+        dataField="VCH_SHIPMENTDOCUMENTSERIE"
+        caption="Serie"
+        [fixed]="true"
+        [width]="60">
+        </dxi-column>
 
-    <dxi-column      
-      caption="Acciones"
-      type="buttons">      
-      <dxi-button icon="fas fa-route" hint="Ver Seguimiento" [onClick]="showTracking"></dxi-button>      
-      <dxi-button icon="fas fa-folder-open" hint="Ver Documentos" [onClick]="downloadHellData"></dxi-button>      
-    </dxi-column> 
-      
-    <dxo-toolbar>          
-      <dxi-item location="before">
-        <dx-button icon="refresh" hint="Refrescar" (onClick)="refreshDataGrid($event)">
-        </dx-button>
-      </dxi-item>
-      <dxi-item location="before" name="columnChooserButton"></dxi-item>
-   
-      <dxi-item location="after">
-        <dx-button
-          hint="Exportar"
-          icon="exportxlsx"
-          (onClick)="exportTrackings($event)"
-        >
-        </dx-button>
-      </dxi-item>
-      <dxi-item location="after">
-        <dx-button          
-          hint="Buscar"
-          icon="search"
-          (onClick)="searchTrackings($event)"
-        >
-        </dx-button>
-      </dxi-item>    
-      
-    </dxo-toolbar>
+        <dxi-column
+        dataField="VCH_SHIPMENTDOCUMENTNUMBER"
+        caption="Número"
+        [fixed]="true"
+        [width]="130">
+        </dxi-column>
+    
+        <dxi-column
+        dataField="VHC_WAY"      
+        caption="Vía"> 
+        </dxi-column>
 
-    </dx-data-grid>
-  </dxi-item>
-</dx-accordion>
+        <dxi-column
+        dataField="VHC_REGIME"
+        caption="Régimen"> 
+        </dxi-column>
+
+        <dxi-column
+        dataField="VCH_SERVICEREQUESTCODE"
+        caption="N° Solicitud"> 
+        </dxi-column>
+
+        <dxi-column
+        dataField="VCH_SHIPMENTNUMBER"
+        caption="Embarque">
+        </dxi-column> 
+    
+        <dxi-column
+        dataField="DAT_ARRIVALDATE"
+        caption="F. Llegada"
+        alignment="center"      
+        format="dd/MM/yyyy"
+        dataType="date">
+        </dxi-column> 
+        
+        <dxi-column
+        dataField="DAT_DEPARTUREDATE"
+        caption="F. Salida"
+        alignment="center"      
+        format="dd/MM/yyyy"
+        dataType="date">
+        </dxi-column>
+
+        <dxi-column      
+        caption="Acciones"
+        type="buttons">      
+        <dxi-button icon="fas fa-route" hint="Ver Seguimiento" [onClick]="showTracking"></dxi-button>      
+        <dxi-button icon="fas fa-folder-open" hint="Ver Documentos" [onClick]="showHellData"></dxi-button>      
+        </dxi-column> 
+        
+        <dxo-toolbar>          
+        <dxi-item location="before">
+            <dx-button icon="refresh" hint="Refrescar" (onClick)="refreshDataGrid($event)">
+            </dx-button>
+        </dxi-item>
+        <dxi-item location="before" name="columnChooserButton"></dxi-item>
+    
+        <dxi-item location="after">
+            <dx-button
+            hint="Exportar"
+            icon="exportxlsx"
+            (onClick)="exportTrackings($event)"
+            >
+            </dx-button>
+        </dxi-item>
+        <dxi-item location="after">
+            <dx-button          
+            hint="Buscar"
+            icon="search"
+            (onClick)="searchTrackings($event)"
+            >
+            </dx-button>
+        </dxi-item>    
+        
+        </dxo-toolbar>
+
+        </dx-data-grid>
+    </dxi-item>
+    </dx-accordion>
+    
 </div>
+
+<dx-popup 
+    id = "popupFileUploader"       
+    [showTitle]="true"
+    title="Documentos"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [showCloseButton]="true"
+    container=".dx-viewport"        
+    position="center"
+    [(visible)]="popupHellDataVisible">
+
+    <dx-data-grid id="gridHellData" class="dx-card wide-card"
+      [dataSource]="files"
+      [showBorders]="false"
+      [focusedRowEnabled]="false"
+      [rowAlternationEnabled]="true"  
+      [allowColumnResizing]="true"
+      [columnAutoWidth]="true"
+      [allowColumnReordering]="true"
+      keyExpr="INT_DOCUMENTARYCONCILIATIONID">
+    
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager 
+        [showPageSizeSelector]="true" 
+        [showInfo]="true" 
+        [allowedPageSizes]="[10, 25, 50, 100]"
+        infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-search-panel
+        [visible]="false"
+        [highlightCaseSensitive]="true"
+      ></dxo-search-panel>
+      <dxo-load-panel [enabled]="true"></dxo-load-panel>
+      <dxo-selection mode="single"></dxo-selection>
+      
+      <dxi-column
+        dataField="VCH_DOCUMENTNAME"
+        caption="Tipo de Documento">        
+      </dxi-column>
+    
+      <dxi-column
+        dataField="VCH_FILENAME"
+        caption="Nombre Archivo"
+        sortOrder="asc"> 
+      </dxi-column>                    
+    
+      <dxo-editing            
+        [allowAdding]="false"
+        [allowUpdating]="false"
+        [allowDeleting]="false"
+        [confirmDelete]="false">      
+      </dxo-editing>
+      <dxi-column type="buttons" [width]="110">        
+        <dxi-button icon="download" hint="Ver" [onClick]="showFile"></dxi-button>
+      </dxi-column>  
+    
+    </dx-data-grid>
+    
+</dx-popup>

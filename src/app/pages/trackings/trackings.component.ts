@@ -29,13 +29,25 @@ export class TrackingsComponent implements OnInit {
   public trackings: Tracking[] = [];
   public wayList: Generic[] = [];
   public regimeList: Generic[] = [];
+  public entityList: Generic[] = [
+    {
+      INT_VALUEFIELD: 5152,
+      INT_VALUEFIELD2: 0,
+      VCH_DISPLAYFIELD: 'AGP PERU S.A.C.',
+      VCH_VALUEFIELD: ''
+    }
+  ];
+
+  // Popup
+  public files: File[] = [];
+  public popupHellDataVisible: boolean = false;
 
   constructor(
     private trackingService: TrackingService,
     private genericService: GenericService
   ) {
     this.showTracking = this.showTracking.bind(this);
-    this.downloadHellData = this.downloadHellData.bind(this);
+    this.showHellData = this.showHellData.bind(this);
 
     this.filters.WAYID = 0;
     this.filters.REGIMEID = 0;
@@ -59,10 +71,10 @@ export class TrackingsComponent implements OnInit {
 
   getLoadWay() {
     this.genericService.searchGenericByTableName(eGenericTableName.way)
-      .subscribe((loadGenerics:any) => {        
-        if(loadGenerics.Code == eHttpStatusCode.OK){
+      .subscribe((loadGenerics: any) => {
+        if (loadGenerics.Code == eHttpStatusCode.OK) {
           this.wayList = loadGenerics.List;
-        }        
+        }
       }, error => {
         console.log(error);
       });
@@ -70,10 +82,10 @@ export class TrackingsComponent implements OnInit {
 
   getLoadRegime() {
     this.genericService.searchGenericByTableName(eGenericTableName.regime)
-      .subscribe((loadGenerics:any) => {
-        if(loadGenerics.Code == eHttpStatusCode.OK){
+      .subscribe((loadGenerics: any) => {
+        if (loadGenerics.Code == eHttpStatusCode.OK) {
           this.regimeList = loadGenerics.List;
-        }        
+        }
       }, error => {
         console.log(error);
       });
@@ -85,7 +97,7 @@ export class TrackingsComponent implements OnInit {
     const worksheet = workbook.addWorksheet('Trackings');
 
     worksheet.columns = [
-      { width: 5 }, { width: 15 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 20 }
+      { width: 5 }, { width: 15 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 20 }, { width: 20 }
     ];
 
     exportDataGrid({
@@ -122,7 +134,8 @@ export class TrackingsComponent implements OnInit {
 
   searchTrackings(e: any) {
 
-    console.log(this.filters);
+    this.loading = true;
+    // console.log(this.filters);
 
     this.trackingService.getOperations(this.filters)
       .subscribe((resp: any) => {
@@ -132,6 +145,9 @@ export class TrackingsComponent implements OnInit {
         else {
           notify(resp.Message, 'error', 5000);
         }
+        this.loading = false;
+      }, (err) => {
+        this.loading = false;
       });
   }
 
@@ -139,12 +155,32 @@ export class TrackingsComponent implements OnInit {
     this.dataGrid.instance.refresh();
   }
 
-  showTracking() {
+  showTracking(e: any) {
+    console.log(e);
+    // e.row.key
 
   }
 
-  downloadHellData() {
+  showHellData(e: any) {
+    // console.log(e);
+    // e.row.key
 
+    this.popupHellDataVisible = true;
+
+    this.trackingService.getHellData(e.row.data.VCH_SYSTEM, e.row.key)
+      .subscribe((resp: any) => {
+        if (resp.Code == eHttpStatusCode.OK) {
+          this.files = resp.List;
+        }
+      });
+  }
+
+  showFile(e: any) {
+    // console.log(e);
+    //e.row.data.VCH_FILEROUTE
+    const pathFull = e.row.data.VCH_FILEROUTE;
+
+    window.open(pathFull, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
   }
 
 }

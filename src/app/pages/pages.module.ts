@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { TrackingsComponent } from './trackings/trackings.component';
-import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule } from 'devextreme-angular';
+import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -30,7 +30,8 @@ import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule } fro
     DxAccordionModule,
     DxFormModule,
     DxDataGridModule,
-    DxButtonModule
+    DxButtonModule,
+    DxPopupModule
   ]
 })
 export class PagesModule { }
