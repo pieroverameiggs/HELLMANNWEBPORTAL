@@ -7,7 +7,7 @@ export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'Portal Customer';
+    return 'Customer Portal';
   }
 
   public get enterprise() {

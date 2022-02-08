@@ -1,9 +1,9 @@
 
 export interface TrackingCriteria {
-    way: number;
-    regime: number;
-    entity: number;
-    startdate: Date;
-    enddate: Date;
-    criteria: string
+    WAYID: number;
+    REGIMEID: number;
+    ENTITYID: number;
+    STARTDATE: Date;
+    ENDDATE: Date;
+    CRITERIA: string
 }

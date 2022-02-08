@@ -24,6 +24,8 @@
     "devextreme": "^21.2.4",
     "devextreme-angular": "^21.2.4",
     "devextreme-schematics": "^1.2.24",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -32,6 +34,7 @@
     "@angular-devkit/build-angular": "~12.2.16",
     "@angular/cli": "~12.2.16",
     "@angular/compiler-cli": "~12.2.0",
+    "@types/file-saver": "^2.0.5",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "devextreme-cli": "latest",

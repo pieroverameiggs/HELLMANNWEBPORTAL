@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
       .pipe(
         tap(isAuthenticated => {
           if (!isAuthenticated) {
+            this.cleanLocalStorage();
             this.router.navigateByUrl('/login');
           }
         })
@@ -34,10 +35,17 @@ export class AuthGuard implements CanActivate {
       .pipe(
         tap(isAuthenticated => {
           if (!isAuthenticated) {
+            this.cleanLocalStorage();
             this.router.navigateByUrl('/login');
           }
         })
       )
+  }
+
+  cleanLocalStorage(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('menu');
+    localStorage.removeItem('user');
   }
   
 }

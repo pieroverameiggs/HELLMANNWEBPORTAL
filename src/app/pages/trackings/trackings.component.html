@@ -24,33 +24,35 @@
         [minColWidth]="100"
         colCount="4"
         labelLocation="left">
-        
-            <dxi-item 
-                dataField="way" [label]="{ text: 'Vía' }"
-                editorType="dxTextBox"            
-                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Vía' }">
+                    
+            <dxi-item
+                dataField="WAYID" [label]="{ text: 'Vía' }"
+                editorType="dxSelectBox"                 
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Vía', items: wayList, searchEnabled: true, valueExpr:'INT_VALUEFIELD', displayExpr:'VCH_DISPLAYFIELD' }"
+            >                             
+            </dxi-item>            
+
+            <dxi-item
+                dataField="REGIMEID" [label]="{ text: 'Régimen' }"
+                editorType="dxSelectBox"                 
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Régimen', items: regimeList, searchEnabled: true, valueExpr:'INT_VALUEFIELD', displayExpr:'VCH_DISPLAYFIELD' }"
+            >                             
             </dxi-item>
 
             <dxi-item 
-                dataField="regime" [label]="{ text: 'Régimen' }"
-                editorType="dxTextBox"            
-                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Régimen' }">
-            </dxi-item>
-
-            <dxi-item 
-            dataField="entity" [label]="{ text: 'Entidad' }"
+            dataField="ENTITYID" [label]="{ text: 'Entidad' }"
             editorType="dxTextBox"            
             [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad' }">
             </dxi-item>
 
             <dxi-item 
-                dataField="criteria" [label]="{ text: 'Criterio' }"
+                dataField="CRITERIA" [label]="{ text: 'Criterio' }"
                 editorType="dxTextBox"            
                 [editorOptions]="{ stylingMode: 'filled', placeholder: 'PO-AWB-...' }">
             </dxi-item>
 
             <dxi-item
-            dataField="startdate" [label]="{ text: 'Fecha Inicio' }"
+            dataField="STARTDATE" [label]="{ text: 'Fecha Inicio' }"
             editorType="dxDateBox"
             type="date"
             [editorOptions]="{ width: '100%', placeholder: 'Seleccione Fecha Inicio', displayFormat:'dd/MM/yyyy' }"
@@ -58,7 +60,7 @@
             </dxi-item>
 
             <dxi-item
-            dataField="enddate" [label]="{ text: 'Fecha Fin' }"
+            dataField="ENDDATE" [label]="{ text: 'Fecha Fin' }"
             editorType="dxDateBox"
             type="date"          
             [editorOptions]="{  width: '100%', placeholder: 'Seleccione Fecha Fin', displayFormat:'dd/MM/yyyy' }"
@@ -111,39 +113,51 @@
       dataField="VCH_SHIPMENTDOCUMENTSERIE"
       caption="Serie"
       [fixed]="true"
-      [width]="110">
+      [width]="60">
     </dxi-column>
 
     <dxi-column
       dataField="VCH_SHIPMENTDOCUMENTNUMBER"
       caption="Número"
       [fixed]="true"
-      [width]="150">
+      [width]="130">
     </dxi-column>
   
     <dxi-column
-      dataField="VCH_REQUESTCODE"
-      caption="N° Solicitud"> 
+      dataField="VHC_WAY"      
+      caption="Vía"> 
     </dxi-column>
 
     <dxi-column
-      dataField="VCH_QUOTATIONCODE"
-      caption="N° Cotización"> 
+      dataField="VHC_REGIME"
+      caption="Régimen"> 
     </dxi-column>
-  
+
+    <dxi-column
+      dataField="VCH_SERVICEREQUESTCODE"
+      caption="N° Solicitud"> 
+    </dxi-column>
+
     <dxi-column
       dataField="VCH_SHIPMENTNUMBER"
       caption="Embarque">
     </dxi-column> 
   
     <dxi-column
-      dataField="DAT_DATECREATE"
-      caption="F. Creación"
-      alignment="center"
-      sortOrder="desc"
+      dataField="DAT_ARRIVALDATE"
+      caption="F. Llegada"
+      alignment="center"      
       format="dd/MM/yyyy"
       dataType="date">
-    </dxi-column>  
+    </dxi-column> 
+    
+    <dxi-column
+      dataField="DAT_DEPARTUREDATE"
+      caption="F. Salida"
+      alignment="center"      
+      format="dd/MM/yyyy"
+      dataType="date">
+    </dxi-column>
 
     <dxi-column      
       caption="Acciones"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
+import { eHttpStatusCode } from 'src/app/model/enums.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
       .subscribe((resp: any) => {
         this.loading = false;
 
-        if (resp.Code == 200) {
+        if (resp.Code == eHttpStatusCode.OK) {
           // Navegar al DashBoard          
           // console.log(resp);
           this.router.navigateByUrl('/');

@@ -6,8 +6,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Module } from '../interfaces/module.interface';
 import { User } from '../interfaces/user.interface';
 import { Observable, of } from 'rxjs';
+import { eHttpStatusCode } from '../model/enums.model';
 
-const base_url = environment.base_url_webapi;
+const base_url = environment.base_url_apisec;
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,7 @@ export class UserService {
     return this.http.post(`${base_url}/Login/AuthenticatePortalCustomer`, formData)
       .pipe(
         tap((resp: any) => {          
-          if(resp.Code == 200)
+          if(resp.Code == eHttpStatusCode.OK)
           {
             this.user = { 
               VCH_FULLNAME: resp.Object.VCH_FULLNAME, 
