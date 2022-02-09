@@ -6,12 +6,13 @@ import { SingleCardModule } from '../layouts';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 
 @NgModule({
   declarations: [    
-    LoginComponent
+    LoginComponent, ResetPasswordComponent
   ],
   exports: [
     LoginComponent
