@@ -78,6 +78,22 @@ export class UserService {
       );
   }
 
+  verifyAccount(userName: string){
+    return this.http.get(`${base_url}/Login/VerifyAccount?userName=${userName}`);
+  }
+
+  forgotPassword(request: any){
+    return this.http.post(`${base_url}/Login/ForgotPasswordCustomerPortal`, request);
+  }
+
+  resetPassword(request: any){
+    return this.http.post(`${base_url}/Login/ResetPassword`, request);
+  }
+
+  verifyToken(token: string){
+    return this.http.get(`${base_url}/Login/VerifyToken?token=${token}`);
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('menu');

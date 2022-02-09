@@ -7,12 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
 @NgModule({
   declarations: [    
-    LoginComponent, ResetPasswordComponent
+    LoginComponent, ResetPasswordComponent, ChangePasswordComponent
   ],
   exports: [
     LoginComponent
