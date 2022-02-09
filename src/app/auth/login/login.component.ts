@@ -20,11 +20,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.formData.userName = localStorage.getItem('userName') || '';
   }
 
   async onSubmit(e: Event) {
     e.preventDefault();
-    const { userName, password, remember } = this.formData;
+    const { userName, password, rememberMe } = this.formData;
     this.loading = true;
 
     // console.log(this.formData);
@@ -39,6 +40,14 @@ export class LoginComponent implements OnInit {
         this.loading = false;
 
         if (resp.Code == eHttpStatusCode.OK) {
+
+          if (rememberMe) {
+            localStorage.setItem('userName', userName);
+          }
+          else {
+            localStorage.removeItem('userName');
+          }
+
           // Navegar al DashBoard          
           // console.log(resp);
           this.router.navigateByUrl('/');
