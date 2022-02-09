@@ -55,16 +55,16 @@
             <dxi-item
             dataField="STARTDATE" [label]="{ text: 'Fecha Inicio' }"
             editorType="dxDateBox"
-            type="date"
-            [editorOptions]="{ width: '100%', placeholder: 'Seleccione Fecha Inicio', displayFormat:'dd/MM/yyyy' }"
+            type="date"            
+            [editorOptions]="{ width: '100%', placeholder: 'Seleccione Fecha Inicio', displayFormat:'dd/MM/yyyy', dateOutOfRangeMessage:'La fecha está fuera de rango', onValueChanged: onValueChangedStartDate }"
             >
             </dxi-item>
 
             <dxi-item
             dataField="ENDDATE" [label]="{ text: 'Fecha Fin' }"
             editorType="dxDateBox"
-            type="date"          
-            [editorOptions]="{  width: '100%', placeholder: 'Seleccione Fecha Fin', displayFormat:'dd/MM/yyyy' }"
+            type="date"                   
+            [editorOptions]="{  width: '100%', placeholder: 'Seleccione Fecha Fin', displayFormat:'dd/MM/yyyy', max: maxEndDate, dateOutOfRangeMessage:'La fecha está fuera de rango', onValueChanged: onValueChangedEndDate }"
             >
             </dxi-item>
 
@@ -244,14 +244,8 @@
         caption="Nombre Archivo"
         sortOrder="asc"> 
       </dxi-column>                    
-    
-      <dxo-editing            
-        [allowAdding]="false"
-        [allowUpdating]="false"
-        [allowDeleting]="false"
-        [confirmDelete]="false">      
-      </dxo-editing>
-      <dxi-column type="buttons" [width]="110">        
+          
+      <dxi-column type="buttons" caption="Acciones" [width]="110">        
         <dxi-button icon="download" hint="Ver" [onClick]="showFile"></dxi-button>
       </dxi-column>  
     

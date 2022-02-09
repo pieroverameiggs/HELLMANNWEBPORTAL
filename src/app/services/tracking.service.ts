@@ -30,7 +30,7 @@ export class TrackingService {
     return this.http.post(`${base_url}/Operation/GetListForGrid`, request, this.headers);
   }
 
-  getHellData(system: string, shipmentDocumentId: number) {
-    return this.http.get(`${base_url}/Operation/GetListHellDataById?system=${system}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
+  getHellData(system: string, entityId: number, shipmentDocumentId: number) {
+    return this.http.get(`${base_url}/Operation/GetListHellDataById?system=${system}&entityId=${entityId}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
 }

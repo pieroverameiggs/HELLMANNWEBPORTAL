@@ -37,6 +37,8 @@ export class TrackingsComponent implements OnInit {
       VCH_VALUEFIELD: ''
     }
   ];
+  public maxEndDate: Date = new Date();
+  public maxStartDate: Date = new Date();
 
   // Popup
   public files: File[] = [];
@@ -48,6 +50,7 @@ export class TrackingsComponent implements OnInit {
   ) {
     this.showTracking = this.showTracking.bind(this);
     this.showHellData = this.showHellData.bind(this);
+    this.onValueChangedStartDate = this.onValueChangedStartDate.bind(this);
 
     this.filters.WAYID = 0;
     this.filters.REGIMEID = 0;
@@ -167,7 +170,7 @@ export class TrackingsComponent implements OnInit {
 
     this.popupHellDataVisible = true;
 
-    this.trackingService.getHellData(e.row.data.VCH_SYSTEM, e.row.key)
+    this.trackingService.getHellData(e.row.data.VCH_SYSTEM, this.filters.ENTITYID, e.row.key)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
           this.files = resp.List;
@@ -181,6 +184,16 @@ export class TrackingsComponent implements OnInit {
     const pathFull = e.row.data.VCH_FILEROUTE;
 
     window.open(pathFull, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
+  }
+
+  onValueChangedStartDate(e: any) {
+    // console.log(e.previousValue);
+    // console.log(e.value);    
+  }
+
+  onValueChangedEndDate(e: any) {
+    // console.log(e.previousValue);
+    // console.log(e.value);        
   }
 
 }
