@@ -52,14 +52,30 @@ export class LoginComponent implements OnInit {
           // console.log(resp);
           this.router.navigateByUrl('/');
         }
-        else {
-          notify(resp.Message, 'error', 5000);
+        else {          
+          this.showNotify(resp.Message, 'error');
         }
+      }, (err) => {
+        this.loading = false;        
+        this.showNotify('Servicio Suspendido Temporalmente :(', 'error');       
       });
   }
 
   onCreateAccountClick = () => {
     this.router.navigate(['/create-account']);
+  }
+
+  showNotify(msg: string, type: string) {
+    notify({
+      message: msg,
+      width: 500, 
+      shading: true,
+      position: {
+        my: 'center top',
+        at: 'center top',
+      },
+    }, type, 8000);
+
   }
 
 }

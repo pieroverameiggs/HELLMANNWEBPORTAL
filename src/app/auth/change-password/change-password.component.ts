@@ -39,6 +39,8 @@ export class ChangePasswordComponent implements OnInit {
             else {
               this.router.navigate(['/no-page-found']);
             }
+          }, (err) => {
+            this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
           });
 
       });
@@ -71,7 +73,22 @@ export class ChangePasswordComponent implements OnInit {
         else {
           notify('No se pudo actualizar su contraseña. Comunicar a Sistemas', 'error', 5000);
         }
+      }, (err) => {
+        this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
       });
+
+  }
+
+  showNotify(msg: string, type: string) {
+    notify({
+      message: msg,
+      width: 500,
+      shading: true,
+      position: {
+        my: 'center top',
+        at: 'center top',
+      },
+    }, type, 8000);
 
   }
 

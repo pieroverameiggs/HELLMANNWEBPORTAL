@@ -14,6 +14,7 @@ import notify from 'devextreme/ui/notify';
 import { Generic } from 'src/app/interfaces/generic.interface';
 import { GenericService } from 'src/app/services/generic.service';
 import { eGenericTableName, eHttpStatusCode } from 'src/app/model/enums.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trackings',
@@ -46,6 +47,7 @@ export class TrackingsComponent implements OnInit {
 
   constructor(
     private trackingService: TrackingService,
+    private router: Router,
     private genericService: GenericService
   ) {
     this.showTracking = this.showTracking.bind(this);
@@ -142,15 +144,21 @@ export class TrackingsComponent implements OnInit {
 
     this.trackingService.getOperations(this.filters)
       .subscribe((resp: any) => {
+        this.loading = false;
         if (resp.Code == eHttpStatusCode.OK) {
           this.trackings = resp.Object.OperationResponse;
         }
         else {
-          notify(resp.Message, 'error', 5000);
+          this.showNotify(resp.Message, 'error');
         }
-        this.loading = false;
       }, (err) => {
         this.loading = false;
+        if (err.status == eHttpStatusCode.UNAUTHORIZED) {
+          this.router.navigateByUrl('/login');
+        }
+        else {
+          this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
+        }
       });
   }
 
@@ -175,6 +183,13 @@ export class TrackingsComponent implements OnInit {
         if (resp.Code == eHttpStatusCode.OK) {
           this.files = resp.List;
         }
+      }, (err) => {
+        if (err.status == eHttpStatusCode.UNAUTHORIZED) {
+          this.router.navigateByUrl('/login');
+        }
+        else {
+          this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
+        }
       });
   }
 
@@ -194,6 +209,19 @@ export class TrackingsComponent implements OnInit {
   onValueChangedEndDate(e: any) {
     // console.log(e.previousValue);
     // console.log(e.value);        
+  }
+
+  showNotify(msg: string, type: string) {
+    notify({
+      message: msg,
+      width: 500,
+      shading: true,
+      position: {
+        my: 'center top',
+        at: 'center top',
+      },
+    }, type, 8000);
+
   }
 
 }

@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
 
     this.userService.verifyAccount(userName)
       .subscribe((resp: any) => {
-        
+
         if (resp.Code == eHttpStatusCode.OK) {
           if (resp.Object.Correct) {
 
@@ -39,25 +39,42 @@ export class ResetPasswordComponent implements OnInit {
               .subscribe((resp2: any) => {
                 this.loading = false;
                 if (resp2.Code == eHttpStatusCode.OK) {
-                  notify('Se envió un enlace de restablecimiento de contraseña a su Correo Electrónico', 'success', 10000);
+                  this.showNotify('Se envió un enlace de restablecimiento de contraseña a su Correo Electrónico', 'success');
                 }
                 else {
-                  notify(resp2.Message, 'error', 5000);
+                  this.showNotify(resp2.Mesage, 'error');
                 }
+              }, (err) => {
+                this.showNotify('Servicio Suspendido Temporalmente :(', 'error');       
               });
 
           }
           else {
             this.loading = false;
-            notify('El Nombre de Usuario no Existe', 'error', 5000);
+            this.showNotify('El Nombre de Usuario no Existe', 'error');
           }
         }
-        else{
+        else {
           this.loading = false;
-          notify(resp.Message, 'error', 5000);
+          this.showNotify(resp.Mesage, 'error');
         }
 
+      }, (err) => {
+        this.showNotify('Servicio Suspendido Temporalmente :(', 'error');       
       });
+  }
+
+  showNotify(msg: string, type: string) {
+    notify({
+      message: msg,
+      width: 500,
+      shading: true,
+      position: {
+        my: 'center top',
+        at: 'center top',
+      },
+    }, type, 8000);
+
   }
 
 }

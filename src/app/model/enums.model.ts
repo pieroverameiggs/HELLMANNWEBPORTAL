@@ -5,5 +5,6 @@ export enum eGenericTableName {
 
 export enum eHttpStatusCode{
     OK = 200,
-    SECURITYPASS = 999
+    SECURITYPASS = 999,
+    UNAUTHORIZED = 401
 }
