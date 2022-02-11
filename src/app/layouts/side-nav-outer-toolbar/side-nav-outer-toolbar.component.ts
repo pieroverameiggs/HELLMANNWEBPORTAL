@@ -23,6 +23,9 @@ export class SideNavOuterToolbarComponent implements OnInit {
   @Input()
   title!: string;
 
+  @Input()
+  entity!: string;
+
   menuMode = 'shrink';
   menuRevealMode = 'expand';
   minMenuSize = 0;

@@ -30,6 +30,12 @@
   margin: 0;
 }
 
+::ng-deep .header-entity{
+  :host-context(.screen-x-small) & {
+    display: none;
+  }
+}
+
 :host-context(.dx-theme-generic) {
   .dx-toolbar {
     padding: 10px 0;

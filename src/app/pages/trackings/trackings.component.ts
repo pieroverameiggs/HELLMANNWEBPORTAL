@@ -15,6 +15,7 @@ import { Generic } from 'src/app/interfaces/generic.interface';
 import { GenericService } from 'src/app/services/generic.service';
 import { eGenericTableName, eHttpStatusCode } from 'src/app/model/enums.model';
 import { Router } from '@angular/router';
+import { Entity } from 'src/app/interfaces/entity.interface';
 
 @Component({
   selector: 'app-trackings',
@@ -30,14 +31,7 @@ export class TrackingsComponent implements OnInit {
   public trackings: Tracking[] = [];
   public wayList: Generic[] = [];
   public regimeList: Generic[] = [];
-  public entityList: Generic[] = [
-    {
-      INT_VALUEFIELD: 5152,
-      INT_VALUEFIELD2: 0,
-      VCH_DISPLAYFIELD: 'AGP PERU S.A.C.',
-      VCH_VALUEFIELD: ''
-    }
-  ];
+  public entityList: Entity[] = [];
   public maxEndDate: Date = new Date();
   public maxStartDate: Date = new Date();
 
@@ -60,6 +54,8 @@ export class TrackingsComponent implements OnInit {
     this.filters.CRITERIA = '';
     this.filters.STARTDATE = this.dateWithMonthsDelay(-1);
     this.filters.ENDDATE = this.dateWithMonthsDelay(0);
+
+    this.entityList = JSON.parse(localStorage.getItem('groupEntity') || '[]');
   }
 
   dateWithMonthsDelay(months: number) {
@@ -215,7 +211,7 @@ export class TrackingsComponent implements OnInit {
     notify({
       message: msg,
       width: 500,
-      shading: true,
+      // shading: true,
       position: {
         my: 'center top',
         at: 'center top',

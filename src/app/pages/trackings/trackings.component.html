@@ -42,7 +42,7 @@
             <dxi-item
                 dataField="ENTITYID" [label]="{ text: 'Entidad' }"
                 editorType="dxSelectBox"                 
-                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad', items: entityList, searchEnabled: true, valueExpr:'INT_VALUEFIELD', displayExpr:'VCH_DISPLAYFIELD' }"
+                [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad', items: entityList, searchEnabled: true, valueExpr:'INT_IDENTITY', displayExpr:'VCH_BUSINESSNAME', value:entityList[0].INT_IDENTITY }"
             >                             
             </dxi-item>
 

@@ -25,6 +25,9 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
+  @Input()
+  entity!: string;
+
   public user: User | any;
 
   userMenuItems = [{

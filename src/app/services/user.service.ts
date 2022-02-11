@@ -98,6 +98,8 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('menu');
     localStorage.removeItem('user');
+    localStorage.removeItem('entity');
+    localStorage.removeItem('groupEntity');
 
     this.router.navigateByUrl('/login');
   }

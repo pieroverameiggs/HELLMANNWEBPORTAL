@@ -48,16 +48,23 @@ export class LoginComponent implements OnInit {
             localStorage.removeItem('userName');
           }
 
-          // Navegar al DashBoard          
-          // console.log(resp);
-          this.router.navigateByUrl('/');
+          if (!resp.Object.Entity) {
+            this.showNotify('Usuario o constraseña incorrecta', 'error');
+          }
+          else {
+            localStorage.setItem('entity', JSON.stringify(resp.Object.Entity));
+            localStorage.setItem('groupEntity', JSON.stringify(resp.Object.GroupEntity));
+
+            // Navegar al DashBoard                    
+            this.router.navigateByUrl('/');
+          }          
         }
-        else {          
+        else {
           this.showNotify(resp.Message, 'error');
         }
       }, (err) => {
-        this.loading = false;        
-        this.showNotify('Servicio Suspendido Temporalmente :(', 'error');       
+        this.loading = false;
+        this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
       });
   }
 
@@ -68,8 +75,8 @@ export class LoginComponent implements OnInit {
   showNotify(msg: string, type: string) {
     notify({
       message: msg,
-      width: 500, 
-      shading: true,
+      width: 500,
+      // shading: true,
       position: {
         my: 'center top',
         at: 'center top',

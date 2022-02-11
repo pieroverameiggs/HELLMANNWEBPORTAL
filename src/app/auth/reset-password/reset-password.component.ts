@@ -68,7 +68,7 @@ export class ResetPasswordComponent implements OnInit {
     notify({
       message: msg,
       width: 500,
-      shading: true,
+      // shading: true,
       position: {
         my: 'center top',
         at: 'center top',
