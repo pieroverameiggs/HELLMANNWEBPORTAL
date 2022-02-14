@@ -50,7 +50,7 @@ export class TrackingsComponent implements OnInit {
 
     this.filters.WAYID = 0;
     this.filters.REGIMEID = 0;
-    this.filters.ENTITYID = 5152;
+    // this.filters.ENTITYID = 5152;
     this.filters.CRITERIA = '';
     this.filters.STARTDATE = this.dateWithMonthsDelay(-1);
     this.filters.ENDDATE = this.dateWithMonthsDelay(0);
@@ -98,7 +98,7 @@ export class TrackingsComponent implements OnInit {
     const worksheet = workbook.addWorksheet('Trackings');
 
     worksheet.columns = [
-      { width: 5 }, { width: 15 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 30 }, { width: 20 }, { width: 20 }
+      { width: 5 }, { width: 20 }, { width: 20 }, { width: 10 }, { width: 20 }, { width: 25 }, { width: 25 }, { width: 20 }, { width: 20 }
     ];
 
     exportDataGrid({

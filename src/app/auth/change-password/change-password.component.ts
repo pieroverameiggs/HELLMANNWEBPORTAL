@@ -65,13 +65,13 @@ export class ChangePasswordComponent implements OnInit {
         this.loading = false;
 
         if (resp.Code == eHttpStatusCode.OK) {
-          notify('Se actualizó la contraseña correctamente', 'success', 10000);
+          this.showNotify('Se actualizó la contraseña correctamente', 'success');
         }
         else if (resp.Code == eHttpStatusCode.SECURITYPASS) {
-          notify('La contraseña ingresada no es segura', 'warning', 10000);
+          this.showNotify('La contraseña ingresada no es segura', 'warning');
         }
         else {
-          notify('No se pudo actualizar su contraseña. Comunicar a Sistemas', 'error', 5000);
+          this.showNotify('No se pudo actualizar su contraseña. Comunicar a Sistemas', 'error');
         }
       }, (err) => {
         this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
