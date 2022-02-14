@@ -17,6 +17,7 @@ import { eGenericTableName, eHttpStatusCode } from 'src/app/model/enums.model';
 import { Router } from '@angular/router';
 import { Entity } from 'src/app/interfaces/entity.interface';
 import { ModalHelldataService } from 'src/app/services/modal-helldata.service';
+import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 
 @Component({
   selector: 'app-trackings',
@@ -40,7 +41,8 @@ export class TrackingsComponent implements OnInit {
     private trackingService: TrackingService,
     private router: Router,
     private genericService: GenericService,
-    private modalHelldataService: ModalHelldataService
+    private modalHelldataService: ModalHelldataService,
+    private modalTrackingService: ModalTrackingService
   ) {
     this.showTracking = this.showTracking.bind(this);
     this.showHellData = this.showHellData.bind(this);
@@ -161,9 +163,18 @@ export class TrackingsComponent implements OnInit {
   }
 
   showTracking(e: any) {
-    console.log(e);
+    //console.log(e);
     // e.row.key
 
+    const filter = {
+      VCH_SYSTEM: e.row.data.VCH_SYSTEM,
+      VCH_ORIGIN: e.row.data.VCH_ORIGIN,
+      VCH_DESTINATION: e.row.data.VCH_DESTINATION,
+      VHC_WAY: e.row.data.VHC_WAY,
+      shipmentDocumentId: e.row.key
+    }    
+
+    this.modalTrackingService.showModal(filter);
   }
 
   showHellData(e: any) {

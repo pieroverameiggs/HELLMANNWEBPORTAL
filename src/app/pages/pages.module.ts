@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { TrackingsComponent } from './trackings/trackings.component';
-import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule } from 'devextreme-angular';
+import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxScrollViewModule } from 'devextreme-angular';
 import { TrackingComponent } from './popups/tracking/tracking.component';
 import { HelldataComponent } from './popups/helldata/helldata.component';
 
@@ -35,7 +35,8 @@ import { HelldataComponent } from './popups/helldata/helldata.component';
     DxFormModule,
     DxDataGridModule,
     DxButtonModule,
-    DxPopupModule
+    DxPopupModule,
+    DxScrollViewModule
   ]
 })
 export class PagesModule { }

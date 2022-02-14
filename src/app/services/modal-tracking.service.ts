@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
-import { FileHellData } from '../interfaces/file-helldata.interface';
+import { TrackingEvent } from '../interfaces/tracking-event.interface';
 import { eHttpStatusCode } from '../model/enums.model';
 import { TrackingService } from './tracking.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModalHelldataService {
+export class ModalTrackingService {
 
-  public popupHellDataVisible: boolean = false;
-  public files: FileHellData[] = [];
+  public popupVisible: boolean = false;
+  public tracking: TrackingEvent[] = [];
+  public origin: string = 'Sin Origin';
+  public destination: string = 'Sin Destino';
+  public way: string = '';
 
   constructor(
     private trackingService: TrackingService,
@@ -19,12 +22,15 @@ export class ModalHelldataService {
   ) { }
 
   showModal(filter: any) {
-    this.popupHellDataVisible = true;
+    this.popupVisible = true;
+    this.origin = filter.VCH_ORIGIN;
+    this.destination = filter.VCH_DESTINATION;
+    this.way = filter.VHC_WAY;
 
-    this.trackingService.getHellData(filter.VCH_SYSTEM, filter.ENTITYID, filter.shipmentDocumentId)
+    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.shipmentDocumentId)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
-          this.files = resp.List;
+          this.tracking = resp.List;
         }
       }, (err) => {
         if (err.status == eHttpStatusCode.UNAUTHORIZED) {
@@ -37,7 +43,7 @@ export class ModalHelldataService {
   }
 
   hideModal() {
-    this.popupHellDataVisible = false;
+    this.popupVisible = false;
   }
 
   showNotify(msg: string, type: string) {

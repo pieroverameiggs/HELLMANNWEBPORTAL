@@ -12,4 +12,6 @@ export interface Tracking {
     VCH_SHIPMENTDOCUMENTNUMBERMASTER: string;
     VCH_SERVICEREQUESTCODE: string;
     VCH_SHIPMENTNUMBER: string;
+    VCH_ORIGIN:string;
+    VCH_DESTINATION:string;
 }

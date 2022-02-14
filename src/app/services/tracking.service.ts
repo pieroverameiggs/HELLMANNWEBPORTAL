@@ -33,4 +33,8 @@ export class TrackingService {
   getHellData(system: string, entityId: number, shipmentDocumentId: number) {
     return this.http.get(`${base_url}/Operation/GetListHellDataById?system=${system}&entityId=${entityId}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
+
+  getTracking(system: string, shipmentDocumentId: number) {
+    return this.http.get(`${base_url}/Operation/GetListTrackingById?system=${system}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
+  }
 }
