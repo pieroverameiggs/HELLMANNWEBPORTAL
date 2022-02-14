@@ -16,6 +16,7 @@ import { GenericService } from 'src/app/services/generic.service';
 import { eGenericTableName, eHttpStatusCode } from 'src/app/model/enums.model';
 import { Router } from '@angular/router';
 import { Entity } from 'src/app/interfaces/entity.interface';
+import { ModalHelldataService } from 'src/app/services/modal-helldata.service';
 
 @Component({
   selector: 'app-trackings',
@@ -35,14 +36,11 @@ export class TrackingsComponent implements OnInit {
   public maxEndDate: Date = new Date();
   public maxStartDate: Date = new Date();
 
-  // Popup
-  public files: File[] = [];
-  public popupHellDataVisible: boolean = false;
-
   constructor(
     private trackingService: TrackingService,
     private router: Router,
-    private genericService: GenericService
+    private genericService: GenericService,
+    private modalHelldataService: ModalHelldataService
   ) {
     this.showTracking = this.showTracking.bind(this);
     this.showHellData = this.showHellData.bind(this);
@@ -172,30 +170,14 @@ export class TrackingsComponent implements OnInit {
     // console.log(e);
     // e.row.key
 
-    this.popupHellDataVisible = true;
+    const filter = {
+      VCH_SYSTEM: e.row.data.VCH_SYSTEM,
+      ENTITYID: this.filters.ENTITYID,
+      shipmentDocumentId: e.row.key
+    }    
 
-    this.trackingService.getHellData(e.row.data.VCH_SYSTEM, this.filters.ENTITYID, e.row.key)
-      .subscribe((resp: any) => {
-        if (resp.Code == eHttpStatusCode.OK) {
-          this.files = resp.List;
-        }
-      }, (err) => {
-        if (err.status == eHttpStatusCode.UNAUTHORIZED) {
-          this.router.navigateByUrl('/login');
-        }
-        else {
-          this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
-        }
-      });
-  }
-
-  showFile(e: any) {
-    // console.log(e);
-    //e.row.data.VCH_FILEROUTE
-    const pathFull = e.row.data.VCH_FILEROUTE;
-
-    window.open(pathFull, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
-  }
+    this.modalHelldataService.showModal(filter);
+  }  
 
   onValueChangedStartDate(e: any) {
     // console.log(e.previousValue);
