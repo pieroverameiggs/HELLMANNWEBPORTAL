@@ -21,6 +21,14 @@ export class TrackingDetailComponent implements OnInit {
   public serviceRequestCode: string = '';
 
   public orderObj: any;
+  public conditions: any = [];
+  public radioGroupValue: any;
+
+  // Details
+  public files: any = [];
+  public itinerarys: any = [];
+  public containers: any = [];
+  public packages: any = [];
 
   constructor(
     private trackingService: TrackingService,
@@ -78,9 +86,29 @@ export class TrackingDetailComponent implements OnInit {
         this.loading = false;
         console.log(resp);
         if (resp.Code == eHttpStatusCode.OK) {
+          
           this.operationSelected = resp.Object;
+
+          // Header
           this.carrierName = resp.Object.CARRIERNAME;
           this.serviceRequestCode = resp.Object.SERVICEREQUESTCODE;
+
+          // RadioGroup
+          this.conditions = ["FCL", "LCL"];
+
+          if (resp.Object.BIT_ISFCL) {
+            this.radioGroupValue = "FCL";
+          }
+
+          if (resp.Object.BIT_ISLCL) {
+            this.radioGroupValue = "LCL";
+          }
+
+          // Details
+          this.files = resp.Object.TBL_SLI_SHIPMENTDOCUMENTFILE;
+          this.itinerarys = resp.Object.TBL_SLI_SHIPMENTDOCUMENTITINERARY;
+          this.containers = resp.Object.TBL_SLI_SHIPMENTDOCUMENTCONTAINER;
+          this.packages = resp.Object.TBL_SLI_SHIPMENTDOCUMENTPACKAGE;
         }
         else {
           this.showNotify(resp.Message, 'error');
@@ -95,6 +123,12 @@ export class TrackingDetailComponent implements OnInit {
           this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
         }
       });
+  }
+
+  showFile(e: any) {
+    const pathFull = e.row.data.VCH_FILEROUTE;
+
+    window.open(pathFull, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
   }
 
   showNotify(msg: string, type: string) {

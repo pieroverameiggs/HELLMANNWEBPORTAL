@@ -45,56 +45,430 @@
   </dx-toolbar>
 
   <dx-form
-      [formData]="operationSelected"
-      [showColonAfterLabel]="true"
-      [showValidationSummary]="true"
-      labelLocation="left"
-      [colCount]="1">
+    [formData]="operationSelected"
+    [showColonAfterLabel]="true"
+    [showValidationSummary]="true"
+    labelLocation="left"
+    [colCount]="1">
+        
+      <dxi-item itemType="tabbed" cssClass="header-group">
+          <dxo-tab-panel-options [height]="" [deferRendering]="false">
+          </dxo-tab-panel-options>
           
-        <dxi-item itemType="tabbed" cssClass="header-group">
-            <dxo-tab-panel-options [height]="" [deferRendering]="false">
-            </dxo-tab-panel-options>
-            
-            <dxi-tab title="Información General">               
-              <dxi-item itemType="group" [colCount]="3">
+          <dxi-tab title="Información General">               
+            <dxi-item itemType="group" [colCount]="3">
+              
+              <dxi-item itemType="group">
+
+                <dxi-item
+                  dataField="INT_SHIPMENTDOCUMENTID"
+                  [visible]="false"
+                >
+                </dxi-item>
                 
-                <dxi-item itemType="group">
-
-                  <dxi-item
-                    dataField="INT_SHIPMENTDOCUMENTID"
-                    [visible]="false"
-                  >
-                  </dxi-item>
-                 
-                  <dxi-item 
-                    dataField="VCH_SERVICETYPE" [label]="{ text: 'Tipo Servicio' }"
-                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Servicio', mode: 'text' }">                
-                  </dxi-item>
-
-                  <dxi-item 
-                    dataField="VCH_JURISDICTION" [label]="{ text: 'Jurisdicción' }"
-                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Jurisdicción', mode: 'text' }">                
-                  </dxi-item>
-
+                <dxi-item 
+                  dataField="COMMERCIALSERVICETYPENAME" [label]="{ text: 'Tipo Servicio' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Servicio', mode: 'text' }">                
                 </dxi-item>
 
-                <dxi-item itemType="group">
+                <dxi-item 
+                  dataField="JURISDICTIONNAME" [label]="{ text: 'Jurisdicción' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Jurisdicción', mode: 'text' }">                
+                </dxi-item>
+
+                <dxi-item 
+                  dataField="INCOTERMNAME" [label]="{ text: 'Incoterm' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Incoterm', mode: 'text' }">                
+                </dxi-item>
+
+              </dxi-item>
+
+              <dxi-item itemType="group">
+                <dxi-item 
+                  dataField="SHIPPINGTYPENAME" [label]="{ text: 'Tipo Envío' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Envío', mode: 'text' }">
+                </dxi-item>
+
+                <dxi-item 
+                  dataField="SHIPMENTDOCUMENTTYNAME" [label]="{ text: 'Tipo Documento' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Documento', mode: 'text' }">
+                </dxi-item>
+
+                <dxi-item 
+                  [label]="{ text: 'Condición' }"
+                  editorType="dxRadioGroup"
+                  [editorOptions]="{ dataSource: conditions, layout: 'horizontal', value: radioGroupValue }">
+                </dxi-item>
+              </dxi-item>
+
+              <dxi-item itemType="group">
+                
+                <dxi-item itemType="group" cssClass="first-group" [colCount]="2">
                   <dxi-item 
-                    dataField="VCH_SHIPPINGTYPE" [label]="{ text: 'Tipo Envío' }"
-                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Envío', mode: 'text' }">
+                    dataField="VCH_SHIPMENTDOCUMENTSERIE" [label]="{ text: 'Doc. Emb.' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Serie', mode: 'text' }">                
                   </dxi-item>
 
                   <dxi-item 
-                    dataField="VCH_DOCUMENTTYPE" [label]="{ text: 'Tipo Documento' }"
-                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Documento', mode: 'text' }">
+                    dataField="VCH_SHIPMENTDOCUMENTNUMBER" [label]="{ text: 'N' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Número', mode: 'text' }">                
                   </dxi-item>
                 </dxi-item>
 
-              </dxi-item>                                                                                        
-            </dxi-tab>               
+                <dxi-item 
+                  dataField="VCH_PURCHASEORDER" [label]="{ text: 'Orden Compra' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Orden Compra', mode: 'text' }">
+                </dxi-item>
 
-        </dxi-item>
+                <dxi-item 
+                  dataField="VCH_REFERENCE" [label]="{ text: 'Referencia' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Referencia', mode: 'text' }">
+                </dxi-item>
+                
+              </dxi-item>
+
+            </dxi-item>                                                                                        
+          </dxi-tab>               
+
+          <dxi-tab title="Entidades">
+            <dxi-item itemType="group" [colCount]="3">
+              
+              <dxi-item itemType="group">
+                <dxi-item 
+                    dataField="IMPORTERNAME" [label]="{ text: 'Importador' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Importador', mode: 'text' }">                
+                  </dxi-item>             
+
+                <dxi-item 
+                  dataField="EXPORTERNAME" [label]="{ text: 'Shipper' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Shipper', mode: 'text' }">                
+                </dxi-item> 
+              </dxi-item> 
+
+              <dxi-item itemType="group">
+                <dxi-item 
+                  dataField="NOTIFYNAME" [label]="{ text: 'Notificante' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Notificante', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item 
+                  dataField="CUSTOMERNAME" [label]="{ text: 'Cliente' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Cliente', mode: 'text' }">                
+                </dxi-item> 
+              </dxi-item> 
+
+              <dxi-item itemType="group">
+                <dxi-item 
+                  dataField="AGENTNAME" [label]="{ text: 'Agente' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Agente', mode: 'text' }">                
+                </dxi-item>             
+              </dxi-item> 
+
+            </dxi-item>
+          </dxi-tab>
+
+      </dxi-item>
+    
+  </dx-form>
+
+  <dx-tab-panel
+    [loop]="true"
+    [animationEnabled]="true"
+    [swipeEnabled]="true">
+
+    <dxo-tab-panel-options [height]="" [deferRendering]="false">
+    </dxo-tab-panel-options>
+
+    <dxi-item title="Itinerario" class="contentTabPanel">    
+      <dx-data-grid id="gridItinerary" class="dx-card wide-card"
+        [dataSource]="itinerarys"
+        [showBorders]="false"
+        [focusedRowEnabled]="false"
+        [rowAlternationEnabled]="true"  
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        keyExpr="INT_SHIPMENTDOCUMENTITINERARYID">
       
-    </dx-form>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager 
+          [showPageSizeSelector]="true" 
+          [showInfo]="true" 
+          [allowedPageSizes]="[10, 25, 50, 100]"
+          infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel
+          [visible]="false"
+          [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-selection mode="single"></dxo-selection>
+        
+        <dxi-column
+          dataField="VCH_NUMBERFLIGHT"
+          caption="Nro Viaje">        
+        </dxi-column>
 
+        <dxi-column caption="">
+          <dxi-column
+            dataField="VCH_SERIE"
+            caption="Serie">
+          </dxi-column>
+          <dxi-column
+            dataField="VCH_NUMBER"
+            caption="Número">
+          </dxi-column>
+        </dxi-column>  
+        
+        <dxi-column
+          dataField="VCH_VESSEL"
+          caption="Buque">        
+        </dxi-column>
+
+        <dxi-column caption="Salida" alignment="center">
+          <dxi-column
+            dataField="VCH_DEPARTUREPORTNAME"
+            caption="Puerto">
+          </dxi-column>
+          <dxi-column
+            dataField="DAT_DEPARTUREDATE"
+            caption="Fecha Lima"
+            format="dd/MM/yyyy HH:mm"
+            alignment="center"
+            dataType="date">
+          </dxi-column>
+          <dxi-column
+            dataField="DAT_TRACKINGDEPARTUREDATE"
+            caption="Fecha Tracking"
+            format="dd/MM/yyyy HH:mm"
+            alignment="center"
+            dataType="date">
+          </dxi-column>
+        </dxi-column>
+
+        <dxi-column caption="Llegada" alignment="center">
+          <dxi-column
+            dataField="VCH_ARRIVALPORTNAME"
+            caption="Puerto">
+          </dxi-column>
+          <dxi-column
+            dataField="DAT_ARRIVALDATE"
+            caption="Fecha Lima"
+            alignment="center"
+            format="dd/MM/yyyy HH:mm"
+            dataType="date">
+          </dxi-column>
+          <dxi-column
+            dataField="DAT_TRACKINGARRIVALDATE"
+            caption="Fecha Tracking"
+            format="dd/MM/yyyy HH:mm"
+            alignment="center"
+            dataType="date">
+          </dxi-column>
+        </dxi-column>
+      
+      </dx-data-grid>
+    </dxi-item> 
+
+    <dxi-item title="Terminal y Flete" class="contentTabPanel">
+      <dx-tab-panel
+        [loop]="true"
+        [animationEnabled]="true"
+        [swipeEnabled]="true">
+
+          <dxo-tab-panel-options [height]="" [deferRendering]="false">
+          </dxo-tab-panel-options>
+
+          <dxi-item title="Productos & Bultos" class="contentTabPanel">    
+            <dx-data-grid id="gridPackage" class="dx-card wide-card"
+              [dataSource]="packages"
+              [showBorders]="false"
+              [focusedRowEnabled]="false"
+              [rowAlternationEnabled]="true"  
+              [allowColumnResizing]="true"
+              [columnAutoWidth]="true"
+              [allowColumnReordering]="true"
+              keyExpr="INT_SHIPMENTDOCUMENTPACKAGEID">
+            
+              <dxo-paging [pageSize]="10"></dxo-paging>
+              <dxo-pager 
+                [showPageSizeSelector]="true" 
+                [showInfo]="true" 
+                [allowedPageSizes]="[10, 25, 50, 100]"
+                infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-search-panel
+                [visible]="false"
+                [highlightCaseSensitive]="true"
+              ></dxo-search-panel>
+              <dxo-load-panel [enabled]="true"></dxo-load-panel>
+              <dxo-selection mode="single"></dxo-selection>
+              
+              <dxi-column
+                dataField="INT_ITEM"
+                caption="Nro">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="VCH_NAME"
+                caption="Producto">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="VCH_PACKAGETYPE"
+                caption="Tipo Empaque">        
+              </dxi-column>
+
+              <dxi-column caption="Datos Transmisión" alignment="center">
+                <dxi-column
+                  dataField="VCH_TYPEPACKAGE"
+                  caption="Tipo Bulto">
+                </dxi-column>
+                <dxi-column
+                  dataField="VCH_LOADCONTIDITION"
+                  caption="Cond. Carga">
+                </dxi-column>
+                <dxi-column
+                  dataField="VCH_CHARGENATURE"
+                  caption="Naturaleza Carga">
+                </dxi-column>
+                <dxi-column
+                  dataField="VCH_CODESUNATCARPEL"
+                  caption="Carga Peligrosa">
+                </dxi-column>
+              </dxi-column>  
+              
+              <dxi-column
+                dataField="VCH_DESCRIPTIONPACKAGE"
+                caption="Descripción">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="NUM_BULTOS"
+                caption="Bulto">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="NUM_GROSSWEIGHT"
+                caption="Bruto">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="NUM_CUBICATION"
+                caption="Cubicaje">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="NUM_TONS"
+                caption="Toneladas">        
+              </dxi-column>
+            
+            </dx-data-grid>
+          </dxi-item>
+
+          <dxi-item title="Contenedores" class="contentTabPanel">    
+            <dx-data-grid id="gridContainer" class="dx-card wide-card"
+              [dataSource]="containers"
+              [showBorders]="false"
+              [focusedRowEnabled]="false"
+              [rowAlternationEnabled]="true"  
+              [allowColumnResizing]="true"
+              [columnAutoWidth]="true"
+              [allowColumnReordering]="true"
+              keyExpr="INT_SHIPMENTDOCUMENTCONTAINERID">
+            
+              <dxo-paging [pageSize]="10"></dxo-paging>
+              <dxo-pager 
+                [showPageSizeSelector]="true" 
+                [showInfo]="true" 
+                [allowedPageSizes]="[10, 25, 50, 100]"
+                infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-search-panel
+                [visible]="false"
+                [highlightCaseSensitive]="true"
+              ></dxo-search-panel>
+              <dxo-load-panel [enabled]="true"></dxo-load-panel>
+              <dxo-selection mode="single"></dxo-selection>
+              
+              <dxi-column
+                dataField="VCH_NAME"
+                caption="Contenedor">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="INT_CONTAINERQUANTITY"
+                caption="Cantidad">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="INT_ITEMPACKAGE"
+                caption="Item Bulto">        
+              </dxi-column>
+        
+              <dxi-column
+                dataField="VCH_CONTAINERNUMBER"
+                caption="# Contenedor">        
+              </dxi-column>
+
+              <dxi-column
+                dataField="VCH_SEALNUMBER"
+                caption="# Precinto">        
+              </dxi-column>
+            
+            </dx-data-grid>
+          </dxi-item>
+
+      </dx-tab-panel>
+    </dxi-item>  
+
+    <dxi-item title="Documentación" class="contentTabPanel" badge="nuevo">    
+      <dx-data-grid id="gridFile" class="dx-card wide-card"
+        [dataSource]="files"
+        [showBorders]="false"
+        [focusedRowEnabled]="false"
+        [rowAlternationEnabled]="true"  
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        keyExpr="INT_DOCUMENTARYCONCILIATIONID">
+      
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager 
+          [showPageSizeSelector]="true" 
+          [showInfo]="true" 
+          [allowedPageSizes]="[10, 25, 50, 100]"
+          infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel
+          [visible]="false"
+          [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-selection mode="single"></dxo-selection>
+        
+        <dxi-column
+          dataField="VCH_DOCUMENTNAME"
+          caption="Tipo de Documento">        
+        </dxi-column>
+      
+        <dxi-column
+          dataField="VCH_FILENAME"
+          caption="Nombre Archivo"
+          sortOrder="asc"> 
+        </dxi-column>    
+      
+        <dxo-editing            
+          [allowAdding]="false"
+          [allowUpdating]="false"
+          [allowDeleting]="false"
+          [confirmDelete]="false">      
+        </dxo-editing>
+        <dxi-column type="buttons" [width]="110">        
+          <dxi-button icon="download" hint="Ver" [onClick]="showFile"></dxi-button>
+        </dxi-column>  
+      
+      </dx-data-grid>
+    </dxi-item>
+  </dx-tab-panel>
 </div>
