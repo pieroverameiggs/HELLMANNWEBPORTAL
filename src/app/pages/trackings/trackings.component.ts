@@ -51,7 +51,7 @@ export class TrackingsComponent implements OnInit {
     this.filters.WAYID = 0;
     this.filters.REGIMEID = 0;
     // this.filters.ENTITYID = 5152;
-    this.filters.CRITERIA = '';
+    this.filters.CRITERIA = 'GOSZX21101172';
     this.filters.STARTDATE = this.dateWithMonthsDelay(-1);
     this.filters.ENDDATE = this.dateWithMonthsDelay(0);
 

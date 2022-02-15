@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 
 @Component({
@@ -11,24 +12,32 @@ export class TrackingComponent implements OnInit {
   public detailButtonOptions: any;
 
   constructor(
-    public modalTrackingService: ModalTrackingService
+    public modalTrackingService: ModalTrackingService,
+    private router: Router
   ) {
 
     this.detailButtonOptions = {
       icon: 'fas fa-search-plus',
       text: 'Ver Más',
       onClick(e: any) {
-        console.log('Show Detail');
+        console.log(e);
       },
-    }; 
+    };
 
   }
 
   ngOnInit(): void {
+
   }
 
   popup_hiding(e: any) {
     this.modalTrackingService.hideModal();
+  }
+
+  showDetail(id: number) {
+    this.modalTrackingService.hideModal();
+    
+    this.router.navigateByUrl('/dashboard/tracking/' + id);
   }
 
 }

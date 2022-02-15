@@ -15,10 +15,11 @@ export class ModalTrackingService {
   public origin: string = 'Sin Origin';
   public destination: string = 'Sin Destino';
   public way: string = '';
+  public shipmentDocumentId: number = 0;
 
   constructor(
     private trackingService: TrackingService,
-    private router: Router,
+    private router: Router
   ) { }
 
   showModal(filter: any) {
@@ -26,6 +27,7 @@ export class ModalTrackingService {
     this.origin = filter.VCH_ORIGIN;
     this.destination = filter.VCH_DESTINATION;
     this.way = filter.VHC_WAY;
+    this.shipmentDocumentId = filter.shipmentDocumentId;
 
     this.trackingService.getTracking(filter.VCH_SYSTEM, filter.shipmentDocumentId)
       .subscribe((resp: any) => {
