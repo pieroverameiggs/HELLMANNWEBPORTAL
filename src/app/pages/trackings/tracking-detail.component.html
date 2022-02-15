@@ -1,0 +1,100 @@
+<app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
+
+<div class="container-fluid mt-3">
+  <!-- Content here -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item"><a routerLink="/dashboard/trackings">Seguimientos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detalle</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid">
+  <dx-toolbar>
+    <dxi-item location="before" widget="dxButton" [options]="backButtonOptions"></dxi-item>
+    <dxi-item
+      location="before"
+      widget="dxButton"
+      locateInMenu="auto"
+      [options]="refreshButtonOptions"
+    >
+    </dxi-item>
+    <dxi-item location="center" widget="dxButton" locateInMenu="never">
+      <div *dxTemplate>
+        <div class="toolbar-label">
+          <b>{{ carrierName }}</b>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item location="after" widget="dxButton" locateInMenu="never">
+      <div *dxTemplate>
+        <div class="toolbar-label">
+          <b>SR : {{ serviceRequestCode }}</b>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item
+      location="after"
+      widget="dxButton"
+      locateInMenu="auto"
+      [options]="printButtonOptions"
+    >
+    </dxi-item>  
+  </dx-toolbar>
+
+  <dx-form
+      [formData]="operationSelected"
+      [showColonAfterLabel]="true"
+      [showValidationSummary]="true"
+      labelLocation="left"
+      [colCount]="1">
+          
+        <dxi-item itemType="tabbed" cssClass="header-group">
+            <dxo-tab-panel-options [height]="" [deferRendering]="false">
+            </dxo-tab-panel-options>
+            
+            <dxi-tab title="Información General">               
+              <dxi-item itemType="group" [colCount]="3">
+                
+                <dxi-item itemType="group">
+
+                  <dxi-item
+                    dataField="INT_SHIPMENTDOCUMENTID"
+                    [visible]="false"
+                  >
+                  </dxi-item>
+                 
+                  <dxi-item 
+                    dataField="VCH_SERVICETYPE" [label]="{ text: 'Tipo Servicio' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Servicio', mode: 'text' }">                
+                  </dxi-item>
+
+                  <dxi-item 
+                    dataField="VCH_JURISDICTION" [label]="{ text: 'Jurisdicción' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Jurisdicción', mode: 'text' }">                
+                  </dxi-item>
+
+                </dxi-item>
+
+                <dxi-item itemType="group">
+                  <dxi-item 
+                    dataField="VCH_SHIPPINGTYPE" [label]="{ text: 'Tipo Envío' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Envío', mode: 'text' }">
+                  </dxi-item>
+
+                  <dxi-item 
+                    dataField="VCH_DOCUMENTTYPE" [label]="{ text: 'Tipo Documento' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Documento', mode: 'text' }">
+                  </dxi-item>
+                </dxi-item>
+
+              </dxi-item>                                                                                        
+            </dxi-tab>               
+
+        </dxi-item>
+      
+    </dx-form>
+
+</div>

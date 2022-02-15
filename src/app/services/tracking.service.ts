@@ -37,4 +37,8 @@ export class TrackingService {
   getTracking(system: string, shipmentDocumentId: number) {
     return this.http.get(`${base_url}/Operation/GetListTrackingById?system=${system}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
+
+  getOperation(system: string, entityId: number, shipmentDocumentId: number) {
+    return this.http.get(`${base_url}/Operation/GetOperationById?system=${system}&entityId=${entityId}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
+  }
 }

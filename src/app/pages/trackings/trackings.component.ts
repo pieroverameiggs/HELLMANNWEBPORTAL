@@ -171,6 +171,7 @@ export class TrackingsComponent implements OnInit {
       VCH_ORIGIN: e.row.data.VCH_ORIGIN,
       VCH_DESTINATION: e.row.data.VCH_DESTINATION,
       VHC_WAY: e.row.data.VHC_WAY,
+      ENTITYID: this.filters.ENTITYID,
       shipmentDocumentId: e.row.key
     }    
 

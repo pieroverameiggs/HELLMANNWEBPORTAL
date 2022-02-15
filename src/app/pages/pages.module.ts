@@ -8,9 +8,10 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { TrackingsComponent } from './trackings/trackings.component';
-import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxScrollViewModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxAccordionModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxScrollViewModule, DxTextBoxModule, DxToolbarModule } from 'devextreme-angular';
 import { TrackingComponent } from './popups/tracking/tracking.component';
 import { HelldataComponent } from './popups/helldata/helldata.component';
+import { TrackingDetailComponent } from './trackings/tracking-detail.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HelldataComponent } from './popups/helldata/helldata.component';
     DashboardComponent,
     TrackingsComponent,
     TrackingComponent,
-    HelldataComponent    
+    HelldataComponent,
+    TrackingDetailComponent    
   ],
   exports: [
     PagesComponent
@@ -37,7 +39,8 @@ import { HelldataComponent } from './popups/helldata/helldata.component';
     DxButtonModule,
     DxPopupModule,
     DxScrollViewModule,
-    DxTextBoxModule
+    DxTextBoxModule,
+    DxToolbarModule
   ]
 })
 export class PagesModule { }

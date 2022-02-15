@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay } from 'rxjs/operators';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 
 @Component({
@@ -34,10 +35,9 @@ export class TrackingComponent implements OnInit {
     this.modalTrackingService.hideModal();
   }
 
-  showDetail(id: number) {
+  showDetail(id: number, entity: number, system: string) {
     this.modalTrackingService.hideModal();
-    
-    this.router.navigateByUrl('/dashboard/tracking/' + id);
+    this.router.navigate(['/dashboard/tracking/' + id], { queryParams: { system, entity } });
   }
 
 }
