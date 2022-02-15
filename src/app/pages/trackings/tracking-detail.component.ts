@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
+import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 import { TrackingService } from 'src/app/services/tracking.service';
 
 @Component({
@@ -33,7 +34,8 @@ export class TrackingDetailComponent implements OnInit {
   constructor(
     private trackingService: TrackingService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public modalTrackingService: ModalTrackingService
   ) {
 
     this.backButtonOptions = {
@@ -47,20 +49,24 @@ export class TrackingDetailComponent implements OnInit {
     this.printButtonOptions = {
       icon: 'print',
       onClick: () => {
-        console.log('Print Operation');
+        // console.log('Print Operation');
+        window.print();
       },
     };
 
     this.refreshButtonOptions = {
       icon: 'refresh',
       onClick: () => {
-        console.log('Refresh Operation');
+        // console.log('Refresh Operation');
+        window.location.reload();
       },
     };
 
   }
 
   ngOnInit(): void {
+
+    this.modalTrackingService.hideLoading();
 
     this.activatedRoute.params
       .subscribe(({ id }) => {
@@ -84,7 +90,7 @@ export class TrackingDetailComponent implements OnInit {
     this.trackingService.getOperation(system, entity, id)
       .subscribe((resp: any) => {
         this.loading = false;
-        console.log(resp);
+        // console.log(resp);
         if (resp.Code == eHttpStatusCode.OK) {
           
           this.operationSelected = resp.Object;

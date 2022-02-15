@@ -11,6 +11,7 @@ import { TrackingService } from './tracking.service';
 export class ModalTrackingService {
 
   public popupVisible: boolean = false;
+  public loading: boolean = false;
   public tracking: TrackingEvent[] = [];
   public origin: string = 'Sin Origin';
   public destination: string = 'Sin Destino';
@@ -52,6 +53,14 @@ export class ModalTrackingService {
 
   hideModal() {
     this.popupVisible = false;
+  }
+
+  showLoading(){
+    this.loading = true;
+  }
+
+  hideLoading(){
+    this.loading = false;
   }
 
   showNotify(msg: string, type: string) {

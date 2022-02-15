@@ -36,6 +36,7 @@ export class TrackingComponent implements OnInit {
   }
 
   showDetail(id: number, entity: number, system: string) {
+    this.modalTrackingService.showLoading();
     this.modalTrackingService.hideModal();
     this.router.navigate(['/dashboard/tracking/' + id], { queryParams: { system, entity } });
   }
