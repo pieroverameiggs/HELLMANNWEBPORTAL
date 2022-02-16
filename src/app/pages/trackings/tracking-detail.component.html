@@ -95,10 +95,10 @@
                 </dxi-item>
 
                 <dxi-item 
-                  [label]="{ text: 'Condición' }"
-                  editorType="dxRadioGroup"
-                  [editorOptions]="{ dataSource: conditions, layout: 'horizontal', value: radioGroupValue }">
+                  dataField="VCH_REFERENCE" [label]="{ text: 'Referencia' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Referencia', mode: 'text' }">
                 </dxi-item>
+                
               </dxi-item>
 
               <dxi-item itemType="group">
@@ -121,8 +121,10 @@
                 </dxi-item>
 
                 <dxi-item 
-                  dataField="VCH_REFERENCE" [label]="{ text: 'Referencia' }"
-                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Referencia', mode: 'text' }">
+                  [label]="{ text: 'Condición' }"
+                  editorType="dxRadioGroup"
+                  [visible]="hiddenControls"
+                  [editorOptions]="{ dataSource: conditions, layout: 'horizontal', value: radioGroupValue }">
                 </dxi-item>
                 
               </dxi-item>
@@ -206,7 +208,7 @@
         
         <dxi-column
           dataField="VCH_NUMBERFLIGHT"
-          caption="Nro Viaje">        
+          caption="{{numberFlightLabel}}">        
         </dxi-column>
 
         <dxi-column caption="">
@@ -222,13 +224,14 @@
         
         <dxi-column
           dataField="VCH_VESSEL"
+          [visible]="hiddenControls"
           caption="Buque">        
         </dxi-column>
 
         <dxi-column caption="Salida" alignment="center">
           <dxi-column
             dataField="VCH_DEPARTUREPORTNAME"
-            caption="Puerto">
+            caption="{{departureOrArrivalLabel}}">
           </dxi-column>
           <dxi-column
             dataField="DAT_DEPARTUREDATE"
@@ -249,7 +252,7 @@
         <dxi-column caption="Llegada" alignment="center">
           <dxi-column
             dataField="VCH_ARRIVALPORTNAME"
-            caption="Puerto">
+            caption="{{departureOrArrivalLabel}}">
           </dxi-column>
           <dxi-column
             dataField="DAT_ARRIVALDATE"
@@ -319,7 +322,7 @@
                 caption="Tipo Empaque">        
               </dxi-column>
 
-              <dxi-column caption="Datos Transmisión" alignment="center">
+              <dxi-column caption="Datos Transmisión" alignment="center" [visible]="hiddenControls">
                 <dxi-column
                   dataField="VCH_TYPEPACKAGE"
                   caption="Tipo Bulto">
@@ -366,7 +369,7 @@
             </dx-data-grid>
           </dxi-item>
 
-          <dxi-item title="Contenedores" class="contentTabPanel">    
+          <dxi-item title="Contenedores" class="contentTabPanel" [visible]="hiddenControls">    
             <dx-data-grid id="gridContainer" class="dx-card wide-card"
               [dataSource]="containers"
               [showBorders]="false"

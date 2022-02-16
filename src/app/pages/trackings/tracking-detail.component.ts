@@ -31,6 +31,13 @@ export class TrackingDetailComponent implements OnInit {
   public containers: any = [];
   public packages: any = [];
 
+  // Label
+  public departureOrArrivalLabel: string = '';
+  public numberFlightLabel: string = '';
+
+  // Hidden Controls
+  public hiddenControls: boolean = false;
+
   constructor(
     private trackingService: TrackingService,
     private router: Router,
@@ -92,7 +99,7 @@ export class TrackingDetailComponent implements OnInit {
         this.loading = false;
         // console.log(resp);
         if (resp.Code == eHttpStatusCode.OK) {
-          
+
           this.operationSelected = resp.Object;
 
           // Header
@@ -108,6 +115,18 @@ export class TrackingDetailComponent implements OnInit {
 
           if (resp.Object.BIT_ISLCL) {
             this.radioGroupValue = "LCL";
+          }
+
+          // Labels
+          if (resp.Object.VCH_WAY == "AEREA") {
+            this.departureOrArrivalLabel = "Aeropuerto";
+            this.numberFlightLabel = "Nro Vuelo";
+            this.hiddenControls = false;
+          }
+          else {
+            this.departureOrArrivalLabel = "Puerto";
+            this.numberFlightLabel = "Nro Viaje";
+            this.hiddenControls = true;
           }
 
           // Details
