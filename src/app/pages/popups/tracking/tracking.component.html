@@ -32,7 +32,7 @@
         <div id="k">
             <div class="km">
                 <ul>
-                    <li *ngFor="let item of modalTrackingService.tracking">
+                    <li *ngFor="let item of modalTrackingService.tracking" class="tip" [ngClass]="{'currentPoint': (modalTrackingService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
                         <div class="d load">
                             {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
                         </div>

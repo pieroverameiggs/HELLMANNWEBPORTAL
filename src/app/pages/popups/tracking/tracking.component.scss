@@ -27,7 +27,7 @@
     text-align: center;
 }
 
-#k .km li:first-child .d{
+#k .km li.currentPoint .d{
     color: #f55f5f;
 }
 
@@ -40,7 +40,7 @@
     background: #f3f5fc;
 }
 
-#k .km li:first-child .l
+#k .km li.currentPoint .l
 {
     background: linear-gradient(to top,#f3f5fc,rgba(255,255,255,0));
 }
@@ -57,13 +57,13 @@
     // transform: translate(-50%,-50%);
 }
 
-#k .km li:first-child .l span{
+#k .km li.currentPoint .l span{
     // top: 35%;
     background: #f55f5f;
     animation: round 1s linear infinite;
 }
 
-#k .km li:first-child .l:before {
+#k .km li.currentPoint .l:before {
     // top: 35%;
 }
 
@@ -80,12 +80,12 @@
     // transform: translate(-50%,-50%);
 }
 
-#k .km li:first-child .l:after {
+#k .km li.currentPoint .l:after {
     top: calc(35% + 7px);
     height: calc(65% - 7px);
 }
 
-#k .km li:first-child .l:after {
+#k .km li.currentPoint .l:after {
     top: calc(50% + 7px);
     height: calc(50% - 7px);
     background: linear-gradient(to top,#e7e9ef,#f55f5f);

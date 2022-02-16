@@ -13,10 +13,11 @@ export class ModalTrackingService {
   public popupVisible: boolean = false;
   public loading: boolean = false;
   public tracking: TrackingEvent[] = [];
+  public trackingSelect: TrackingEvent = {} as TrackingEvent;
   public origin: string = 'Sin Origin';
   public destination: string = 'Sin Destino';
   public way: string = '';
-  
+
   public shipmentDocumentId: number = 0;
   public system: string = '';
   public entity: number = 0;
@@ -31,7 +32,7 @@ export class ModalTrackingService {
     this.origin = filter.VCH_ORIGIN;
     this.destination = filter.VCH_DESTINATION;
     this.way = filter.VHC_WAY;
-    
+
     this.shipmentDocumentId = filter.shipmentDocumentId;
     this.system = filter.VCH_SYSTEM;
     this.entity = filter.ENTITYID;
@@ -39,6 +40,18 @@ export class ModalTrackingService {
     this.trackingService.getTracking(filter.VCH_SYSTEM, filter.shipmentDocumentId)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
+
+          let cont = 0;
+          const selectTracking = resp.List.filter((item: any, index: number) => {
+
+            if (item.DAT_ACTUALDATE)
+              cont = cont + 1;
+
+            return item.DAT_ACTUALDATE && cont === 1;
+          });
+
+          // console.log(selectTracking);
+          this.trackingSelect = selectTracking[0];
           this.tracking = resp.List;
         }
       }, (err) => {
@@ -55,11 +68,11 @@ export class ModalTrackingService {
     this.popupVisible = false;
   }
 
-  showLoading(){
+  showLoading() {
     this.loading = true;
   }
 
-  hideLoading(){
+  hideLoading() {
     this.loading = false;
   }
 

@@ -11,6 +11,7 @@ import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 export class TrackingComponent implements OnInit {
 
   public detailButtonOptions: any;
+  public count: number = 0;
 
   constructor(
     public modalTrackingService: ModalTrackingService,
