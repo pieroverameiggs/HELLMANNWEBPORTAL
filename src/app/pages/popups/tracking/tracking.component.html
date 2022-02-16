@@ -40,8 +40,11 @@
                             <span></span>
                         </div>
                         <div class="r load">
-                            <div>
-                                {{ item.VCH_NAMEDATE }}
+                            <div *ngIf="item.DAT_ESTIMATEDATE">
+                                {{ item.VCH_NAMEDATE }} <b>(F. Estimado: {{ item.DAT_ESTIMATEDATE | date: 'dd/MM/yyyy h:mm a' }})</b>
+                            </div>
+                            <div *ngIf="!item.DAT_ESTIMATEDATE">
+                                {{ item.VCH_NAMEDATE }} <b>(F. Estimado: Sin Fecha)</b>
                             </div>
                         </div>                 
                     </li>

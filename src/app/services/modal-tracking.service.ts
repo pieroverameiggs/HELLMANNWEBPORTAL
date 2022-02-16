@@ -13,7 +13,8 @@ export class ModalTrackingService {
   public popupVisible: boolean = false;
   public loading: boolean = false;
   public tracking: TrackingEvent[] = [];
-  public trackingSelect: TrackingEvent = {} as TrackingEvent;
+  // public trackingSelect: TrackingEvent = {} as TrackingEvent;
+  public trackingSelect: any;
   public origin: string = 'Sin Origin';
   public destination: string = 'Sin Destino';
   public way: string = '';
@@ -49,9 +50,13 @@ export class ModalTrackingService {
 
             return item.DAT_ACTUALDATE && cont === 1;
           });
-
+          // debugger;
           // console.log(selectTracking);
-          this.trackingSelect = selectTracking[0];
+          if (selectTracking.length > 0)
+            this.trackingSelect = selectTracking[0];
+          else
+            this.trackingSelect = { INT_IDEVENTTRACKING: 0 };
+
           this.tracking = resp.List;
         }
       }, (err) => {
