@@ -41,9 +41,24 @@
 
             <dxi-item
                 dataField="ENTITYID" [label]="{ text: 'Entidad' }"
-                editorType="dxSelectBox"                 
+                editorType="dxSelectBox"
+                [visible]="!visibleAutocompleteEntity"                 
                 [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad', items: entityList, searchEnabled: true, valueExpr:'INT_IDENTITY', displayExpr:'VCH_BUSINESSNAME', value:entityList[0].INT_IDENTITY }"
             >                             
+            </dxi-item>            
+
+            <dxi-item
+                dataField="" [label]="{ text: 'Entidad' }"
+                editorType="dxAutocomplete"
+                [visible]="visibleAutocompleteEntity"  
+                [editorOptions]="{ dataSource: entityAutocomplete, minSearchLength: 2, valueExpr: 'VCH_DISPLAYFIELD', placeholder: 'Escriba un dato...', onValueChanged: onValueChangedEntity, searchTimeout:500, onSelectionChanged: onSelectionChangedEntity, showClearButton: true }"
+                >
+                <dxi-validation-rule
+                    type="stringLength"
+                    [min]="3"
+                    message="El nombre debe tener al menos 3 caracteres"
+                >
+                </dxi-validation-rule>                                                         
             </dxi-item>
 
             <dxi-item 

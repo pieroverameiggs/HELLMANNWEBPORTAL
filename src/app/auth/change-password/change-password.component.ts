@@ -16,6 +16,7 @@ export class ChangePasswordComponent implements OnInit {
 
   loading = false;
   formData: any = {};
+  orderObj: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,8 +25,12 @@ export class ChangePasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params
-      .subscribe(({ token }) => {
+
+    this.activatedRoute.queryParamMap
+      .subscribe((params) => {
+        this.orderObj = { ...params.keys, ...params };
+        const { token } = this.orderObj.params;
+
         //console.log(token);
         this.formData.token = token;
 
@@ -42,8 +47,8 @@ export class ChangePasswordComponent implements OnInit {
           }, (err) => {
             this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
           });
-
-      });
+      }
+      );
   }
 
   passwordComparison = () => this.form.instance.option('formData').password;

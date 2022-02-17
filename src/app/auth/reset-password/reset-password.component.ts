@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import notify from 'devextreme/ui/notify';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reset-password',
@@ -32,7 +33,7 @@ export class ResetPasswordComponent implements OnInit {
         if (resp.Code == eHttpStatusCode.OK) {
           if (resp.Object.Correct) {
 
-            const base_url = window.location.origin;
+            const base_url = window.location.origin + environment.base_url_app;
             // http://localhost:4200
 
             this.userService.forgotPassword({ VCH_USERNAME: userName, VCH_BASEURL: base_url })

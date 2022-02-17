@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { TrackingCriteria } from '../interfaces/tracking-criteria.interface';
 
 const base_url = environment.base_url_apicustomer;
+const base_url_maintenace = environment.base_url_apimaintenace;
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +42,9 @@ export class TrackingService {
   getOperation(system: string, entityId: number, shipmentDocumentId: number) {
     return this.http.get(`${base_url}/Operation/GetOperationById?system=${system}&entityId=${entityId}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
+
+  getEntitys(description: string) {
+    return this.http.get(`${base_url_maintenace}/Entity/GetEntitysListCombo?description=${description}`, this.headers);
+  }
+
 }

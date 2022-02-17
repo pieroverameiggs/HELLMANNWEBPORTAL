@@ -37,6 +37,10 @@ export class TrackingsComponent implements OnInit {
   public maxEndDate: Date = new Date();
   public maxStartDate: Date = new Date();
 
+  public visibleAutocompleteEntity: boolean = false;
+  public entityCurrent: Entity = {} as Entity;
+  public entityAutocomplete: Generic[] = [];
+
   constructor(
     private trackingService: TrackingService,
     private router: Router,
@@ -47,6 +51,8 @@ export class TrackingsComponent implements OnInit {
     this.showTracking = this.showTracking.bind(this);
     this.showHellData = this.showHellData.bind(this);
     this.onValueChangedStartDate = this.onValueChangedStartDate.bind(this);
+    this.onValueChangedEntity = this.onValueChangedEntity.bind(this);
+    this.onSelectionChangedEntity = this.onSelectionChangedEntity.bind(this);
 
     this.filters.WAYID = 0;
     this.filters.REGIMEID = 0;
@@ -58,6 +64,13 @@ export class TrackingsComponent implements OnInit {
     this.filters.ENDDATE = this.dateWithMonthsDelay(0);
 
     this.entityList = JSON.parse(localStorage.getItem('groupEntity') || '[]');
+    this.entityCurrent = JSON.parse(localStorage.getItem('entity') || '{}');
+    if (this.entityCurrent) {
+      if (this.entityCurrent.INT_IDENTITY == 0) {
+        this.visibleAutocompleteEntity = true;
+        this.filters.ENTITYID = 0;
+      }
+    }
   }
 
   dateWithMonthsDelay(months: number) {
@@ -175,7 +188,7 @@ export class TrackingsComponent implements OnInit {
       VHC_WAY: e.row.data.VHC_WAY,
       ENTITYID: this.filters.ENTITYID,
       shipmentDocumentId: e.row.key
-    }    
+    }
 
     this.modalTrackingService.showModal(filter);
   }
@@ -188,10 +201,10 @@ export class TrackingsComponent implements OnInit {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,
       ENTITYID: this.filters.ENTITYID,
       shipmentDocumentId: e.row.key
-    }    
+    }
 
     this.modalHelldataService.showModal(filter);
-  }  
+  }
 
   onValueChangedStartDate(e: any) {
     // console.log(e.previousValue);
@@ -214,6 +227,38 @@ export class TrackingsComponent implements OnInit {
       },
     }, type, 8000);
 
+  }
+
+  onValueChangedEntity(e: any) {
+    // console.log(e);
+
+    const description = e.value;
+
+    if (description) {
+      if (description.length > 3) {
+        this.trackingService.getEntitys(description)
+          .subscribe((resp: any) => {
+            // console.log(resp);
+            if (resp.Code == eHttpStatusCode.OK) {
+              this.entityAutocomplete = resp.List;
+            }
+          });
+      }
+      else
+        this.filters.ENTITYID = 0;
+    }
+    else
+      this.filters.ENTITYID = 0;
+  }
+
+  onSelectionChangedEntity(e: any) {
+    // console.log(e);
+
+    if (e.selectedItem) {
+      if (e.selectedItem.INT_VALUEFIELD != 0) {
+        this.filters.ENTITYID = e.selectedItem.INT_VALUEFIELD;
+      }
+    }
   }
 
 }
