@@ -426,52 +426,7 @@
     </dxi-item>  
 
     <dxi-item title="Documentación" class="contentTabPanel" badge="nuevo">    
-      <dx-data-grid id="gridFile" class="dx-card wide-card"
-        [dataSource]="files"
-        [showBorders]="false"
-        [focusedRowEnabled]="false"
-        [rowAlternationEnabled]="true"  
-        [allowColumnResizing]="true"
-        [columnAutoWidth]="true"
-        [allowColumnReordering]="true"
-        keyExpr="INT_DOCUMENTARYCONCILIATIONID">
-      
-        <dxo-paging [pageSize]="10"></dxo-paging>
-        <dxo-pager 
-          [showPageSizeSelector]="true" 
-          [showInfo]="true" 
-          [allowedPageSizes]="[10, 25, 50, 100]"
-          infoText="Página {0} de {1} ({2} items)"></dxo-pager>
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-search-panel
-          [visible]="false"
-          [highlightCaseSensitive]="true"
-        ></dxo-search-panel>
-        <dxo-load-panel [enabled]="true"></dxo-load-panel>
-        <dxo-selection mode="single"></dxo-selection>
-        
-        <dxi-column
-          dataField="VCH_DOCUMENTNAME"
-          caption="Tipo de Documento">        
-        </dxi-column>
-      
-        <dxi-column
-          dataField="VCH_FILENAME"
-          caption="Nombre Archivo"
-          sortOrder="asc"> 
-        </dxi-column>    
-      
-        <dxo-editing            
-          [allowAdding]="false"
-          [allowUpdating]="false"
-          [allowDeleting]="false"
-          [confirmDelete]="false">      
-        </dxo-editing>
-        <dxi-column type="buttons" [width]="110">        
-          <dxi-button icon="download" hint="Ver" [onClick]="showFile"></dxi-button>
-        </dxi-column>  
-      
-      </dx-data-grid>
+      <app-grid-helldata [files]="files"></app-grid-helldata>
     </dxi-item>
   </dx-tab-panel>
 </div>

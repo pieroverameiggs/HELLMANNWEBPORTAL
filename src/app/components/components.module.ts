@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadIndicatorComponent } from './load-indicator/load-indicator.component';
-import { DxLoadIndicatorModule } from 'devextreme-angular';
+import { DxDataGridModule, DxLoadIndicatorModule } from 'devextreme-angular';
+import { GridHelldataComponent } from './grid-helldata/grid-helldata.component';
 
 
 
 @NgModule({
   declarations: [
-    LoadIndicatorComponent
+    LoadIndicatorComponent,
+    GridHelldataComponent
   ],
   exports: [
-    LoadIndicatorComponent
+    LoadIndicatorComponent,
+    GridHelldataComponent
   ],
   imports: [
     CommonModule,
-    DxLoadIndicatorModule
+    DxLoadIndicatorModule,
+    DxDataGridModule
   ]
 })
 export class ComponentsModule { }

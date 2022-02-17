@@ -181,12 +181,14 @@ export class TrackingsComponent implements OnInit {
     //console.log(e);
     // e.row.key
 
+    const entityId = (this.entityCurrent.INT_IDENTITY == 0) ? this.entityCurrent.INT_IDENTITY : this.filters.ENTITYID;
+
     const filter = {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,
       VCH_ORIGIN: e.row.data.VCH_ORIGIN,
       VCH_DESTINATION: e.row.data.VCH_DESTINATION,
       VHC_WAY: e.row.data.VHC_WAY,
-      ENTITYID: this.filters.ENTITYID,
+      ENTITYID: entityId,
       shipmentDocumentId: e.row.key
     }
 
@@ -197,9 +199,11 @@ export class TrackingsComponent implements OnInit {
     // console.log(e);
     // e.row.key
 
+    const entityId = (this.entityCurrent.INT_IDENTITY == 0) ? this.entityCurrent.INT_IDENTITY : this.filters.ENTITYID;
+
     const filter = {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,
-      ENTITYID: this.filters.ENTITYID,
+      ENTITYID: entityId,
       shipmentDocumentId: e.row.key
     }
 
