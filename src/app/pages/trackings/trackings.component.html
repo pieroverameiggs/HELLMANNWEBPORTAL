@@ -63,7 +63,8 @@
 
             <dxi-item 
                 dataField="CRITERIA" [label]="{ text: 'Criterio' }"
-                editorType="dxTextBox"            
+                id="txtCriteria"
+                editorType="dxTextBox"          
                 [editorOptions]="{ stylingMode: 'filled', placeholder: 'PO-AWB-...' }">
             </dxi-item>
 
@@ -198,7 +199,8 @@
             </dx-button>
         </dxi-item>
         <dxi-item location="after">
-            <dx-button          
+            <dx-button     
+            id="btnSearchTracking"
             hint="Buscar"
             icon="search"
             (onClick)="searchTrackings($event)"

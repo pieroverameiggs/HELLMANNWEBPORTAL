@@ -53,6 +53,7 @@ export class TrackingsComponent implements OnInit {
     this.onValueChangedStartDate = this.onValueChangedStartDate.bind(this);
     this.onValueChangedEntity = this.onValueChangedEntity.bind(this);
     this.onSelectionChangedEntity = this.onSelectionChangedEntity.bind(this);
+    this.onKeyDownCriteria = this.onKeyDownCriteria.bind(this);
 
     this.filters.WAYID = 0;
     this.filters.REGIMEID = 0;
@@ -148,6 +149,13 @@ export class TrackingsComponent implements OnInit {
     e.cancel = true;
   }
 
+  onKeyDownCriteria(e: any) {
+    // console.log(e.event.key);
+    if (e.event.key == "Enter") {      
+      document.getElementById("btnSearchTracking")?.click();
+    }
+  }
+
   searchTrackings(e: any) {
 
     this.loading = true;
@@ -214,12 +222,12 @@ export class TrackingsComponent implements OnInit {
 
   onValueChangedStartDate(e: any) {
     // console.log(e.previousValue);
-    // console.log(e.value);    
+    // console.log(e.value);
   }
 
   onValueChangedEndDate(e: any) {
     // console.log(e.previousValue);
-    // console.log(e.value);        
+    // console.log(e.value);
   }
 
   showNotify(msg: string, type: string) {
