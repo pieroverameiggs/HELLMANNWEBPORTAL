@@ -2,6 +2,7 @@
 export interface Tracking {
     INT_SHIPMENTDOCUMENTID: number;
     VCH_SYSTEM: string;
+    VCH_TABLE: string;
     VHC_WAY: string;
     VHC_REGIME: string;
     VCH_SHIPMENTDOCUMENTSERIE: string;

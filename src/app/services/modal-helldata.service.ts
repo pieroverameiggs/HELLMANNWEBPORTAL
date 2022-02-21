@@ -21,7 +21,7 @@ export class ModalHelldataService {
   showModal(filter: any) {
     this.popupHellDataVisible = true;
 
-    this.trackingService.getHellData(filter.VCH_SYSTEM, filter.ENTITYID, filter.shipmentDocumentId)
+    this.trackingService.getHellData(filter.VCH_SYSTEM, filter.VCH_TABLE, filter.ENTITYID, filter.shipmentDocumentId)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
           this.files = resp.List;

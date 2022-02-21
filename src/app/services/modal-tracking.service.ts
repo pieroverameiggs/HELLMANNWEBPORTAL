@@ -21,6 +21,7 @@ export class ModalTrackingService {
 
   public shipmentDocumentId: number = 0;
   public system: string = '';
+  public table: string = '';
   public entity: number = 0;
 
   constructor(
@@ -36,9 +37,10 @@ export class ModalTrackingService {
 
     this.shipmentDocumentId = filter.shipmentDocumentId;
     this.system = filter.VCH_SYSTEM;
+    this.table = filter.VCH_TABLE;
     this.entity = filter.ENTITYID;
 
-    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.shipmentDocumentId)
+    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.VCH_TABLE, filter.shipmentDocumentId)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
 

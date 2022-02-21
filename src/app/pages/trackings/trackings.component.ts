@@ -185,6 +185,7 @@ export class TrackingsComponent implements OnInit {
 
     const filter = {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,
+      VCH_TABLE: e.row.data.VCH_TABLE,
       VCH_ORIGIN: e.row.data.VCH_ORIGIN,
       VCH_DESTINATION: e.row.data.VCH_DESTINATION,
       VHC_WAY: e.row.data.VHC_WAY,
@@ -203,6 +204,7 @@ export class TrackingsComponent implements OnInit {
 
     const filter = {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,
+      VCH_TABLE: e.row.data.VCH_TABLE,
       ENTITYID: entityId,
       shipmentDocumentId: e.row.key
     }
