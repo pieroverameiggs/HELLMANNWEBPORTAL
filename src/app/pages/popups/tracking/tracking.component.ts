@@ -39,7 +39,10 @@ export class TrackingComponent implements OnInit {
   showDetail(id: number, entity: number, system: string, table: string) {
     this.modalTrackingService.showLoading();
     this.modalTrackingService.hideModal();
-    this.router.navigate(['/dashboard/tracking/' + id], { queryParams: { system, entity } });
+    if (table == 'OPE')
+      this.router.navigate(['/dashboard/operation/' + id], { queryParams: { system, entity } });
+    else if (table == 'CUSTOMS')
+      this.router.navigate(['/dashboard/customs/' + id], { queryParams: { system, entity } });
   }
 
 }

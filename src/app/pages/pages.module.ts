@@ -12,6 +12,7 @@ import { DxAccordionModule, DxAutocompleteModule, DxButtonModule, DxDataGridModu
 import { TrackingComponent } from './popups/tracking/tracking.component';
 import { HelldataComponent } from './popups/helldata/helldata.component';
 import { TrackingDetailComponent } from './trackings/tracking-detail.component';
+import { CustomsDetailComponent } from './trackings/customs-detail.component';
 
 
 
@@ -22,7 +23,8 @@ import { TrackingDetailComponent } from './trackings/tracking-detail.component';
     TrackingsComponent,
     TrackingComponent,
     HelldataComponent,
-    TrackingDetailComponent    
+    TrackingDetailComponent,
+    CustomsDetailComponent    
   ],
   exports: [
     PagesComponent

@@ -1,0 +1,412 @@
+<app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
+
+<div class="container-fluid mt-3">
+  <!-- Content here -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item"><a routerLink="/dashboard/trackings">Seguimientos</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Detalle</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid">
+  <dx-toolbar>
+    <dxi-item location="before" widget="dxButton" [options]="backButtonOptions"></dxi-item>
+    <dxi-item
+      location="before"
+      widget="dxButton"
+      locateInMenu="auto"
+      [options]="refreshButtonOptions"
+    >
+    </dxi-item>
+    <dxi-item location="center" widget="dxButton" locateInMenu="never">
+      <div *dxTemplate>
+        <div class="toolbar-label">
+          <b>{{ carrierName }}</b>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item location="after" widget="dxButton" locateInMenu="never">
+      <div *dxTemplate>
+        <div class="toolbar-label">
+          <b>SR : {{ serviceRequestCode }}</b>
+        </div>
+      </div>
+    </dxi-item>
+    <dxi-item
+      location="after"
+      widget="dxButton"
+      locateInMenu="auto"
+      [options]="printButtonOptions"
+    >
+    </dxi-item>  
+  </dx-toolbar>
+
+  <dx-form
+    [formData]="customsSelected"
+    [showColonAfterLabel]="true"
+    [showValidationSummary]="true"
+    labelLocation="left"
+    [colCount]="1">
+        
+      <dxi-item itemType="tabbed" cssClass="header-group">
+          <dxo-tab-panel-options [height]="" [deferRendering]="false">
+          </dxo-tab-panel-options>
+          
+          <dxi-tab title="Información General">               
+            <dxi-item itemType="group" [colCount]="3">
+              
+              <dxi-item itemType="group">
+
+                <dxi-item
+                  dataField="INT_SHIPMENTDOCUMENTCUSTOMSID"
+                  [visible]="false"
+                >
+                </dxi-item>
+                
+                <dxi-item 
+                  dataField="COMMERCIALSERVICETYPENAME" [label]="{ text: 'Tipo Servicio' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Tipo Servicio', mode: 'text' }">                
+                </dxi-item>
+
+                <dxi-item 
+                  dataField="JURISDICTIONNAME" [label]="{ text: 'Jurisdicción' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Jurisdicción', mode: 'text' }">                
+                </dxi-item>
+
+              </dxi-item>
+
+              <dxi-item itemType="group">
+                <dxi-item 
+                  dataField="ORIGINPORTNAME" [label]="{ text: 'Puerto Salida' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Puerto Salida', mode: 'text' }">
+                </dxi-item>
+
+                <dxi-item 
+                  dataField="DESTINATIONPORTNAME" [label]="{ text: 'Puerto Llegada' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Puerto Llegada', mode: 'text' }">
+                </dxi-item>
+                
+              </dxi-item>
+
+              <dxi-item itemType="group">
+                
+                <dxi-item 
+                  dataField="VCH_REFERENCE1" [label]="{ text: 'Doc. Embarque/ REF.1' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Doc. Embarque/ REF.1', mode: 'text' }">
+                </dxi-item>
+
+                <dxi-item 
+                  dataField="VCH_REFERENCE2" [label]="{ text: 'Orden/ REF.2' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Orden/ REF.2', mode: 'text' }">
+                </dxi-item>
+                
+              </dxi-item>
+
+            </dxi-item>                                                                                        
+          </dxi-tab>               
+
+          <dxi-tab title="Entidades">
+            <dxi-item itemType="group" [colCount]="3">
+              
+              <dxi-item itemType="group">
+                <dxi-item 
+                    dataField="IMPORTERNAME" [label]="{ text: 'Importador' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Importador', mode: 'text' }">                
+                  </dxi-item>             
+
+                <dxi-item 
+                  dataField="EXPORTERNAME" [label]="{ text: 'Shipper' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Shipper', mode: 'text' }">                
+                </dxi-item> 
+              </dxi-item> 
+
+              <dxi-item itemType="group">                            
+                <dxi-item 
+                  dataField="CUSTOMERNAME" [label]="{ text: 'Cliente' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Cliente', mode: 'text' }">                
+                </dxi-item> 
+              </dxi-item> 
+
+            </dxi-item>
+          </dxi-tab>
+
+      </dxi-item>
+    
+  </dx-form>
+
+  <dx-tab-panel
+    [loop]="true"
+    [animationEnabled]="true"
+    [swipeEnabled]="true">
+
+    <dxo-tab-panel-options [height]="" [deferRendering]="false">
+    </dxo-tab-panel-options> 
+
+    <dxi-item title="Orden Aduana" class="contentTabPanel">
+        <dx-form
+        [formData]="customsSelected"
+        [showColonAfterLabel]="true"
+        [showValidationSummary]="true"
+        labelLocation="left"
+        [colCount]="1">
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item itemType="group" [colSpan]="2">
+                    <dxi-item 
+                        dataField="VCH_AGENCYNAME" [label]="{ text: 'Agencia' }"
+                        [editorOptions]="{ stylingMode: 'filled', placeholder: 'Agencia', mode: 'text' }">                
+                        </dxi-item>             
+                </dxi-item>                
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="INT_YEAR" [label]="{ text: 'Año' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Año', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item 
+                  dataField="VCH_NUMBER" [label]="{ text: 'Número' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Número', mode: 'text' }">                
+                </dxi-item> 
+            </dxi-item> 
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="VCH_CUSTOMS" [label]="{ text: 'Aduana' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Aduana', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item 
+                  dataField="VCH_REGIMECUSTOMS" [label]="{ text: 'Régimen' }"
+                  [editorOptions]="{ stylingMode: 'filled', placeholder: 'Régimen', mode: 'text' }">                
+                </dxi-item> 
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="CHR_CHANNEL" [label]="{ text: 'Canal' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Canal', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item
+                    dataField="DAT_NUMERATIONDATE" [label]="{ text: 'F. Numeración' }"
+                    editorType="dxDateBox"
+                    type="date"
+                    [editorOptions]="{ width: '100%', placeholder: 'Fecha Numeración', displayFormat:'dd/MM/yyyy' }"
+                >
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="VCH_GUIDEREMISSION" [label]="{ text: 'Guia Remisión' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Guia Remisión', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item
+                    dataField="DAT_RETIREMENTDATE" [label]="{ text: 'F. Retiro' }"
+                    editorType="dxDateBox"
+                    type="date"
+                    [editorOptions]="{ width: '100%', placeholder: 'Fecha Retiro', displayFormat:'dd/MM/yyyy' }"
+                >
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="VHC_NUMBERDAM" [label]="{ text: 'Numero DAM' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Numero DAM', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item
+                    dataField="DAT_DELIVERYDATE" [label]="{ text: 'F. Entrega' }"
+                    editorType="dxDateBox"
+                    type="date"
+                    [editorOptions]="{ width: '100%', placeholder: 'Fecha Entrega', displayFormat:'dd/MM/yyyy' }"
+                >
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="DEC_VALUECIF" [label]="{ text: 'Valor CIF' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Valor CIF', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item
+                    dataField="DAT_RIGHTSPAYMENTDATE" [label]="{ text: 'F. Pago Derechos' }"
+                    editorType="dxDateBox"
+                    type="date"
+                    [editorOptions]="{ width: '100%', placeholder: 'Fecha Pago Derechos', displayFormat:'dd/MM/yyyy' }"
+                >
+                </dxi-item>
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="DEC_VALUEFOB" [label]="{ text: 'Valor FOB' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Valor FOB', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item 
+                    dataField="DEC_FREIGHT" [label]="{ text: 'Flete' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Flete', mode: 'text' }">                
+                </dxi-item>  
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="NUM_INSURANCE" [label]="{ text: 'Seguro' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Seguro', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item 
+                    dataField="VCH_NUMBERINSURANCE" [label]="{ text: 'Numero Seguro' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Numero Seguro', mode: 'text' }">                
+                </dxi-item>  
+            </dxi-item>
+
+            <dxi-item itemType="group" [colCount]="4">
+                <dxi-item 
+                    dataField="DEC_AMOUNTINSURANCE" [label]="{ text: 'Monto Seguro' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Monto Seguro', mode: 'text' }">                
+                </dxi-item>             
+
+                <dxi-item 
+                    dataField="INT_DAYSPAY" [label]="{ text: 'Dias Pago' }"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Dias Pago', mode: 'text' }">                
+                </dxi-item>  
+            </dxi-item>
+
+        </dx-form>
+    </dxi-item>
+
+    <dxi-item title="Datos Contenedor" class="contentTabPanel" [visible]="hiddenControls">
+        <dx-tab-panel
+            [loop]="true"
+            [animationEnabled]="true"
+            [swipeEnabled]="true">
+
+            <dxo-tab-panel-options [height]="" [deferRendering]="false">
+            </dxo-tab-panel-options>
+        
+            <dxi-item title="Contenedores" class="contentTabPanel">    
+                <dx-data-grid id="gridContainer" class="dx-card wide-card"
+                [dataSource]="containers"
+                [showBorders]="false"
+                [focusedRowEnabled]="false"
+                [rowAlternationEnabled]="true"  
+                [allowColumnResizing]="true"
+                [columnAutoWidth]="true"
+                [allowColumnReordering]="true"
+                keyExpr="INT_SHIPMENTDOCUMENTCONTAINERID">
+                
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-pager 
+                    [showPageSizeSelector]="true" 
+                    [showInfo]="true" 
+                    [allowedPageSizes]="[10, 25, 50, 100]"
+                    infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-search-panel
+                    [visible]="false"
+                    [highlightCaseSensitive]="true"
+                ></dxo-search-panel>
+                <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                <dxo-selection mode="single"></dxo-selection>
+                
+                <dxi-column
+                    dataField="VCH_NAME"
+                    caption="Contenedor">        
+                </dxi-column>
+
+                <dxi-column
+                    dataField="INT_CONTAINERQUANTITY"
+                    caption="Cantidad">        
+                </dxi-column>                        
+
+                <dxi-column
+                    dataField="VCH_SEALNUMBER"
+                    caption="# Precinto">        
+                </dxi-column>
+
+                <dxi-column
+                dataField="DAT_DATELOADSCHEDULED1"
+                caption="F. Programada1"
+                alignment="center"      
+                format="dd/MM/yyyy"
+                dataType="date">
+                </dxi-column> 
+
+                <dxi-column
+                dataField="DAT_DATELOADSCHEDULED2"
+                caption="F. Programada2"
+                alignment="center"      
+                format="dd/MM/yyyy"
+                dataType="date">
+                </dxi-column> 
+
+                <dxi-column
+                dataField="DAT_DATELOADSCHEDULED3"
+                caption="F. Programada3"
+                alignment="center"      
+                format="dd/MM/yyyy"
+                dataType="date">
+                </dxi-column> 
+
+                <dxi-column
+                    dataField="VCH_NUMBERCONTAINER20"
+                    caption="#CTN 20">        
+                </dxi-column>
+
+                <dxi-column
+                    dataField="VCH_NUMBERCONTAINER40HC"
+                    caption="#CTN 40HC">        
+                </dxi-column>
+
+                <dxi-column
+                    dataField="VCH_NUMBERCONTAINER40ST"
+                    caption="#CTN 40ST">        
+                </dxi-column>
+
+                <dxi-column
+                    dataField="VCH_PACKAGESBOXESPALLETS"
+                    caption="Paletas/Cajas/Bultos">        
+                </dxi-column>
+                
+                <dxi-column
+                dataField="DAT_DATEREMOVALCONTAINER"
+                caption="Retiro CNT"
+                alignment="center"      
+                format="dd/MM/yyyy"
+                dataType="date">
+                </dxi-column> 
+
+                <dxi-column
+                dataField="DAT_DATEENTRYCONTAINER"
+                caption="Ingreso CNT"
+                alignment="center"      
+                format="dd/MM/yyyy"
+                dataType="date">
+                </dxi-column> 
+
+                <dxi-column
+                    dataField="VCH_AMOUNTSLIBYCONTAINER"
+                    caption="Monto SLIxCNT">        
+                </dxi-column>
+
+                </dx-data-grid>
+            </dxi-item>
+
+        </dx-tab-panel>
+    </dxi-item> 
+
+    <dxi-item title="Documentación" class="contentTabPanel" badge="nuevo">    
+      <app-grid-helldata [files]="files"></app-grid-helldata>
+    </dxi-item>
+  </dx-tab-panel>
+</div>

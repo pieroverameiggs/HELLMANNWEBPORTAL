@@ -43,6 +43,10 @@ export class TrackingService {
     return this.http.get(`${base_url}/Operation/GetOperationById?system=${system}&entityId=${entityId}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
 
+  getCustoms(system: string, entityId: number, shipmentDocumentCustomsId: number) {
+    return this.http.get(`${base_url}/Operation/GetCustomsById?system=${system}&entityId=${entityId}&shipmentDocumentCustomsId=${shipmentDocumentCustomsId}`, this.headers);
+  }
+
   getEntitys(description: string) {
     return this.http.get(`${base_url_maintenace}/Entity/GetEntitysListCombo?description=${description}`, this.headers);
   }
