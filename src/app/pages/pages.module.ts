@@ -13,6 +13,7 @@ import { TrackingComponent } from './popups/tracking/tracking.component';
 import { HelldataComponent } from './popups/helldata/helldata.component';
 import { TrackingDetailComponent } from './trackings/tracking-detail.component';
 import { CustomsDetailComponent } from './trackings/customs-detail.component';
+import { NotifyComponent } from './settings/notify.component';
 
 
 
@@ -24,7 +25,8 @@ import { CustomsDetailComponent } from './trackings/customs-detail.component';
     TrackingComponent,
     HelldataComponent,
     TrackingDetailComponent,
-    CustomsDetailComponent    
+    CustomsDetailComponent,
+    NotifyComponent    
   ],
   exports: [
     PagesComponent

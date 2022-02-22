@@ -1,0 +1,178 @@
+<app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
+
+<div class="container-fluid mt-3">
+  <!-- Content here -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Notificaciones</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid">
+
+    <dx-accordion 
+    [multiple]="true"
+    [animationDuration]="300"
+    [collapsible]="true">
+
+        <dxi-item title="Criterios de Búsqueda">
+        <form #formSearch (keydown.enter)="$event.preventDefault()">
+            <dx-form id="form" 
+            [formData]="filters"
+            [minColWidth]="100"
+            colCount="4"
+            labelLocation="left">
+                        
+                <dxi-item
+                    dataField="WAYID" [label]="{ text: 'Vía' }"
+                    editorType="dxSelectBox"                 
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Vía', items: wayList, searchEnabled: true, valueExpr:'INT_VALUEFIELD', displayExpr:'VCH_DISPLAYFIELD' }"
+                >                             
+                </dxi-item>            
+
+                <dxi-item
+                    dataField="ENTITYID" [label]="{ text: 'Entidad' }"
+                    editorType="dxSelectBox"
+                    [visible]="!visibleAutocompleteEntity"                 
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad', items: entityList, searchEnabled: true, valueExpr:'INT_IDENTITY', displayExpr:'VCH_BUSINESSNAME', value:entityList[0].INT_IDENTITY }"
+                >                             
+                </dxi-item>            
+
+                <dxi-item
+                    dataField="" [label]="{ text: 'Entidad' }"
+                    editorType="dxAutocomplete"
+                    [visible]="visibleAutocompleteEntity"  
+                    [editorOptions]="{ dataSource: entityAutocomplete, minSearchLength: 2, valueExpr: 'VCH_DISPLAYFIELD', placeholder: 'Escriba un dato...', onValueChanged: onValueChangedEntity, searchTimeout:500, onSelectionChanged: onSelectionChangedEntity, showClearButton: true }"
+                    >
+                    <dxi-validation-rule
+                        type="stringLength"
+                        [min]="3"
+                        message="El nombre debe tener al menos 3 caracteres"
+                    >
+                    </dxi-validation-rule>                                                         
+                </dxi-item>
+
+                <dxi-item 
+                    dataField="CRITERIA" [label]="{ text: 'Criterio' }"
+                    id="txtCriteria"
+                    editorType="dxTextBox"          
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Escriba un dato...' }">
+                </dxi-item>
+
+            </dx-form>
+        </form>
+        </dxi-item>
+    </dx-accordion>
+
+    <dx-accordion 
+    #accordion
+    [multiple]="true"
+    [animationDuration]="300"
+    [collapsible]="true">
+
+    <dxi-item title="Lista de Resultados">
+        <dx-data-grid id="gridNotify" class="dx-card wide-card"
+        [dataSource]="notifys"
+        [showBorders]="false"
+        [focusedRowEnabled]="false"
+        [rowAlternationEnabled]="true"  
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [allowColumnReordering]="true"
+        [(selectedRowKeys)]="selectedRows"        
+        keyExpr="INT_IDTRACKINGDATE">
+    
+        <dxo-selection mode="multiple"></dxo-selection>
+
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-pager 
+        [showPageSizeSelector]="true" 
+        [showInfo]="true" 
+        [allowedPageSizes]="[10, 25, 50, 100]"
+        infoText="Página {0} de {1} ({2} items)"></dxo-pager>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel
+        [visible]="false"
+        [highlightCaseSensitive]="true"
+        ></dxo-search-panel>
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-column-fixing [enabled]="true"></dxo-column-fixing>  
+        <!-- <dxo-selection mode="single"></dxo-selection> -->
+        
+        <dxo-column-chooser
+            [enabled]="true"
+            mode="select"> <!-- or "dragAndDrop" -->
+        </dxo-column-chooser>
+                             
+        <dxi-column
+        dataField="VCH_WAY"      
+        caption="Vía"> 
+        </dxi-column>
+
+        <dxi-column
+        dataField="VCH_GROUPNAME"
+        caption="Grupo"> 
+        </dxi-column>
+
+        <dxi-column
+        dataField="VCH_NAMEDATE"
+        caption="Evento"> 
+        </dxi-column>
+        
+        <dxi-column
+        dataField="VCH_SPANISHDESCRIPTION"
+        caption="Descripción"> 
+        </dxi-column>
+        
+        <dxo-toolbar>          
+        <dxi-item location="before">
+            <dx-button icon="refresh" hint="Refrescar" (onClick)="refreshDataGrid($event)">
+            </dx-button>
+        </dxi-item>
+        <dxi-item location="before" name="columnChooserButton"></dxi-item>    
+        <dxi-item location="before">
+            <dx-button
+              text="Limpiar Selección"
+              icon="clearformat"
+              [disabled]="!selectedRows?.length"
+              (onClick)="dataGrid.instance.clearSelection()"
+            >
+            </dx-button>
+        </dxi-item>
+        <dxi-item location="before">
+            <dx-button
+            hint="Guardar"
+            text="Guardar"
+            icon="save"
+            (onClick)="saveNotifys($event)"
+            >
+            </dx-button>
+        </dxi-item>
+
+        <dxi-item location="after">
+            <dx-button
+            hint="Exportar"
+            icon="exportxlsx"
+            (onClick)="exportNotifys($event)"
+            >
+            </dx-button>
+        </dxi-item>                
+        <dxi-item location="after">
+            <dx-button     
+            id="btnSearchTracking"
+            hint="Buscar"
+            icon="search"
+            (onClick)="searchNotifys($event)"
+            >
+            </dx-button>
+        </dxi-item>    
+        
+        </dxo-toolbar>
+
+        </dx-data-grid>
+    </dxi-item>
+    </dx-accordion>
+
+</div>
