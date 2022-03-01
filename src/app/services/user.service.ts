@@ -39,6 +39,7 @@ export class UserService {
     });
 
     localStorage.setItem('token', token);
+    localStorage.setItem('theme', 'generic.carmine.compact');
     localStorage.setItem('menu', JSON.stringify(modules));
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -93,6 +94,10 @@ export class UserService {
 
   verifyToken(token: string){
     return this.http.get(`${base_url}/Login/VerifyToken?token=${token}`);
+  }
+
+  getInfoUser(userId: number){
+    return this.http.get(`${base_url}/User/FindUserById?ID=${userId}`);
   }
 
   logout() {

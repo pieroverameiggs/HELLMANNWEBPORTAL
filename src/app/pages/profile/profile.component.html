@@ -1,17 +1,62 @@
-<h2 class="content-block">Profile</h2>
+<app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
 
-<div class="content-block dx-card responsive-paddings">
-  <div class="form-avatar">
-    <img src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{employee.Picture}}"/>
-  </div>
-  <span>{{employee.Notes}}</span>
+<div class="container-fluid mt-3">
+  <!-- Content here -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+    </ol>
+  </nav>
 </div>
 
-<div class="content-block dx-card responsive-paddings">
-  <dx-form id="form"
-    [formData]="employee"
-    labelLocation="top"
-    [colCountByScreen]="colCountByScreen"
-  >
-  </dx-form>
+<div class="container-fluid">
+  <div class="dx-card responsive-paddings">
+    <dx-form id="form"
+      [formData]="user"
+      [minColWidth]="100"
+      colCount="1"
+      labelLocation="left"
+    >
+
+      <dxi-item itemType="group" [colCount]="3">
+        <dxi-item itemType="group">
+          <dxi-item 
+            dataField="VCH_NAME" [label]="{ text: 'Nombre' }"
+            [editorOptions]="{ placeholder: 'Nombre', stylingMode: 'filled', mode: 'text' }">
+          </dxi-item>
+
+          <dxi-item 
+            dataField="VCH_FATHERLASTNAME" [label]="{ text: 'Apellido Paterno' }"
+            [editorOptions]="{ placeholder: 'Apellido Paterno', stylingMode: 'filled', mode: 'text' }">
+          </dxi-item>
+
+          <dxi-item 
+            dataField="VCH_MOTHERLASTNAME" [label]="{ text: 'Apellido Materno' }"
+            [editorOptions]="{ placeholder: 'Apellido Materno', stylingMode: 'filled', mode: 'text' }">
+          </dxi-item>
+        </dxi-item>
+
+        <dxi-item itemType="group">
+          <dxi-item 
+            dataField="VCH_CONTACTPHONE" [label]="{ text: 'Teléfono' }"
+            [editorOptions]="{ placeholder: 'Teléfono', stylingMode: 'filled', mode: 'text' }">
+          </dxi-item>
+
+          <dxi-item 
+            dataField="VCH_EMAIL" [label]="{ text: 'Correo Electrónico' }"
+            [editorOptions]="{ placeholder: 'Correo Electrónico', stylingMode: 'filled', mode: 'text' }">
+          </dxi-item>
+
+          <dxi-item
+            [label]="{ text: 'Tema Dark' }"
+            editorType="dxSwitch"
+            [editorOptions]="{ value: false, onValueChanged:switchValueChanged }"
+          >
+          </dxi-item>
+        </dxi-item>
+      </dxi-item>
+
+    </dx-form>
+  </div>
 </div>

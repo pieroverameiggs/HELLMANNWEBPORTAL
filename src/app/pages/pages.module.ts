@@ -8,12 +8,13 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { TrackingsComponent } from './trackings/trackings.component';
-import { DxAccordionModule, DxAutocompleteModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxRadioGroupModule, DxScrollViewModule, DxTabPanelModule, DxTextBoxModule, DxToolbarModule } from 'devextreme-angular';
+import { DxAccordionModule, DxAutocompleteModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxRadioGroupModule, DxScrollViewModule, DxSwitchModule, DxTabPanelModule, DxTextBoxModule, DxToolbarModule } from 'devextreme-angular';
 import { TrackingComponent } from './popups/tracking/tracking.component';
 import { HelldataComponent } from './popups/helldata/helldata.component';
 import { TrackingDetailComponent } from './trackings/tracking-detail.component';
 import { CustomsDetailComponent } from './trackings/customs-detail.component';
 import { NotifyComponent } from './settings/notify.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -26,7 +27,8 @@ import { NotifyComponent } from './settings/notify.component';
     HelldataComponent,
     TrackingDetailComponent,
     CustomsDetailComponent,
-    NotifyComponent    
+    NotifyComponent,
+    ProfileComponent    
   ],
   exports: [
     PagesComponent
@@ -48,7 +50,8 @@ import { NotifyComponent } from './settings/notify.component';
     DxToolbarModule,
     DxRadioGroupModule,
     DxTabPanelModule,
-    DxAutocompleteModule
+    DxAutocompleteModule,
+    DxSwitchModule
   ]
 })
 export class PagesModule { }

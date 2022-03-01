@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 import { NotifyComponent } from './settings/notify.component';
 import { CustomsDetailComponent } from './trackings/customs-detail.component';
 import { TrackingDetailComponent } from './trackings/tracking-detail.component';
@@ -19,6 +20,9 @@ const childRoutes: Routes = [
 
   //Configuración
   { path: 'notifications', canActivate: [AuthGuard], component: NotifyComponent, data: { titulo: 'Mantenimiento de Notificaciones' } },
+
+  //Profile
+  { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent, data: { titulo: 'Mantenimiento de Perfil' } },
 ]
 
 @NgModule({

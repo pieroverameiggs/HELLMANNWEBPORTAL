@@ -34,9 +34,9 @@ export class HeaderComponent implements OnInit {
     text: 'Perfil',
     icon: 'user',
     onClick: () => {
-      const payload = this.parseJwt(localStorage.getItem('token'));
-      console.log(payload);
-      //this.router.navigate(['/profile']);
+      //const payload = this.parseJwt(localStorage.getItem('token'));
+      // console.log(payload);
+      this.router.navigate(['/dashboard/profile']);
     }
   },
   {

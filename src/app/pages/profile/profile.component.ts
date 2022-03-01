@@ -1,28 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { eHttpStatusCode } from 'src/app/model/enums.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   templateUrl: 'profile.component.html',
-  styleUrls: [ './profile.component.scss' ]
+  styleUrls: ['./profile.component.scss']
 })
 
-export class ProfileComponent {
-  employee: any;
-  colCountByScreen: object;
+export class ProfileComponent implements OnInit {
+  public user: any;
+  public colCountByScreen: object;
+  public loading: boolean = false;
+  public userCurrent: any;
 
-  constructor() {
-    this.employee = {
-      ID: 7,
-      FirstName: 'Sandra',
-      LastName: 'Johnson',
-      Prefix: 'Mrs.',
-      Position: 'Controller',
-      Picture: 'images/employees/06.png',
-      BirthDate: new Date('1974/11/5'),
-      HireDate: new Date('2005/05/11'),
-      /* tslint:disable-next-line:max-line-length */
-      Notes: 'Sandra is a CPA and has been our controller since 2008. She loves to interact with staff so if you`ve not met her, be certain to say hi.\r\n\r\nSandra has 2 daughters both of whom are accomplished gymnasts.',
-      Address: '4600 N Virginia Rd.'
-    };
+  constructor(
+    private userService: UserService
+  ) {
+    this.userCurrent = JSON.parse(localStorage.getItem('user') || '{}');
+
     this.colCountByScreen = {
       xs: 1,
       sm: 2,
@@ -30,4 +25,27 @@ export class ProfileComponent {
       lg: 4
     };
   }
+
+  ngOnInit(): void {
+    this.getInfoUser();
+  }
+
+  getInfoUser() {
+    this.userService.getInfoUser(this.userCurrent.INT_USERID)
+      .subscribe((resp: any) => {
+        // console.log(resp);
+        if (resp.Code = eHttpStatusCode.OK) {
+          this.user = resp.Object.User[0];
+        }
+      });
+  }
+
+  switchValueChanged(e: any) {
+    // const previousValue = e.previousValue;
+    const newValue = e.value;
+
+    // console.log(previousValue);
+    console.log(newValue);
+  }
+
 }
