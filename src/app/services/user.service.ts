@@ -50,6 +50,7 @@ export class UserService {
           if(resp.Code == eHttpStatusCode.OK)
           {
             this.user = { 
+              INT_USERID: resp.Object.INT_USERID,
               VCH_FULLNAME: resp.Object.VCH_FULLNAME, 
               VCH_USEREMAIL: resp.Object.VCH_USEREMAIL 
             };

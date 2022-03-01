@@ -37,7 +37,11 @@
                     editorType="dxSelectBox"
                     [visible]="!visibleAutocompleteEntity"                 
                     [editorOptions]="{ stylingMode: 'filled', placeholder: 'Entidad', items: entityList, searchEnabled: true, valueExpr:'INT_IDENTITY', displayExpr:'VCH_BUSINESSNAME', value:entityList[0].INT_IDENTITY }"
-                >                             
+                >      
+                    <dxi-validation-rule
+                      type="required"
+                      message="Entidad es Requerido"
+                    ></dxi-validation-rule>                        
                 </dxi-item>            
 
                 <dxi-item
@@ -51,13 +55,30 @@
                         [min]="3"
                         message="El nombre debe tener al menos 3 caracteres"
                     >
-                    </dxi-validation-rule>                                                         
+                    </dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="required"
+                      message="Entidad es Requerido"
+                    ></dxi-validation-rule>                                                           
                 </dxi-item>
+
+                <dxi-item
+                    dataField="USERID" [label]="{ text: 'Usuario' }"
+                    editorType="dxSelectBox"                 
+                    [visible]="visibleAutocompleteEntity"
+                    [editorOptions]="{ stylingMode: 'filled', placeholder: 'Usuario', items: users, searchEnabled: true, valueExpr:'INT_USERID', displayExpr:'VCH_USER' }"
+                >
+                    <dxi-validation-rule
+                        type="required"
+                        message="Usuario es Requerido"
+                    ></dxi-validation-rule>                                
+                </dxi-item> 
 
                 <dxi-item 
                     dataField="CRITERIA" [label]="{ text: 'Criterio' }"
                     id="txtCriteria"
-                    editorType="dxTextBox"          
+                    editorType="dxTextBox"   
+                    [visible]="false"       
                     [editorOptions]="{ stylingMode: 'filled', placeholder: 'Escriba un dato...' }">
                 </dxi-item>
 
@@ -137,7 +158,7 @@
               text="Limpiar Selección"
               icon="clearformat"
               [disabled]="!selectedRows?.length"
-              (onClick)="dataGrid.instance.clearSelection()"
+              (onClick)="clearNotifys($event)"
             >
             </dx-button>
         </dxi-item>
@@ -145,7 +166,7 @@
             <dx-button
             hint="Guardar"
             text="Guardar"
-            icon="save"
+            icon="save"            
             (onClick)="saveNotifys($event)"
             >
             </dx-button>
@@ -163,7 +184,7 @@
             <dx-button     
             id="btnSearchTracking"
             hint="Buscar"
-            icon="search"
+            icon="search"            
             (onClick)="searchNotifys($event)"
             >
             </dx-button>
