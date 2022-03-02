@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
 import { UserService } from 'src/app/services/user.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   templateUrl: 'profile.component.html',
@@ -12,9 +13,11 @@ export class ProfileComponent implements OnInit {
   public colCountByScreen: object;
   public loading: boolean = false;
   public userCurrent: any;
+  public themeSwitch: boolean = false;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private themeService: ThemeService
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem('user') || '{}');
 
@@ -24,10 +27,13 @@ export class ProfileComponent implements OnInit {
       md: 3,
       lg: 4
     };
+
+    this.themeSwitch = JSON.parse(localStorage.getItem('themeDark') || 'false');
+    this.switchValueChanged = this.switchValueChanged.bind(this);
   }
 
   ngOnInit(): void {
-    this.getInfoUser();
+    this.getInfoUser(); 
   }
 
   getInfoUser() {
@@ -45,7 +51,9 @@ export class ProfileComponent implements OnInit {
     const newValue = e.value;
 
     // console.log(previousValue);
-    console.log(newValue);
+    // console.log(newValue);
+
+    this.themeService.changeTheme(newValue);
   }
 
 }

@@ -7,6 +7,7 @@ import { Module } from '../interfaces/module.interface';
 import { User } from '../interfaces/user.interface';
 import { Observable, of } from 'rxjs';
 import { eHttpStatusCode } from '../model/enums.model';
+import themes from 'devextreme/ui/themes';
 
 const base_url = environment.base_url_apisec;
 
@@ -39,7 +40,7 @@ export class UserService {
     });
 
     localStorage.setItem('token', token);
-    localStorage.setItem('theme', 'generic.carmine.compact');
+    localStorage.setItem('themeDark', 'false');
     localStorage.setItem('menu', JSON.stringify(modules));
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -103,10 +104,12 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('menu');
+    localStorage.removeItem('themeDark');
     localStorage.removeItem('user');
     localStorage.removeItem('entity');
     localStorage.removeItem('groupEntity');
 
+    themes.current("generic.carmine.compact");
     this.router.navigateByUrl('/login');
   }
 }
