@@ -23090,3 +23090,6 @@ input.dx-hidden {
 .user-name {
   color: #fff !important;
 }
+.dx-toolbar .dx-toolbar-item.menu-button>.dx-toolbar-item-content .dx-icon {
+  color: #fff !important;
+}
