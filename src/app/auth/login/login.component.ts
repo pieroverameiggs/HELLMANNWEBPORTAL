@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           }
 
           if (!resp.Object.Entity) {
-            this.showNotify('Usuario o constraseña incorrecta', 'error');
+            this.showNotify('Usuario o constraseña incorrecta y/o entidad no asignada', 'error');
           }
           else {
             localStorage.setItem('entity', JSON.stringify(resp.Object.Entity));
