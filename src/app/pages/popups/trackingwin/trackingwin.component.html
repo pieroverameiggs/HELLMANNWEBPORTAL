@@ -10,72 +10,73 @@
     (onHiding)="popup_hiding($event)"
     [(visible)]="modalWinService.popupWinVisible">
 
-    <dx-data-grid id="gridTrackingWin" class="dx-card wide-card"
-        [dataSource]="modalWinService.trackingWin"
-        [showBorders]="false"
-        [focusedRowEnabled]="false"
-        [rowAlternationEnabled]="true"  
-        [allowColumnResizing]="true"
-        [columnAutoWidth]="true"
-        [allowColumnReordering]="true"
-        keyExpr="INT_SHIPMENTDOCUMENTEVENTID">
+    <dx-scroll-view width="100%" height="100%">
+        <dx-data-grid id="gridTrackingWin" class="dx-card wide-card"
+            [dataSource]="modalWinService.trackingWin"
+            [showBorders]="true"
+            [focusedRowEnabled]="false"
+            [rowAlternationEnabled]="true"  
+            [allowColumnResizing]="true"
+            [columnAutoWidth]="true"
+            [allowColumnReordering]="true"
+            keyExpr="INT_SHIPMENTDOCUMENTEVENTID">
 
-        <!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
-        <!-- <dxo-pager 
-        [showPageSizeSelector]="true" 
-        [showInfo]="true" 
-        [allowedPageSizes]="[10, 25, 50, 100]"
-        infoText="Página {0} de {1} ({2} items)"></dxo-pager> -->
+            <!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
+            <!-- <dxo-pager 
+            [showPageSizeSelector]="true" 
+            [showInfo]="true" 
+            [allowedPageSizes]="[10, 25, 50, 100]"
+            infoText="Página {0} de {1} ({2} items)"></dxo-pager> -->
 
-        <dxo-scrolling mode="infinite"></dxo-scrolling>
+            <dxo-scrolling mode="infinite"></dxo-scrolling>
 
-        <dxo-filter-row [visible]="true"></dxo-filter-row>
-        <dxo-search-panel
-        [visible]="false"
-        [highlightCaseSensitive]="true"
-        ></dxo-search-panel>
-        <dxo-load-panel [enabled]="true"></dxo-load-panel>
-        <dxo-selection mode="single"></dxo-selection>
-        
-        <dxi-column
-            dataField="VCH_AIRSEAPORT"
-            caption="{{modalWinService.airSeaPortLabel}}"
-            [groupIndex]="0">        
-        </dxi-column>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-search-panel
+            [visible]="false"
+            [highlightCaseSensitive]="true"
+            ></dxo-search-panel>
+            <dxo-load-panel [enabled]="true"></dxo-load-panel>
+            <dxo-selection mode="single"></dxo-selection>
+            
+            <dxi-column
+                dataField="VCH_AIRSEAPORT"
+                caption="{{modalWinService.airSeaPortLabel}}"
+                [groupIndex]="0">        
+            </dxi-column>
 
-        <dxi-column
-            dataField="VCH_CARRIERNAME"
-            caption="Transportista"> 
-        </dxi-column>
-        
-        <dxi-column
-            dataField="VCH_INTERNATIONALCODE"
-            caption="Código Internacional"> 
-        </dxi-column>
-        
-        <dxi-column
-            dataField="VCH_DESCRIPTIONCODE"
-            caption="Descripción Código"> 
-        </dxi-column>
+            <dxi-column
+                dataField="VCH_CARRIERNAME"
+                caption="Transportista"> 
+            </dxi-column>
+            
+            <dxi-column
+                dataField="VCH_INTERNATIONALCODE"
+                caption="Código Internacional"> 
+            </dxi-column>
+            
+            <dxi-column
+                dataField="VCH_DESCRIPTIONCODE"
+                caption="Descripción Código"> 
+            </dxi-column>
 
-        <dxi-column
-            dataField="VCH_TRANSPORTNUMBER"
-            caption="Transporte"> 
-        </dxi-column>
+            <dxi-column
+                dataField="VCH_TRANSPORTNUMBER"
+                caption="Transporte"> 
+            </dxi-column>
 
-        <dxi-column
-            dataField="DAT_EVENTDATE"
-            caption="F. Evento"
-            alignment="center"      
-            format="dd/MM/yyyy"
-            dataType="date">
-        </dxi-column> 
+            <dxi-column
+                dataField="DAT_EVENTDATE"
+                caption="F. Evento"
+                alignment="center"      
+                format="dd/MM/yyyy"
+                dataType="date">
+            </dxi-column> 
 
-        <dxi-column
-            dataField="VCH_EVENTSTATUS"
-            caption="Estado Evento"> 
-        </dxi-column>
+            <dxi-column
+                dataField="VCH_EVENTSTATUS"
+                caption="Estado Evento"> 
+            </dxi-column>
 
-    </dx-data-grid>
-    
+        </dx-data-grid>
+    </dx-scroll-view>
 </dx-popup>

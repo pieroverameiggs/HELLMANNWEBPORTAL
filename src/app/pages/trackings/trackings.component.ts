@@ -214,7 +214,7 @@ export class TrackingsComponent implements OnInit {
     const filter = {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,  
       VHC_WAY: e.row.data.VHC_WAY,   
-      serviceRequestId: 1985 //e.row.INT_SERVICEREQUESTID
+      serviceRequestId: e.row.data.INT_SERVICEREQUESTID
     }
 
     this.modalWinService.showModal(filter);
