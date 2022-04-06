@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { Entity } from 'src/app/interfaces/entity.interface';
 import { ModalHelldataService } from 'src/app/services/modal-helldata.service';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
+import { ModalWinService } from 'src/app/services/modal-win.service';
 
 @Component({
   selector: 'app-trackings',
@@ -46,8 +47,10 @@ export class TrackingsComponent implements OnInit {
     private router: Router,
     private genericService: GenericService,
     private modalHelldataService: ModalHelldataService,
-    private modalTrackingService: ModalTrackingService
+    private modalTrackingService: ModalTrackingService,
+    private modalWinService: ModalWinService
   ) {
+    this.showTrackingWin = this.showTrackingWin.bind(this);
     this.showTracking = this.showTracking.bind(this);
     this.showHellData = this.showHellData.bind(this);
     this.onValueChangedStartDate = this.onValueChangedStartDate.bind(this);
@@ -202,6 +205,19 @@ export class TrackingsComponent implements OnInit {
     }
 
     this.modalTrackingService.showModal(filter);
+  }
+
+  showTrackingWin(e: any){
+    //console.log(e);
+    // e.row.key
+    
+    const filter = {
+      VCH_SYSTEM: e.row.data.VCH_SYSTEM,  
+      VHC_WAY: e.row.data.VHC_WAY,   
+      serviceRequestId: 1985 //e.row.INT_SERVICEREQUESTID
+    }
+
+    this.modalWinService.showModal(filter);
   }
 
   showHellData(e: any) {
