@@ -16,6 +16,7 @@ export class ModalWinService {
 
   // Labels
   public airSeaPortLabel: string = '';
+  public transportSeaPortLabel: string = '';
 
   public serviceRequestId: number = 0;
   public system: string = '';
@@ -27,7 +28,8 @@ export class ModalWinService {
 
   showModal(filter: any) {
     this.popupWinVisible = true;
-    this.airSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Aeropuerto" : "Puerto";    
+    this.airSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Aeropuerto" : "Puerto";  
+    this.transportSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Nro Vuelo" : "Nro Viaje";    
 
     this.serviceRequestId = filter.serviceRequestId;
     this.system = filter.VCH_SYSTEM;
