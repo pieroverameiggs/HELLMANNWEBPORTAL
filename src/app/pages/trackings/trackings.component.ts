@@ -19,6 +19,7 @@ import { Entity } from 'src/app/interfaces/entity.interface';
 import { ModalHelldataService } from 'src/app/services/modal-helldata.service';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 import { ModalWinService } from 'src/app/services/modal-win.service';
+import { ModalEventService } from 'src/app/services/modal-event.service';
 
 @Component({
   selector: 'app-trackings',
@@ -48,8 +49,10 @@ export class TrackingsComponent implements OnInit {
     private genericService: GenericService,
     private modalHelldataService: ModalHelldataService,
     private modalTrackingService: ModalTrackingService,
+    private modalEventService: ModalEventService,
     private modalWinService: ModalWinService
   ) {
+    this.showEvent = this.showEvent.bind(this);
     this.showTrackingWin = this.showTrackingWin.bind(this);
     this.showTracking = this.showTracking.bind(this);
     this.showHellData = this.showHellData.bind(this);
@@ -154,7 +157,7 @@ export class TrackingsComponent implements OnInit {
 
   onKeyDownCriteria(e: any) {
     // console.log(e.event.key);
-    if (e.event.key == "Enter") {      
+    if (e.event.key == "Enter") {
       document.getElementById("btnSearchTracking")?.click();
     }
   }
@@ -207,13 +210,32 @@ export class TrackingsComponent implements OnInit {
     this.modalTrackingService.showModal(filter);
   }
 
-  showTrackingWin(e: any){
+  showEvent(e: any) {
     //console.log(e);
     // e.row.key
-    
+
+    const entityId = (this.entityCurrent.INT_IDENTITY == 0) ? this.entityCurrent.INT_IDENTITY : this.filters.ENTITYID;
+
     const filter = {
-      VCH_SYSTEM: e.row.data.VCH_SYSTEM,  
-      VHC_WAY: e.row.data.VHC_WAY,   
+      VCH_SYSTEM: e.row.data.VCH_SYSTEM,
+      VCH_TABLE: e.row.data.VCH_TABLE,
+      VCH_ORIGIN: e.row.data.VCH_ORIGIN,
+      VCH_DESTINATION: e.row.data.VCH_DESTINATION,
+      VHC_WAY: e.row.data.VHC_WAY,
+      ENTITYID: entityId,
+      shipmentDocumentId: e.row.key
+    }
+
+    this.modalEventService.showModal(filter);
+  }
+
+  showTrackingWin(e: any) {
+    //console.log(e);
+    // e.row.key
+
+    const filter = {
+      VCH_SYSTEM: e.row.data.VCH_SYSTEM,
+      VHC_WAY: e.row.data.VHC_WAY,
       serviceRequestId: e.row.data.INT_SERVICEREQUESTID
     }
 

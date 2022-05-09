@@ -16,6 +16,7 @@ import { TrackingDetailComponent } from './trackings/tracking-detail.component';
 import { CustomsDetailComponent } from './trackings/customs-detail.component';
 import { NotifyComponent } from './settings/notify.component';
 import { ProfileComponent } from './profile/profile.component';
+import { TrackingeventComponent } from './popups/trackingevent/trackingevent.component';
 
 
 
@@ -30,7 +31,8 @@ import { ProfileComponent } from './profile/profile.component';
     CustomsDetailComponent,
     NotifyComponent,
     ProfileComponent,
-    TrackingwinComponent    
+    TrackingwinComponent,
+    TrackingeventComponent    
   ],
   exports: [
     PagesComponent

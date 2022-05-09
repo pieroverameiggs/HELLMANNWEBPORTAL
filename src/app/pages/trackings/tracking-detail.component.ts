@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
+import { ModalEventService } from 'src/app/services/modal-event.service';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 import { TrackingService } from 'src/app/services/tracking.service';
 
@@ -42,7 +43,8 @@ export class TrackingDetailComponent implements OnInit {
     private trackingService: TrackingService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public modalTrackingService: ModalTrackingService
+    public modalTrackingService: ModalTrackingService,
+    public modalEventService: ModalEventService
   ) {
 
     this.backButtonOptions = {
@@ -74,6 +76,7 @@ export class TrackingDetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.modalTrackingService.hideLoading();
+    this.modalEventService.hideLoading();
 
     this.activatedRoute.params
       .subscribe(({ id }) => {
