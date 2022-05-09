@@ -12,6 +12,7 @@ export class ModalEventService {
 
   public popupEventVisible: boolean = false;
   public trackingModal: TrackingModal[] = [];
+  public trackingModalSelect: TrackingModal = {} as TrackingModal;
 
   public loading: boolean = false;
   public origin: string = 'Sin Origin';
@@ -43,6 +44,7 @@ export class ModalEventService {
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {          
           this.trackingModal = resp.List;
+          this.trackingModalSelect = resp.List.find((item:any) => (item.CHR_STATE=='C' || item.CHR_STATE=='T'))
         }
       }, (err) => {
         if (err.status == eHttpStatusCode.UNAUTHORIZED) {

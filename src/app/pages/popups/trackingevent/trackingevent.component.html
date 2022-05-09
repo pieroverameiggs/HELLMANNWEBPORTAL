@@ -31,10 +31,11 @@
 
         <div class="l-container">
             <div class="l-route-line">
-                <div>
+                <div class="itinerary">
 
                 </div>
-                <div *ngFor="let item of modalEventService.trackingModal">
+                <div class="itinerary" *ngFor="let item of modalEventService.trackingModal">
+                    <!-- Points -->
                     <div class="l-route-line_element l-route-line__element_station ng-star-inserted">
                         <div class="c-station c-station_first ng-star-inserted">
                             <div>
@@ -44,8 +45,10 @@
                                         <div class="c-station__airport" placement="top">
                                             {{item.VCH_CODE}}
                                         </div>
-                                        <div class="c-station__detail">
+                                        <div class="c-station__detail" *ngIf="item.CHR_STATE=='C'">
+                                            <div class="fas" [class]="item.VCH_ICON">
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +60,27 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Progress -->
+                    <div class="l-route-line_element l-route-line__element_segment ng-star-inserted" *ngIf="item.VCH_CODE!='ENTREGADO' && ((modalEventService.trackingModalSelect && item.INT_ITEM<=modalEventService.trackingModalSelect.INT_ITEM && item.CHR_STATE!='C') || ((item.VCH_CODE=='LIM' || item.VCH_CODE=='CLL') && item.CHR_STATE=='C'))">
+                        <div class="c-segment ng-star-inserted">
+                            <div class="c-segment__shipment">
+                                <div class="c-segment__shipment__element_pasted">
+
+                                </div>
+                                <div class="l-segment__shipment__icon" *ngIf="item.CHR_STATE=='T'">
+                                    <div class="fas" [class]="item.VCH_ICON">
+
+                                    </div>
+                                </div>
+                                <div class="c-segment__shipment__element_pasted">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
+                <div class="itinerary">
 
                 </div>
             </div>

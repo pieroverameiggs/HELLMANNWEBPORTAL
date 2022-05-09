@@ -40,6 +40,6 @@ export class TrackingeventComponent implements OnInit {
       this.router.navigate(['/dashboard/operation/' + id], { queryParams: { system, entity } });
     else if (table == 'CUSTOMS')
       this.router.navigate(['/dashboard/customs/' + id], { queryParams: { system, entity } });
-  }
+  }  
 
 }
