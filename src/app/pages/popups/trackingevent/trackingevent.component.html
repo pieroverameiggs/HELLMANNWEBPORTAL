@@ -89,6 +89,7 @@
         <dx-tab-panel
             [loop]="true"
             [animationEnabled]="true"
+            [selectedIndex]="0"
             [swipeEnabled]="true">
 
             <dxo-tab-panel-options [height]="" [deferRendering]="false">
@@ -165,25 +166,88 @@
             </dxi-item>
 
             <dxi-item title="Tracking Hellmann" class="contentTabPanel">
-                <div id="k">
-                    <div class="km">
-                        <ul>
-                            <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
-                                <div class="d load">
-                                    {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
-                                </div>
-                                <div class="l">
-                                    <span></span>
-                                </div>
-                                <div class="r load">
-                                    <div>
-                                        {{ item.VCH_NAMEDATE }}
-                                    </div>                            
-                                </div>                 
-                            </li>
-                        </ul>
-                    </div>
-                </div>   
+                
+                <dx-tab-panel
+                [loop]="true"
+                [animationEnabled]="true"
+                [swipeEnabled]="true">
+
+                    <dxo-tab-panel-options [height]="" [deferRendering]="false">
+                    </dxo-tab-panel-options>
+
+                    <dxi-item title="Linea de Tiempo" class="contentTabPanel">    
+                        <div id="k">
+                            <div class="km">
+                                <ul>
+                                    <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
+                                        <div class="d load">
+                                            {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
+                                        </div>
+                                        <div class="l">
+                                            <span></span>
+                                        </div>
+                                        <div class="r load">
+                                            <div>
+                                                {{ item.VCH_NAMEDATE }}
+                                            </div>                            
+                                        </div>                 
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> 
+                    </dxi-item>
+
+                    <dxi-item title="Tabla" class="contentTabPanel">    
+                        <dx-data-grid id="gridTrackingHellmannTable" class="dx-card wide-card"
+                            [dataSource]="modalEventService.tracking"
+                            [showBorders]="false"
+                            [focusedRowEnabled]="false"
+                            [rowAlternationEnabled]="true"  
+                            [allowColumnResizing]="true"
+                            [columnAutoWidth]="true"
+                            [allowColumnReordering]="true"
+                            (onExporting)="exportTrackingHellmann($event)"
+                            keyExpr="INT_IDEVENTTRACKING">
+
+                            <dxo-export [enabled]="true"></dxo-export>
+                            <dxo-scrolling mode="infinite"></dxo-scrolling>
+
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxo-search-panel
+                            [visible]="false"
+                            [highlightCaseSensitive]="true"
+                            ></dxo-search-panel>
+                            <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                            <dxo-selection mode="single"></dxo-selection>
+                                                        
+                            <dxi-column
+                                dataField="VCH_GROUPNAME"
+                                caption="Grupo"> 
+                            </dxi-column>
+                            
+                            <dxi-column
+                                dataField="VCH_ENGLISHDESCRIPTION"
+                                caption="Milestone"> 
+                            </dxi-column>
+                            
+                            <dxi-column
+                                dataField="VCH_NAMEDATE"
+                                caption="Descripción"> 
+                            </dxi-column>
+
+                            <dxi-column
+                                dataField="DAT_ACTUALDATE"
+                                caption="F. Real"
+                                alignment="center"      
+                                format="dd/MM/yyyy"
+                                dataType="date">
+                            </dxi-column>                             
+
+                        </dx-data-grid>
+                    </dxi-item>
+
+                </dx-tab-panel>
+                  
             </dxi-item>
 
         </dx-tab-panel>
