@@ -223,6 +223,7 @@ export class TrackingsComponent implements OnInit {
       VCH_DESTINATION: e.row.data.VCH_DESTINATION,
       VHC_WAY: e.row.data.VHC_WAY,
       ENTITYID: entityId,
+      serviceRequestId: e.row.data.INT_SERVICEREQUESTID,
       shipmentDocumentId: e.row.key
     }
 

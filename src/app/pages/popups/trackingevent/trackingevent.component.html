@@ -86,5 +86,89 @@
             </div>
         </div>
 
+        <dx-tab-panel
+            [loop]="true"
+            [animationEnabled]="true"
+            [swipeEnabled]="true">
+
+            <dxo-tab-panel-options [height]="" [deferRendering]="false">
+            </dxo-tab-panel-options>
+
+            <dxi-item title="Tracking Transportista" class="contentTabPanel">
+                <dx-data-grid id="gridTrackingWin" class="dx-card wide-card"
+                    [dataSource]="modalEventService.trackingWin"
+                    [showBorders]="false"
+                    [focusedRowEnabled]="false"
+                    [rowAlternationEnabled]="true"  
+                    [allowColumnResizing]="true"
+                    [columnAutoWidth]="true"
+                    [allowColumnReordering]="true"
+                    keyExpr="INT_SHIPMENTDOCUMENTEVENTID">
+
+                    <!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
+                    <!-- <dxo-pager 
+                    [showPageSizeSelector]="true" 
+                    [showInfo]="true" 
+                    [allowedPageSizes]="[10, 25, 50, 100]"
+                    infoText="Página {0} de {1} ({2} items)"></dxo-pager> -->
+
+                    <dxo-scrolling mode="infinite"></dxo-scrolling>
+
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-search-panel
+                    [visible]="false"
+                    [highlightCaseSensitive]="true"
+                    ></dxo-search-panel>
+                    <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                    <dxo-selection mode="single"></dxo-selection>
+                    
+                    <dxi-column
+                        dataField="VCH_AIRSEAPORT"
+                        caption="{{modalEventService.airSeaPortLabel}}"
+                        [groupIndex]="0">        
+                    </dxi-column>
+
+                    <dxi-column
+                        dataField="VCH_CARRIERNAME"
+                        caption="Transportista"> 
+                    </dxi-column>
+                    
+                    <dxi-column
+                        dataField="VCH_INTERNATIONALCODE"
+                        caption="Código Internacional Status"> 
+                    </dxi-column>
+                    
+                    <dxi-column
+                        dataField="VCH_DESCRIPTIONCODE"
+                        caption="Descripción Código Internacional"> 
+                    </dxi-column>
+
+                    <dxi-column
+                        dataField="VCH_TRANSPORTNUMBER"
+                        caption="{{modalEventService.transportSeaPortLabel}}"> 
+                    </dxi-column>
+
+                    <dxi-column
+                        dataField="DAT_EVENTDATE"
+                        caption="F. Evento"
+                        alignment="center"      
+                        format="dd/MM/yyyy"
+                        dataType="date">
+                    </dxi-column> 
+
+                    <dxi-column
+                        dataField="VCH_EVENTSTATUS"
+                        caption="Estado Evento"> 
+                    </dxi-column>
+
+                </dx-data-grid>
+            </dxi-item>
+
+            <dxi-item title="Tracking Hellmann" class="contentTabPanel">
+                
+            </dxi-item>
+
+        </dx-tab-panel>
+
     </dx-scroll-view>
 </dx-popup>
