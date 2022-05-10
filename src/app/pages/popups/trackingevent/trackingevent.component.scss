@@ -100,3 +100,131 @@
     margin-top: -7px;
     padding-left: 4px;
 }
+
+// Tracking Hellmann
+#k .km li{
+    display: flex;
+}
+
+// #k .km li>* {
+//     width: 100%;
+// }
+
+#k .km li>* {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// DateTime
+#k .km .d{
+    font-size: 11px;
+    width: 70px;
+    max-width: 70px;
+    flex-basis: 70px;
+    text-align: center;
+}
+
+#k .km li.currentPoint .d{
+    color: #f55f5f;
+}
+
+// ScrollBar
+#k .km .l {
+    margin: 0 25px;
+    width: 10px;
+    max-width: 10px;
+    flex-basis: 10px;
+    background: #f3f5fc;
+}
+
+#k .km li.currentPoint .l
+{
+    background: linear-gradient(to top,#f3f5fc,rgba(255,255,255,0));
+}
+
+#k .km .l span{
+    z-index: 10;
+    background: #e7e9ef;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%,-50%);
+}
+
+#k .km li.currentPoint .l span{
+    // top: 35%;
+    background: #f55f5f;
+    animation: round 1s linear infinite;
+}
+
+#k .km li.currentPoint .l:before {
+    // top: 35%;
+}
+
+#k .km .l:before {
+    background: #f3f5fc;
+    content: '';
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    z-index: 1;
+    position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%,-50%);
+}
+
+#k .km li.currentPoint .l:after {
+    top: calc(35% + 7px);
+    height: calc(65% - 7px);
+}
+
+#k .km li.currentPoint .l:after {
+    top: calc(50% + 7px);
+    height: calc(50% - 7px);
+    background: linear-gradient(to top,#e7e9ef,#f55f5f);
+}
+
+#k .km .l:after {
+    /* content: ''; */
+    position: absolute;
+    height: 100%;
+    background: #e7e9ef;
+    width: 4px;
+    left: 3px;
+    z-index: 5;
+}
+
+// EventTracking
+#k .km .r{
+    margin: 5px 0;
+    font-size: 12px;
+    background: #fff;
+    color: #000;
+    box-shadow: 0 15px 30px rgb(0 0 0 / 5%);
+    border-radius: 3px;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+#k .km .r>div {
+    padding: 10px 17px 10px;
+}
+
+#k .km .r>* {
+    flex: 1;
+}
+
+@keyframes round {
+    0% {
+        box-shadow: 0 0 0 0 rgb(255 45 45 / 30%);
+    }
+
+    100% {
+        box-shadow: 0 0 0 15px rgb(255 45 45 / 0%);
+    }
+}

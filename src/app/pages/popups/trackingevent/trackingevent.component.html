@@ -165,7 +165,25 @@
             </dxi-item>
 
             <dxi-item title="Tracking Hellmann" class="contentTabPanel">
-                
+                <div id="k">
+                    <div class="km">
+                        <ul>
+                            <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
+                                <div class="d load">
+                                    {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
+                                </div>
+                                <div class="l">
+                                    <span></span>
+                                </div>
+                                <div class="r load">
+                                    <div>
+                                        {{ item.VCH_NAMEDATE }}
+                                    </div>                            
+                                </div>                 
+                            </li>
+                        </ul>
+                    </div>
+                </div>   
             </dxi-item>
 
         </dx-tab-panel>

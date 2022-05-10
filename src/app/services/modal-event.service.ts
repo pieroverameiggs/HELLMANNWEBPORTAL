@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
+import { TrackingEvent } from '../interfaces/tracking-event.interface';
 import { TrackingModal } from '../interfaces/tracking-modal.interface';
 import { TrackingWin } from '../interfaces/tracking-win.interface';
 import { eHttpStatusCode } from '../model/enums.model';
@@ -29,8 +30,11 @@ export class ModalEventService {
   public trackingWin: TrackingWin[] = [];
   public airSeaPortLabel: string = '';
   public transportSeaPortLabel: string = '';
-
   public serviceRequestId: number = 0;
+
+  // Hellmann
+  public tracking: TrackingEvent[] = [];
+  public trackingSelect: any;
 
   constructor(
     private trackingService: TrackingService,
@@ -55,6 +59,7 @@ export class ModalEventService {
 
     this.getLoadTrackingLine(filter);
     this.getLoadTrackingWin(filter);
+    this.getLoadTrackingHellmann(filter);
   }
 
   getLoadTrackingLine(filter: any) {
@@ -88,6 +93,38 @@ export class ModalEventService {
           this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
         }
       });  
+  }
+
+  getLoadTrackingHellmann(filter:any){
+    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.VCH_TABLE, filter.shipmentDocumentId)
+      .subscribe((resp: any) => {
+        if (resp.Code == eHttpStatusCode.OK) {
+
+          let cont = 0;
+          const selectTracking = resp.List.filter((item: any, index: number) => {
+
+            if (item.DAT_ACTUALDATE)
+              cont = cont + 1;
+
+            return item.DAT_ACTUALDATE && cont === 1;
+          });
+          // debugger;
+          // console.log(selectTracking);
+          if (selectTracking.length > 0)
+            this.trackingSelect = selectTracking[0];
+          else
+            this.trackingSelect = { INT_IDEVENTTRACKING: 0 };
+
+          this.tracking = resp.List;
+        }
+      }, (err) => {
+        if (err.status == eHttpStatusCode.UNAUTHORIZED) {
+          this.router.navigateByUrl('/login');
+        }
+        else {
+          this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
+        }
+      });
   }
 
   hideModal() {
