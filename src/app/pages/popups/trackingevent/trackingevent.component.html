@@ -79,6 +79,28 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Progress Null -->
+                    <div class="l-route-line_element l-route-line__element_segment ng-star-inserted" *ngIf="item.VCH_CODE!='ENTREGADO' && !modalEventService.trackingModalSelect">
+                        <div class="c-segment ng-star-inserted">
+                            <div class="c-segment__shipment">
+                                <div class="c-segment__shipment__element_pasted_dashed">
+
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Incomplete -->
+                    <div class="l-route-line_element l-route-line__element_segment ng-star-inserted" *ngIf="item.VCH_CODE!='ENTREGADO' && ((modalEventService.trackingModalSelect && item.INT_ITEM>modalEventService.trackingModalSelect.INT_ITEM && item.CHR_STATE!='C'))">
+                        <div class="c-segment ng-star-inserted">
+                            <div class="c-segment__shipment">
+                                <div class="c-segment__shipment__element_pasted_dashed">
+
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="itinerary">
 
