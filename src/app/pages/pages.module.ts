@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { TrackingsComponent } from './trackings/trackings.component';
-import { DxAccordionModule, DxAutocompleteModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxRadioGroupModule, DxScrollViewModule, DxSwitchModule, DxTabPanelModule, DxTextBoxModule, DxToolbarModule } from 'devextreme-angular';
+import { DxAccordionModule, DxAutocompleteModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxRadioGroupModule, DxScrollViewModule, DxSwitchModule, DxTabPanelModule, DxTextBoxModule, DxToolbarModule,DxTooltipModule } from 'devextreme-angular';
 import { TrackingwinComponent } from './popups/trackingwin/trackingwin.component';
 import { TrackingComponent } from './popups/tracking/tracking.component';
 import { HelldataComponent } from './popups/helldata/helldata.component';
@@ -55,7 +55,8 @@ import { TrackingeventComponent } from './popups/trackingevent/trackingevent.com
     DxRadioGroupModule,
     DxTabPanelModule,
     DxAutocompleteModule,
-    DxSwitchModule
+    DxSwitchModule,
+    DxTooltipModule
   ]
 })
 export class PagesModule { }

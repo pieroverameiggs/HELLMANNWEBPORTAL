@@ -6,4 +6,9 @@ export interface TrackingModal {
     VCH_PORTNAME: string;
     VCH_ICON: string;
     CHR_STATE: string;
+    DAT_ACTUALDEPARTUREDATE: Date;
+    DAT_ESTIMATEDEPARTUREDATE: Date;
+    DAT_ACTUALARRIVALDATE: Date;
+    DAT_ESTIMATEARRIVALDATE: Date;
+    VCH_NAMEDATE: string;
 }

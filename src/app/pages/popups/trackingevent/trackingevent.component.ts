@@ -14,7 +14,7 @@ import * as saveAs from 'file-saver';
 export class TrackingeventComponent implements OnInit {
 
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: any;
-  public detailButtonOptions: any;
+  public detailButtonOptions: any;  
 
   constructor(
     public modalEventService: ModalEventService,
@@ -87,5 +87,5 @@ export class TrackingeventComponent implements OnInit {
     });
     e.cancel = true;
   }
-
+  
 }

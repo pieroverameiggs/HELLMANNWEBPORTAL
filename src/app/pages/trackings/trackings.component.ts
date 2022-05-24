@@ -213,7 +213,7 @@ export class TrackingsComponent implements OnInit {
   showEvent(e: any) {
     //console.log(e);
     // e.row.key
-
+    
     const entityId = (this.entityCurrent.INT_IDENTITY == 0) ? this.entityCurrent.INT_IDENTITY : this.filters.ENTITYID;
 
     const filter = {
@@ -226,7 +226,7 @@ export class TrackingsComponent implements OnInit {
       serviceRequestId: e.row.data.INT_SERVICEREQUESTID,
       shipmentDocumentId: e.row.key
     }
-
+    
     this.modalEventService.showModal(filter);
   }
 
