@@ -54,8 +54,11 @@
                                 </div>
 
                                 <!-- Circle -->
-                                <div class="fa fa-circle l-station-bullet c-station-dot ng-star-inserted">
-
+                                <div class="fas ivu-steps-cicon l-station-bullet c-station-dot ng-star-inserted" [class]="item.VCH_ICON" *ngIf="item.VCH_CODE!='INICIO' && item.VCH_CODE!='ENTREGADO'" >
+                                    
+                                </div>
+                                <div class="ivu-steps-cicon l-station-bullet c-station-dot-blue ng-star-inserted" *ngIf="item.VCH_CODE=='INICIO' || item.VCH_CODE=='ENTREGADO'" >
+                                    
                                 </div>
                             </div>
                         </div>
@@ -103,7 +106,7 @@
                     <div class="l-route-line_element l-route-line__element_segment ng-star-inserted" *ngIf="item.VCH_CODE!='ENTREGADO' && ((modalEventService.trackingModalSelect && item.INT_ITEM<=modalEventService.trackingModalSelect.INT_ITEM && item.CHR_STATE!='C'))">
                         <div class="c-segment ng-star-inserted">
                             <div class="c-segment__shipment">
-                                <div class="c-segment__shipment__element_pasted">
+                                <div class="c-segment__shipment__element_pasted" [ngClass]="{'c-segment_red': (item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'LIM' || item.VCH_CODE == 'CLL'), 'c-segment_blue': (item.VCH_CODE != 'INICIO' && item.VCH_CODE != 'LIM' && item.VCH_CODE != 'CLL')}">
 
                                 </div>
                                 <div class="l-segment__shipment__icon" *ngIf="item.CHR_STATE=='T'">
@@ -111,7 +114,7 @@
 
                                     </div>
                                 </div>
-                                <div class="c-segment__shipment__element_pasted">
+                                <div class="c-segment__shipment__element_pasted" [ngClass]="{'c-segment_red': (item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'LIM' || item.VCH_CODE == 'CLL'), 'c-segment_blue': (item.VCH_CODE != 'INICIO' && item.VCH_CODE != 'LIM' && item.VCH_CODE != 'CLL')}">
 
                                 </div>
                             </div>
@@ -278,12 +281,7 @@
                             [highlightCaseSensitive]="true"
                             ></dxo-search-panel>
                             <dxo-load-panel [enabled]="true"></dxo-load-panel>
-                            <dxo-selection mode="single"></dxo-selection>
-                                                        
-                            <dxi-column
-                                dataField="VCH_GROUPNAME"
-                                caption="Grupo"> 
-                            </dxi-column>
+                            <dxo-selection mode="single"></dxo-selection>                                                    
                             
                             <dxi-column
                                 dataField="VCH_ENGLISHDESCRIPTION"

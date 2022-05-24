@@ -53,7 +53,7 @@ export class TrackingeventComponent implements OnInit {
     const worksheet = workbook.addWorksheet('Trackings');
 
     worksheet.columns = [
-      { width: 5 }, { width: 20 }, { width: 30 }, { width: 40 }, { width: 20 }
+      { width: 5 }, { width: 30 }, { width: 40 }, { width: 20 }
     ];
 
     exportDataGrid({

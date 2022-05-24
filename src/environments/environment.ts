@@ -6,8 +6,10 @@ export const environment = {
   production: false,
   //base_url_apisec: 'https://localhost:44355',
   base_url_apisec: 'http://192.168.10.153/APISECURITY',
-  base_url_apicustomer: 'https://localhost:44393',
-  base_url_apimaintenace: 'https://localhost:44314',
+  //base_url_apicustomer: 'https://localhost:44393',
+  base_url_apicustomer: 'http://192.168.10.153/APICUSTOMERPORTAL',
+  //base_url_apimaintenace: 'https://localhost:44314',
+  base_url_apimaintenace: 'http://192.168.10.153/APIMAINTENANCE',
   base_url_app: ''
 };
 
