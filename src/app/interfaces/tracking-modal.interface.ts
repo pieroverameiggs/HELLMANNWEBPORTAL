@@ -11,4 +11,5 @@ export interface TrackingModal {
     DAT_ACTUALARRIVALDATE: Date;
     DAT_ESTIMATEARRIVALDATE: Date;
     VCH_NAMEDATE: string;
+    VCH_LINECOLOR: string;
 }

@@ -36,7 +36,7 @@
                 </div>
                 <div class="itinerary" *ngFor="let item of modalEventService.trackingModal; let i = index">                    
                     <!-- Points -->
-                    <div attr.id="product{{i}}" class="l-route-line_element l-route-line__element_station ng-star-inserted">
+                    <div class="l-route-line_element l-route-line__element_station ng-star-inserted">
                         <div class="c-station c-station_first ng-star-inserted">
                             <div>
                                 <!-- Label -->
@@ -54,10 +54,10 @@
                                 </div>
 
                                 <!-- Circle -->
-                                <div class="fas ivu-steps-cicon l-station-bullet c-station-dot ng-star-inserted" [class]="item.VCH_ICON" *ngIf="item.VCH_CODE!='INICIO' && item.VCH_CODE!='ENTREGADO'" >
+                                <div attr.id="product{{i}}" class="fas ivu-steps-cicon l-station-bullet c-station-dot ng-star-inserted" [class]="item.VCH_ICON" *ngIf="item.VCH_CODE!='INICIO' && item.VCH_CODE!='ENTREGADO'" >
                                     
                                 </div>
-                                <div class="ivu-steps-cicon l-station-bullet c-station-dot-blue ng-star-inserted" *ngIf="item.VCH_CODE=='INICIO' || item.VCH_CODE=='ENTREGADO'" >
+                                <div attr.id="product{{i}}" class="ivu-steps-cicon l-station-bullet c-station-dot-blue ng-star-inserted" *ngIf="item.VCH_CODE=='INICIO' || item.VCH_CODE=='ENTREGADO'" >
                                     
                                 </div>
                             </div>
@@ -86,18 +86,34 @@
                         </dxo-animation>
                         <div *dxTemplate="let data of 'tooltipContent'"> 
                             <table class="tblDetailToolTip">
-                                <tr>
+                                <tr *ngIf="item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'ENTREGADO'">
                                     <td><strong>Evento</strong></td>
-                                    <td>{{item.VCH_NAMEDATE || 'Sin Evento'}}</td>
-                                </tr>
-                                <tr *ngIf="item.DAT_ACTUALDEPARTUREDATE || item.DAT_ESTIMATEDEPARTUREDATE">
-                                    <td><strong>F. Salida</strong><strong *ngIf="!item.DAT_ACTUALDEPARTUREDATE">(Estimado)</strong></td>
-                                    <td>{{item.DAT_ACTUALDEPARTUREDATE || item.DAT_ESTIMATEDEPARTUREDATE}}</td>
+                                    <td>{{item.VCH_NAMEDATE}}</td>
                                 </tr>
                                 <tr *ngIf="item.DAT_ACTUALARRIVALDATE || item.DAT_ESTIMATEARRIVALDATE">
-                                    <td><strong>F. Llegada</strong><strong *ngIf="!item.DAT_ACTUALARRIVALDATE">(Estimado)</strong></td>
-                                    <td>{{item.DAT_ACTUALARRIVALDATE || item.DAT_ESTIMATEARRIVALDATE}}</td>
+                                    <td>
+                                        <strong *ngIf="item.VCH_CODE != 'INICIO' && item.VCH_CODE != 'ENTREGADO'">Arrival Confirmation</strong>
+                                        <strong *ngIf="item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'ENTREGADO'">Fecha</strong>
+                                        <strong *ngIf="!item.DAT_ACTUALARRIVALDATE">(Estimado)</strong>
+                                    </td>
+
+                                    <td *ngIf="modalEventService.way == 'MARITIMA'">{{(item.DAT_ACTUALARRIVALDATE || item.DAT_ESTIMATEARRIVALDATE) | date: 'dd/MM/yyyy'}}</td>
+                                    <td *ngIf="modalEventService.way == 'AEREA'">{{(item.DAT_ACTUALARRIVALDATE || item.DAT_ESTIMATEARRIVALDATE) | date: 'dd/MM/yyyy h:mm a'}}</td>
                                 </tr>
+                                <tr *ngIf="item.DAT_ACTUALDEPARTUREDATE || item.DAT_ESTIMATEDEPARTUREDATE">
+                                    <td>
+                                        <strong *ngIf="item.VCH_CODE != 'INICIO' && item.VCH_CODE != 'ENTREGADO'">Departure Confirmation</strong>
+                                        <strong *ngIf="item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'ENTREGADO'">Fecha</strong>
+                                        <strong *ngIf="!item.DAT_ACTUALDEPARTUREDATE">(Estimado)</strong>
+                                    </td>
+                                    <td *ngIf="modalEventService.way == 'MARITIMA'">{{(item.DAT_ACTUALDEPARTUREDATE || item.DAT_ESTIMATEDEPARTUREDATE) | date: 'dd/MM/yyyy'}}</td>
+                                    <td *ngIf="modalEventService.way == 'AEREA'">{{(item.DAT_ACTUALDEPARTUREDATE || item.DAT_ESTIMATEDEPARTUREDATE) | date: 'dd/MM/yyyy h:mm a'}}</td>
+                                </tr>   
+                                <tr *ngIf="!item.DAT_ACTUALARRIVALDATE && !item.DAT_ESTIMATEARRIVALDATE">
+                                    <td>
+                                        <strong *ngIf="item.VCH_CODE == 'ENTREGADO'">Fecha</strong>
+                                    </td>                                    
+                                </tr>                             
                             </table>
                         </div>
                     </dx-tooltip>
@@ -106,7 +122,7 @@
                     <div class="l-route-line_element l-route-line__element_segment ng-star-inserted" *ngIf="item.VCH_CODE!='ENTREGADO' && ((modalEventService.trackingModalSelect && item.INT_ITEM<=modalEventService.trackingModalSelect.INT_ITEM && item.CHR_STATE!='C'))">
                         <div class="c-segment ng-star-inserted">
                             <div class="c-segment__shipment">
-                                <div class="c-segment__shipment__element_pasted" [ngClass]="{'c-segment_red': (item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'LIM' || item.VCH_CODE == 'CLL'), 'c-segment_blue': (item.VCH_CODE != 'INICIO' && item.VCH_CODE != 'LIM' && item.VCH_CODE != 'CLL')}">
+                                <div class="c-segment__shipment__element_pasted" [class]="item.VCH_LINECOLOR">
 
                                 </div>
                                 <div class="l-segment__shipment__icon" *ngIf="item.CHR_STATE=='T'">
@@ -114,7 +130,7 @@
 
                                     </div>
                                 </div>
-                                <div class="c-segment__shipment__element_pasted" [ngClass]="{'c-segment_red': (item.VCH_CODE == 'INICIO' || item.VCH_CODE == 'LIM' || item.VCH_CODE == 'CLL'), 'c-segment_blue': (item.VCH_CODE != 'INICIO' && item.VCH_CODE != 'LIM' && item.VCH_CODE != 'CLL')}">
+                                <div class="c-segment__shipment__element_pasted" [class]="item.VCH_LINECOLOR">
 
                                 </div>
                             </div>
