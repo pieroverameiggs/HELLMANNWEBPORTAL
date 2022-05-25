@@ -3,6 +3,7 @@
 <dx-popup 
     id = "popupTracking"       
     [showTitle]="true"
+    
     title="Seguimiento"
     [dragEnabled]="false"
     [closeOnOutsideClick]="false"
@@ -23,7 +24,7 @@
         </div>
     </dxi-toolbar-item>
 
-    <dx-scroll-view width="100%" height="100%">
+    <div *dxTemplate="let data of 'content'">
 
         <p class="text-center titleTracking">
             {{ modalEventService.origin }} <span class="fas"  [ngClass]="{'fa-ship': modalEventService.way == 'MARITIMA', 'fa-plane': modalEventService.way == 'AEREA'}" ></span> {{ modalEventService.destination }}
@@ -170,167 +171,172 @@
             </div>
         </div>
 
-        <dx-tab-panel
-            [loop]="true"
-            [animationEnabled]="true"
-            [selectedIndex]="0"
-            [swipeEnabled]="true">
+        <div id="scrollview-demo" style="height: 50vh;">
+            <dx-scroll-view>
 
-            <dxo-tab-panel-options [height]="" [deferRendering]="false">
-            </dxo-tab-panel-options>
-
-            <dxi-item title="Tracking Transportista" class="contentTabPanel">
-                <dx-data-grid id="gridTrackingWin" class="dx-card wide-card"
-                    [dataSource]="modalEventService.trackingWin"
-                    [showBorders]="false"
-                    [focusedRowEnabled]="false"
-                    [rowAlternationEnabled]="true"  
-                    [allowColumnResizing]="true"
-                    [columnAutoWidth]="true"
-                    [allowColumnReordering]="true"
-                    keyExpr="INT_SHIPMENTDOCUMENTEVENTID">
-
-                    <!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
-                    <!-- <dxo-pager 
-                    [showPageSizeSelector]="true" 
-                    [showInfo]="true" 
-                    [allowedPageSizes]="[10, 25, 50, 100]"
-                    infoText="Página {0} de {1} ({2} items)"></dxo-pager> -->
-
-                    <dxo-scrolling mode="infinite"></dxo-scrolling>
-
-                    <dxo-filter-row [visible]="true"></dxo-filter-row>
-                    <dxo-search-panel
-                    [visible]="false"
-                    [highlightCaseSensitive]="true"
-                    ></dxo-search-panel>
-                    <dxo-load-panel [enabled]="true"></dxo-load-panel>
-                    <dxo-selection mode="single"></dxo-selection>
-                    
-                    <dxi-column
-                        dataField="VCH_AIRSEAPORT"
-                        caption="{{modalEventService.airSeaPortLabel}}"
-                        [groupIndex]="0">        
-                    </dxi-column>
-
-                    <dxi-column
-                        dataField="VCH_CARRIERNAME"
-                        caption="Transportista"> 
-                    </dxi-column>
-                    
-                    <dxi-column
-                        dataField="VCH_INTERNATIONALCODE"
-                        caption="Código Internacional Status"> 
-                    </dxi-column>
-                    
-                    <dxi-column
-                        dataField="VCH_DESCRIPTIONCODE"
-                        caption="Descripción Código Internacional"> 
-                    </dxi-column>
-
-                    <dxi-column
-                        dataField="VCH_TRANSPORTNUMBER"
-                        caption="{{modalEventService.transportSeaPortLabel}}"> 
-                    </dxi-column>
-
-                    <dxi-column
-                        dataField="DAT_EVENTDATE"
-                        caption="F. Evento"
-                        alignment="center"      
-                        format="dd/MM/yyyy"
-                        dataType="date">
-                    </dxi-column> 
-
-                    <dxi-column
-                        dataField="VCH_EVENTSTATUS"
-                        caption="Estado Evento"> 
-                    </dxi-column>
-
-                </dx-data-grid>
-            </dxi-item>
-
-            <dxi-item title="Tracking Hellmann" class="contentTabPanel">
-                
-                <dx-tab-panel
+            <dx-tab-panel
                 [loop]="true"
                 [animationEnabled]="true"
+                [selectedIndex]="0"
                 [swipeEnabled]="true">
 
-                    <dxo-tab-panel-options [height]="" [deferRendering]="false">
-                    </dxo-tab-panel-options>
+                <dxo-tab-panel-options [height]="" [deferRendering]="false">
+                </dxo-tab-panel-options>
 
-                    <dxi-item title="Linea de Tiempo" class="contentTabPanel">    
-                        <div id="k">
-                            <div class="km">
-                                <ul>
-                                    <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
-                                        <div class="d load">
-                                            {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
-                                        </div>
-                                        <div class="l">
-                                            <span></span>
-                                        </div>
-                                        <div class="r load">
-                                            <div>
-                                                {{ item.VCH_NAMEDATE }}
-                                            </div>                            
-                                        </div>                 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> 
-                    </dxi-item>
+                <dxi-item title="Tracking Transportista" class="contentTabPanel">
+                    <dx-data-grid id="gridTrackingWin" class="dx-card wide-card"
+                        [dataSource]="modalEventService.trackingWin"
+                        [showBorders]="false"
+                        [focusedRowEnabled]="false"
+                        [rowAlternationEnabled]="true"  
+                        [allowColumnResizing]="true"
+                        [columnAutoWidth]="true"
+                        [allowColumnReordering]="true"
+                        keyExpr="INT_SHIPMENTDOCUMENTEVENTID">
 
-                    <dxi-item title="Tabla" class="contentTabPanel">    
-                        <dx-data-grid id="gridTrackingHellmannTable" class="dx-card wide-card"
-                            [dataSource]="modalEventService.tracking"
-                            [showBorders]="false"
-                            [focusedRowEnabled]="false"
-                            [rowAlternationEnabled]="false"  
-                            [allowColumnResizing]="true"
-                            [columnAutoWidth]="true"
-                            [allowColumnReordering]="true"
-                            (onRowPrepared) = "preparedColorRow($event)"
-                            (onExporting)="exportTrackingHellmann($event)"
-                            keyExpr="INT_IDEVENTTRACKING">
+                        <!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
+                        <!-- <dxo-pager 
+                        [showPageSizeSelector]="true" 
+                        [showInfo]="true" 
+                        [allowedPageSizes]="[10, 25, 50, 100]"
+                        infoText="Página {0} de {1} ({2} items)"></dxo-pager> -->
 
-                            <dxo-export [enabled]="true"></dxo-export>
-                            <dxo-scrolling mode="infinite"></dxo-scrolling>
+                        <dxo-scrolling mode="infinite"></dxo-scrolling>
 
-                            <dxo-filter-row [visible]="true"></dxo-filter-row>
-                            <dxo-search-panel
-                            [visible]="false"
-                            [highlightCaseSensitive]="true"
-                            ></dxo-search-panel>
-                            <dxo-load-panel [enabled]="true"></dxo-load-panel>
-                            <dxo-selection mode="single"></dxo-selection>                                                    
-                            
-                            <dxi-column
-                                dataField="VCH_ENGLISHDESCRIPTION"
-                                caption="Milestone"> 
-                            </dxi-column>
-                            
-                            <dxi-column
-                                dataField="VCH_NAMEDATE"
-                                caption="Descripción"> 
-                            </dxi-column>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxo-search-panel
+                        [visible]="false"
+                        [highlightCaseSensitive]="true"
+                        ></dxo-search-panel>
+                        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                        <dxo-selection mode="single"></dxo-selection>
+                        
+                        <dxi-column
+                            dataField="VCH_AIRSEAPORT"
+                            caption="{{modalEventService.airSeaPortLabel}}"
+                            [groupIndex]="0">        
+                        </dxi-column>
 
-                            <dxi-column
-                                dataField="DAT_ACTUALDATE"
-                                caption="F. Real"
-                                alignment="center"      
-                                format="dd/MM/yyyy"
-                                dataType="date">
-                            </dxi-column>                             
+                        <dxi-column
+                            dataField="VCH_CARRIERNAME"
+                            caption="Transportista"> 
+                        </dxi-column>
+                        
+                        <dxi-column
+                            dataField="VCH_INTERNATIONALCODE"
+                            caption="Código Internacional Status"> 
+                        </dxi-column>
+                        
+                        <dxi-column
+                            dataField="VCH_DESCRIPTIONCODE"
+                            caption="Descripción Código Internacional"> 
+                        </dxi-column>
 
-                        </dx-data-grid>
-                    </dxi-item>
+                        <dxi-column
+                            dataField="VCH_TRANSPORTNUMBER"
+                            caption="{{modalEventService.transportSeaPortLabel}}"> 
+                        </dxi-column>
 
-                </dx-tab-panel>
-                  
-            </dxi-item>
+                        <dxi-column
+                            dataField="DAT_EVENTDATE"
+                            caption="F. Evento"
+                            alignment="center"      
+                            format="dd/MM/yyyy"
+                            dataType="date">
+                        </dxi-column> 
 
-        </dx-tab-panel>
+                        <dxi-column
+                            dataField="VCH_EVENTSTATUS"
+                            caption="Estado Evento"> 
+                        </dxi-column>
 
-    </dx-scroll-view>
+                    </dx-data-grid>
+                </dxi-item>
+
+                <dxi-item title="Tracking Hellmann" class="contentTabPanel">
+                    
+                    <dx-tab-panel
+                    [loop]="true"
+                    [animationEnabled]="true"
+                    [swipeEnabled]="true">
+
+                        <dxo-tab-panel-options [height]="" [deferRendering]="false">
+                        </dxo-tab-panel-options>
+
+                        <dxi-item title="Linea de Tiempo" class="contentTabPanel">    
+                            <div id="k">
+                                <div class="km">
+                                    <ul>
+                                        <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
+                                            <div class="d load">
+                                                {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
+                                            </div>
+                                            <div class="l">
+                                                <span></span>
+                                            </div>
+                                            <div class="r load">
+                                                <div>
+                                                    {{ item.VCH_NAMEDATE }}
+                                                </div>                            
+                                            </div>                 
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> 
+                        </dxi-item>
+
+                        <dxi-item title="Tabla" class="contentTabPanel">    
+                            <dx-data-grid id="gridTrackingHellmannTable" class="dx-card wide-card"
+                                [dataSource]="modalEventService.tracking"
+                                [showBorders]="false"
+                                [focusedRowEnabled]="false"
+                                [rowAlternationEnabled]="false"  
+                                [allowColumnResizing]="true"
+                                [columnAutoWidth]="true"
+                                [allowColumnReordering]="true"
+                                (onRowPrepared) = "preparedColorRow($event)"
+                                (onExporting)="exportTrackingHellmann($event)"
+                                keyExpr="INT_IDEVENTTRACKING">
+
+                                <dxo-export [enabled]="true"></dxo-export>
+                                <dxo-scrolling mode="infinite"></dxo-scrolling>
+
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxo-search-panel
+                                [visible]="false"
+                                [highlightCaseSensitive]="true"
+                                ></dxo-search-panel>
+                                <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                                <dxo-selection mode="single"></dxo-selection>                                                    
+                                
+                                <dxi-column
+                                    dataField="VCH_ENGLISHDESCRIPTION"
+                                    caption="Milestone"> 
+                                </dxi-column>
+                                
+                                <dxi-column
+                                    dataField="VCH_NAMEDATE"
+                                    caption="Descripción"> 
+                                </dxi-column>
+
+                                <dxi-column
+                                    dataField="DAT_ACTUALDATE"
+                                    caption="F. Real"
+                                    alignment="center"      
+                                    format="dd/MM/yyyy"
+                                    dataType="date">
+                                </dxi-column>                             
+
+                            </dx-data-grid>
+                        </dxi-item>
+
+                    </dx-tab-panel>
+                    
+                </dxi-item>
+
+            </dx-tab-panel>
+
+            </dx-scroll-view>
+        </div>
+    </div>
 </dx-popup>
