@@ -116,6 +116,8 @@ export class ModalEventService {
             this.trackingSelect = { INT_IDEVENTTRACKING: 0 };
 
           this.tracking = resp.List;          
+          
+          // console.log(this.tracking);
         }
       }, (err) => {
         if (err.status == eHttpStatusCode.UNAUTHORIZED) {

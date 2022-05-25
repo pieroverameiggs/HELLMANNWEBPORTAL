@@ -14,7 +14,7 @@ import * as saveAs from 'file-saver';
 export class TrackingeventComponent implements OnInit {
 
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: any;
-  public detailButtonOptions: any;  
+  public detailButtonOptions: any;
 
   constructor(
     public modalEventService: ModalEventService,
@@ -87,5 +87,29 @@ export class TrackingeventComponent implements OnInit {
     });
     e.cancel = true;
   }
-  
+
+  preparedColorRow(e: any) {
+
+    //console.log(e);
+
+    if (e.rowType !== "data")  
+        return 
+
+    if (e.data.VCH_ROWCOLOR == "RED") {
+      e.rowElement.style.backgroundColor = '#FE472F';
+      e.rowElement.style.color = '#fff';
+      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
+    }
+    else if (e.data.VCH_ROWCOLOR == "BLUE") {
+      e.rowElement.style.backgroundColor = '#0064CB';
+      e.rowElement.style.color = '#fff';
+      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
+    }
+    else if (e.data.VCH_ROWCOLOR == "LEAD") {
+      e.rowElement.style.backgroundColor = '#ececec';
+      //e.rowElement.style.color = '#fff';
+      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
+    }
+  }
+
 }

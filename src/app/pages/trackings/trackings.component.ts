@@ -172,6 +172,7 @@ export class TrackingsComponent implements OnInit {
         this.loading = false;
         if (resp.Code == eHttpStatusCode.OK) {
           this.trackings = resp.Object.OperationResponse;
+          //console.log(this.trackings);
         }
         else {
           this.showNotify(resp.Message, 'error');

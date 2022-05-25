@@ -10,4 +10,5 @@ export interface TrackingEvent {
     VCH_ENGLISHDESCRIPTION: string;
     VCH_SPANISHDESCRIPTION: string;
     VCH_NAMEDATE: string;
+    VCH_ROWCOLOR: string;
 }
