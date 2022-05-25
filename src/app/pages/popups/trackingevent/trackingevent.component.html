@@ -171,8 +171,8 @@
             </div>
         </div>
 
-        <div id="scrollview-demo" style="height: 50vh;">
-            <dx-scroll-view>
+        
+            
 
             <dx-tab-panel
                 [loop]="true"
@@ -192,6 +192,7 @@
                         [allowColumnResizing]="true"
                         [columnAutoWidth]="true"
                         [allowColumnReordering]="true"
+                        [height]="300"
                         keyExpr="INT_SHIPMENTDOCUMENTEVENTID">
 
                         <!-- <dxo-paging [pageSize]="10"></dxo-paging> -->
@@ -264,36 +265,42 @@
                         </dxo-tab-panel-options>
 
                         <dxi-item title="Linea de Tiempo" class="contentTabPanel">    
-                            <div id="k">
-                                <div class="km">
-                                    <ul>
-                                        <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
-                                            <div class="d load">
-                                                {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
-                                            </div>
-                                            <div class="l">
-                                                <span></span>
-                                            </div>
-                                            <div class="r load">
-                                                <div>
-                                                    {{ item.VCH_NAMEDATE }}
-                                                </div>                            
-                                            </div>                 
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div> 
+                            <div id="scrollview-demo" style="height: 35vh;">
+                                <dx-scroll-view width="100%" height="100%">
+                                    <div id="k">
+                                        <div class="km">
+                                            <ul>
+                                                <li *ngFor="let item of modalEventService.tracking" class="tip" [ngClass]="{'currentPoint': (modalEventService.trackingSelect.INT_IDEVENTTRACKING==item.INT_IDEVENTTRACKING)}">
+                                                    <div class="d load">
+                                                        {{ item.DAT_ACTUALDATE | date: 'dd/MM/yyyy h:mm a' }}
+                                                    </div>
+                                                    <div class="l">
+                                                        <span></span>
+                                                    </div>
+                                                    <div class="r load">
+                                                        <div>
+                                                            {{ item.VCH_NAMEDATE }}
+                                                        </div>                            
+                                                    </div>                 
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div> 
+                                </dx-scroll-view>
+                            </div>
                         </dxi-item>
 
-                        <dxi-item title="Tabla" class="contentTabPanel">    
+                        <dxi-item title="Tabla" class="contentTabPanel">   
+                                                            
                             <dx-data-grid id="gridTrackingHellmannTable" class="dx-card wide-card"
                                 [dataSource]="modalEventService.tracking"
                                 [showBorders]="false"
                                 [focusedRowEnabled]="false"
                                 [rowAlternationEnabled]="false"  
-                                [allowColumnResizing]="true"
-                                [columnAutoWidth]="true"
+                                [allowColumnResizing]="false"
+                                [columnAutoWidth]="false"
                                 [allowColumnReordering]="true"
+                                [height]="300"
                                 (onRowPrepared) = "preparedColorRow($event)"
                                 (onExporting)="exportTrackingHellmann($event)"
                                 keyExpr="INT_IDEVENTTRACKING">
@@ -322,12 +329,14 @@
                                 <dxi-column
                                     dataField="DAT_ACTUALDATE"
                                     caption="F. Real"
-                                    alignment="center"      
+                                    alignment="center"
+                                    [width]="100"      
                                     format="dd/MM/yyyy"
                                     dataType="date">
                                 </dxi-column>                             
 
                             </dx-data-grid>
+                       
                         </dxi-item>
 
                     </dx-tab-panel>
@@ -336,7 +345,6 @@
 
             </dx-tab-panel>
 
-            </dx-scroll-view>
-        </div>
+            
     </div>
 </dx-popup>
