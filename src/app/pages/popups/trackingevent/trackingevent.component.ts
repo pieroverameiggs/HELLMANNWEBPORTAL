@@ -96,13 +96,15 @@ export class TrackingeventComponent implements OnInit {
         return 
 
     if (e.data.VCH_ROWCOLOR == "RED") {
-      e.rowElement.style.backgroundColor = '#FE472F';
-      e.rowElement.style.color = '#fff';
+      // e.rowElement.style.backgroundColor = '#FF8E7F';
+      e.rowElement.style.color = '#FF8E7F';
+      e.rowElement.style.fontWeight = 'bold';
       e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
     }
     else if (e.data.VCH_ROWCOLOR == "BLUE") {
-      e.rowElement.style.backgroundColor = '#0064CB';
-      e.rowElement.style.color = '#fff';
+      // e.rowElement.style.backgroundColor = '#1C8AFC';
+      e.rowElement.style.color = '#1C8AFC';
+      e.rowElement.style.fontWeight = 'bold';
       e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
     }
     else if (e.data.VCH_ROWCOLOR == "LEAD") {
