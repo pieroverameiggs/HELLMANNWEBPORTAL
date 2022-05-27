@@ -264,7 +264,7 @@
                         <dxo-tab-panel-options [height]="" [deferRendering]="false">
                         </dxo-tab-panel-options>
 
-                        <dxi-item title="Linea de Tiempo" class="contentTabPanel">    
+                        <dxi-item title="Linea de Tiempo" class="contentTabPanel" icon="sortup" badge="Orden &uarr;">    
                             <div id="scrollview-demo" style="height: 35vh;">
                                 <dx-scroll-view width="100%" height="100%">
                                     <div id="k">
@@ -290,8 +290,8 @@
                             </div>
                         </dxi-item>
 
-                        <dxi-item title="Tabla" class="contentTabPanel">   
-                                                            
+                        <dxi-item title="Tabla" class="contentTabPanel" icon="sortup" badge="Orden &uarr;">   
+                                                                                 
                             <dx-data-grid id="gridTrackingHellmannTable" class="dx-card wide-card"
                                 [dataSource]="modalEventService.tracking"
                                 [showBorders]="true"
