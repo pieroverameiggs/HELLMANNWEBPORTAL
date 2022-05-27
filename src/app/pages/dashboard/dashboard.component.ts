@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     // debugger;
 
     //this.urlReport = `https://app.powerbi.com/reportEmbed?reportId=f10b879b-edae-4025-9f28-0af87da0af53&autoAuth=true&pageName=ReportSection${this.filter}`
-    this.urlReport = `https://app.powerbi.com/view?r=eyJrIjoiODdhYmNiN2EtODAzMS00NTNlLWFmM2ItMGI4OTMzNGJhN2VmIiwidCI6IjZlMjI5NzZhLWIyMzYtNGFjMC1iNDc4LTNkYTZhYWM0YzA0MiJ9&pageName=ReportSection`
+    this.urlReport = `https://app.powerbi.com/view?r=eyJrIjoiZTE0NTI3ZDktMjhhMC00MzUxLWJiM2QtZTdjOTZhMWQ4MWFmIiwidCI6IjZlMjI5NzZhLWIyMzYtNGFjMC1iNDc4LTNkYTZhYWM0YzA0MiJ9&pageName=ReportSection`
   }
 
   ngOnInit(): void {
