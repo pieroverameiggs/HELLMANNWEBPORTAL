@@ -30,39 +30,51 @@ export class HeaderComponent implements OnInit {
 
   public user: User | any;
 
-  userMenuItems = [{
-    text: 'Perfil',
-    icon: 'user',
-    onClick: () => {
-      //const payload = this.parseJwt(localStorage.getItem('token'));
-      // console.log(payload);
-      this.router.navigate(['/dashboard/profile']);
+  userMenuItems = [
+    {
+      text: 'Perfil',
+      icon: 'user',
+      onClick: () => {
+        //const payload = this.parseJwt(localStorage.getItem('token'));
+        // console.log(payload);
+        this.router.navigate(['/dashboard/profile']);
+      }
+    },
+    {
+      text: 'Documentación',
+      icon: 'help',
+      onClick: () => {
+        //const payload = this.parseJwt(localStorage.getItem('token'));
+        // console.log(payload);
+        var url = 'assets/docs/index.html';
+        window.open(url, "_blank" ,"toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
+      }
+    },
+    {
+      text: 'Cerrar Sesión',
+      icon: 'runner',
+      onClick: () => {
+        this.userService.logout();
+      }
     }
-  },
-  {
-    text: 'Cerrar Sesión',
-    icon: 'runner',
-    onClick: () => {
-      this.userService.logout();
-    }
-  }];
+  ];
 
   constructor(
     private userService: UserService,
     private router: Router
-  ) { 
-    this.user = JSON.parse(localStorage.getItem('user')||'');
+  ) {
+    this.user = JSON.parse(localStorage.getItem('user') || '');
   }
 
   ngOnInit() {
-    
+
   }
 
   toggleMenu = () => {
     this.menuToggle.emit();
   }
 
-  parseJwt(token:any) {    
+  parseJwt(token: any) {
     const objPayLoad = JSON.parse(atob(token.split('.')[1]));
 
     return objPayLoad;
@@ -76,7 +88,7 @@ export class HeaderComponent implements OnInit {
     UserPanelModule,
     DxToolbarModule
   ],
-  declarations: [ HeaderComponent ],
-  exports: [ HeaderComponent ]
+  declarations: [HeaderComponent],
+  exports: [HeaderComponent]
 })
 export class HeaderModule { }

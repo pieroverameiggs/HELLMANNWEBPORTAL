@@ -1,0 +1,25 @@
+site_name: Documentación Customer Portal
+
+nav:
+    - Inicio: 'index.md'
+    - Iniciar Sesión: 'login.md'
+    - Seguimiento: 'tracking.md'
+    - Configuraciones: 'config.md'
+
+theme:
+  name: material
+  language: es
+  features:
+    - navigation.top
+    - search.suggest
+  favicon: img/favicon.ico
+  logo: img/hellmann.png
+
+markdown_extensions:
+  - attr_list
+  - admonition
+
+copyright: Copyright &copy; 2022 - Hellmann Worldwide Logistics
+
+extra:
+  generator: false
