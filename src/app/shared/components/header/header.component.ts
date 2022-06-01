@@ -46,8 +46,9 @@ export class HeaderComponent implements OnInit {
       onClick: () => {
         //const payload = this.parseJwt(localStorage.getItem('token'));
         // console.log(payload);
+        // ,"toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700"
         var url = 'assets/docs/index.html';
-        window.open(url, "_blank" ,"toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
+        window.open(url, "_blank");
       }
     },
     {

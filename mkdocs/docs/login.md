@@ -84,3 +84,20 @@ Los mensajes de respuesta pueden ser:
 
     - **No se pudo actualizar su contraseña. Comunicar a Sistemas**
     - **Servicio Suspendido Temporalmente :(**
+
+## 3. :fontawesome-solid-user: Perfil
+
+<figure markdown>
+  [![Perfil](./img/login/profile.jpg){ align=center }](./img/login/profile.jpg)
+  <figcaption>Perfil</figcaption>
+</figure>
+
+En el sub-menu [Perfil](http://192.168.10.150/WebCustomerPortal/dashboard/profile) podemos visualizar mas informacion del usuario autentificado, como el **Correo, Teléfono, etc**.
+
+???+ info
+
+    Contamos con una opción **Tema Dark**, el cual se puede **Activar o Desactivar**.
+
+    Una ejemplo de alguna pantalla del sistema:
+
+    [![Tema Dark](./img/login/theme-dark.jpg){ align=center }](./img/login/theme-dark.jpg)        

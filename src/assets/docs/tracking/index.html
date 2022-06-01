@@ -35,6 +35,8 @@
       
     
     
+      <link rel="stylesheet" href="../css/main.css">
+    
     <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -57,6 +59,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#1-busqueda" class="md-skip">
+          Saltar a contenido
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -188,8 +195,23 @@
   
   
     <li class="md-nav__item">
+      <a href="../dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../login/" class="md-nav__link">
-        Iniciar Sesión
+        Autentificación
       </a>
     </li>
   
@@ -210,9 +232,59 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Seguimiento
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Seguimiento
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-busqueda" class="md-nav__link">
+    1.  Búsqueda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ver-seguimiento" class="md-nav__link">
+    2.  Ver Seguimiento
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ver-documentos" class="md-nav__link">
+    3.  Ver Documentos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ver-mas" class="md-nav__link">
+    4.  Ver Más
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -251,6 +323,42 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-busqueda" class="md-nav__link">
+    1.  Búsqueda
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ver-seguimiento" class="md-nav__link">
+    2.  Ver Seguimiento
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ver-documentos" class="md-nav__link">
+    3.  Ver Documentos
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ver-mas" class="md-nav__link">
+    4.  Ver Más
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -265,7 +373,147 @@
 
   <h1>Seguimiento</h1>
 
-
+<figure>
+<p><a href="../img/tracking/tracking.jpg"><img align="center" alt="Seguimiento" src="../img/tracking/tracking.jpg" /></a>
+  </p>
+<figcaption>Seguimiento</figcaption>
+</figure>
+<h2 id="1-busqueda">1. <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m19.31 18.9 3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3Z"/></svg></span> Búsqueda</h2>
+<p>Para poder realizar la <a href="http://192.168.10.150/WebCustomerPortal/dashboard/trackings" target="_blank">Búsqueda</a> contamos con los siguientes filtros:</p>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Vía</code></td>
+<td>Aerea o Maritima</td>
+</tr>
+<tr>
+<td><code>Régimen</code></td>
+<td>Importación o Exportación</td>
+</tr>
+<tr>
+<td><code>Entidad</code></td>
+<td>Razón Social</td>
+</tr>
+<tr>
+<td><code>Criterio</code></td>
+<td>Código de Solicitud, Embarque, Número de Documento de Embarque, PO, Número de Contenedor</td>
+</tr>
+<tr>
+<td><code>F. Inicio</code></td>
+<td>F. Creación Inicio</td>
+</tr>
+<tr>
+<td><code>F. Fin</code></td>
+<td>F. Creación Fin</td>
+</tr>
+</tbody>
+</table>
+<p>Tomando como ejemplo la búqueda por el <strong>Criterio</strong>, se obtendra el siguiente resultado en la tabla siempre y cuando exista en nuestra base de datos:</p>
+<figure>
+<p><a href="../img/tracking/result-search.jpg"><img align="center" alt="Resultado de Búsqueda" src="../img/tracking/result-search.jpg" /></a>
+  </p>
+<figcaption>Resultado de Búsqueda</figcaption>
+</figure>
+<p>Los mensajes de respuesta pueden ser:</p>
+<details class="success" open="open">
+<summary>Success</summary>
+<p>Si validación fue exitosa: <strong>Nos enviara resultado a la tabla siempre y cuando exista en nuestra base de datos</strong></p>
+</details>
+<details class="failure" open="open">
+<summary>Failure</summary>
+<p>Si ocurre un error al validar indicara: <strong>Servicio Suspendido Temporalmente :(</strong></p>
+</details>
+<h2 id="2-ver-seguimiento">2. <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 15a3 3 0 0 1 3 3 3 3 0 0 1-3 3 2.99 2.99 0 0 1-2.83-2H14v-2h1.17c.41-1.17 1.52-2 2.83-2m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m0-9a1.43 1.43 0 0 0 1.43-1.43 1.43 1.43 0 1 0-2.86 0A1.43 1.43 0 0 0 18 8m0-5.43a4 4 0 0 1 4 4C22 9.56 18 14 18 14s-4-4.44-4-7.43a4 4 0 0 1 4-4M8.83 17H10v2H8.83A2.99 2.99 0 0 1 6 21a3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V14h2v1.17c.85.3 1.53.98 1.83 1.83M6 17a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M6 3a3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83V10H5V8.83A2.99 2.99 0 0 1 3 6a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m5 14v-2h2v2h-2m-4-6H5v-2h2v2Z"/></svg></span> Ver Seguimiento</h2>
+<p>Para ver el seguimiento, se debio realizar la <a href="http://192.168.10.150/WebCustomerPortal/dashboard/trackings" target="_blank">Búsqueda</a> por algun filtro. El resultado en la tabla tiene una columna <strong>Acciones</strong> donde se puede visualizar el icono de <strong>Ver Seguimiento</strong>, procedemos a hacer Clic y se visualizara la guiente ventana:</p>
+<figure>
+<p><a href="../img/tracking/show-tracking.jpg"><img align="center" alt="Ventana de Seguimiento" src="../img/tracking/show-tracking.jpg" /></a>
+  </p>
+<figcaption>Ventana de Seguimiento</figcaption>
+</figure>
+<p>La ventana cuenta con la siguiente información:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Tracking Line</label><label for="__tabbed_1_2">Tracking Transportista</label><label for="__tabbed_1_3">Tracking Hellmann</label><label for="__tabbed_1_4">Ver Más</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Esta linea de tiempo cambiara a medida que se completen eventos desde el punto <strong>INICIO</strong> al punto <strong>ENTREGADO</strong>,
+adicional se agrego un ToolTip en cada punto para que el usuario pueda ver el nombre del evento y la fecha real o estimado.</p>
+<p><a href="../img/tracking/tracking-line.jpg"><img align="center" alt="Tracking Line" src="../img/tracking/tracking-line.jpg" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>Esta tabla muestra información de los eventos generados en el repositorio del transportista, los cuales seran actualizados a medida que el transportista actualice los eventos.</p>
+<p><a href="../img/tracking/tracking-win.jpg"><img align="center" alt="Tracking Transportista" src="../img/tracking/tracking-win.jpg" /></a>        </p>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Linea</label><label for="__tabbed_2_2">Tabla</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Esta linea de tiempo muestra los eventos de <a href="http://www.hellmannperu.com/" target="_blank">Hellmann Worldwide Logistics</a> organizados de manera descendente (Destino-Origen).</p>
+<p><mark class="critic">Se puede visualizar un punto con animacion indicando el último evento ocurrido</mark> </p>
+<p><a href="../img/tracking/tracking-hwl-line.jpg"><img align="center" alt="Tracking Line Hellmann" src="../img/tracking/tracking-hwl-line.jpg" /></a>                </p>
+</div>
+<div class="tabbed-block">
+<p>Esta tabla muestra los eventos de <a href="http://www.hellmannperu.com/" target="_blank">Hellmann Worldwide Logistics</a> organizados de manera descendente (Destino-Origen) y coloreados de acuerdo al grupo al que pertenece el evento.</p>
+<p><a href="../img/tracking/tracking-hwl-table.jpg"><img align="center" alt="Tracking Line Hellmann" src="../img/tracking/tracking-hwl-table.jpg" /></a>                      </p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>Este botón apertura una nueva ventana con mas información del registro seleccionado, esta ubicado en la parte inferior derecha de la ventana.</p>
+</div>
+</div>
+</div>
+<h2 id="3-ver-documentos">3. <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7c-.41-.25-.8-.56-1.14-.9a6.478 6.478 0 0 1-.36-9.18C13.69 9.5 17.33 9.13 20 11V8l-6-6m-1 7V3.5L18.5 9H13m7.31 9.9c1.33-2.11.69-4.9-1.4-6.22-2.11-1.33-4.91-.68-6.22 1.4-1.34 2.11-.69 4.89 1.4 6.22 1.46.93 3.32.93 4.79.02L22 23.39 23.39 22l-3.08-3.1m-3.81.1a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5Z"/></svg></span> Ver Documentos</h2>
+<h2 id="4-ver-mas">4. <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5.36 0 .72 0 1.08-.05a6.09 6.09 0 0 1-.08-.95c0-.56.08-1.12.24-1.66-.41.1-.82.16-1.24.16a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5c0 .29-.03.59-.08.88.66-.25 1.37-.38 2.08-.38 1.17 0 2.31.34 3.29 1 .27-.5.51-1 .71-1.5-1.73-4.39-6-7.5-11-7.5M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m6 5.5v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg></span> Ver Más</h2>
+<p>Despues de aperturar la ventana <strong>Ver Seguimiento</strong> procedemos a hacer clic en el botón <strong>Ver Más</strong>, el cual mostrara la siguiente vista:</p>
+<figure>
+<p><a href="../img/tracking/tracking-detail.jpg"><img align="center" alt="Detalles de Seguimiento" src="../img/tracking/tracking-detail.jpg" /></a>
+  </p>
+<figcaption>Detalles de Seguimiento</figcaption>
+</figure>
+<p>La vista cuenta con la siguiente información:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:5"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><input id="__tabbed_3_4" name="__tabbed_3" type="radio" /><input id="__tabbed_3_5" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Información General</label><label for="__tabbed_3_2">Entidades</label><label for="__tabbed_3_3">Itinerario</label><label for="__tabbed_3_4">Detalle de Carga</label><label for="__tabbed_3_5">Documentación</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>En este formulario podemos ver datos como el <strong>Incoterm, Jurisdicción, Tipo Servicio, etc.</strong></p>
+<p><a href="../img/tracking/tracking-detail-information.jpg"><img align="center" alt="Información General" src="../img/tracking/tracking-detail-information.jpg" /></a>    </p>
+</div>
+<div class="tabbed-block">
+<p>En este formulario podemos ver datos como el <strong>Importador, Notificante, Agente, Shipper, etc.</strong></p>
+<p><a href="../img/tracking/tracking-detail-entity.jpg"><img align="center" alt="Entidades" src="../img/tracking/tracking-detail-entity.jpg" /></a>        </p>
+</div>
+<div class="tabbed-block">
+<p>En esta tabla de muestra información sobre las conexiones que pueden o no haber entre el tramo <strong>ORIGEN</strong> y <strong>DESTINO</strong>, ademas, se muestra fechas de salida o llegada.</p>
+<p><a href="../img/tracking/tracking-detail-itinerary.jpg"><img align="center" alt="Itinerario" src="../img/tracking/tracking-detail-itinerary.jpg" /></a>            </p>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Productos &amp; Bultos</label><label for="__tabbed_4_2">Contenedores</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>En esta tabla se muestra datos de los productos como el tipo de empaque, descripción, etc.</p>
+<p><a href="../img/tracking/tracking-detail-product.jpg"><img align="center" alt="Productos" src="../img/tracking/tracking-detail-product.jpg" /></a>            </p>
+</div>
+<div class="tabbed-block">
+<p>En esta tabla se muestra datos del contenedor como el número de precinto, etc; si es que tuviera. </p>
+<p><mark class="critic">Se tomara otra solicitud que tenga información de contenedores</mark> </p>
+<p><a href="../img/tracking/tracking-detail-container.jpg"><img align="center" alt="Contenedores" src="../img/tracking/tracking-detail-container.jpg" /></a>           </p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<p>En esta ventana se muestran los archivos del <strong>módulo de operaciones (HellData)</strong>, siempre y cuando este marcado para el cliente, agente, etc; en caso que sea un usuario interno, podra visualizar todos los documentos disponibles y podra visualizar o descargarlo para fines de trabajo.</p>
+<p><a href="../img/tracking/tracking-detail-helldata.jpg"><img align="center" alt="Documentación" src="../img/tracking/tracking-detail-helldata.jpg" /></a>   </p>
+<p>Para visualizar el archivo, nos ubicamos en la columna <strong>Acciones</strong> de la tabla y hacemos clic en el Icono, despues de eso se apertura una venta abriendo o descargando el archivo:</p>
+<p><a href="../img/tracking/tracking-detail-helldata-download.jpg"><img align="center" alt="Visualizando un Archivo" src="../img/tracking/tracking-detail-helldata-download.jpg" /></a>       </p>
+</div>
+</div>
+</div>
 
               
             </article>
@@ -284,7 +532,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Pie">
       
         
-        <a href="../login/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Iniciar Sesión" rel="prev">
+        <a href="../login/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Autentificación" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -293,7 +541,7 @@
               <span class="md-footer__direction">
                 Anterior
               </span>
-              Iniciar Sesión
+              Autentificación
             </div>
           </div>
         </a>
@@ -339,6 +587,8 @@
     
     
       <script src="../assets/javascripts/bundle.3a4b43e5.min.js"></script>
+      
+        <script src="../js/main.js"></script>
       
     
   </body>
