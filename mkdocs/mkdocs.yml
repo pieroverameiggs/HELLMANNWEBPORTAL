@@ -2,7 +2,8 @@ site_name: Documentación Customer Portal
 
 nav:
     - Inicio: 'index.md'
-    - Iniciar Sesión: 'login.md'
+    - Dashboard: 'dashboard.md'
+    - Autentificación: 'login.md'
     - Seguimiento: 'tracking.md'
     - Configuraciones: 'config.md'
 
@@ -15,9 +16,31 @@ theme:
   favicon: img/favicon.ico
   logo: img/hellmann.png
 
+extra_css:
+  - css/main.css
+
+extra_javascript:
+  - js/main.js
+
 markdown_extensions:
   - attr_list
   - admonition
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - def_list
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 copyright: Copyright &copy; 2022 - Hellmann Worldwide Logistics
 

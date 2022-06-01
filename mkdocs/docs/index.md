@@ -12,10 +12,11 @@ El presente manual de usuario tiene como objetivo servir de guía para poder usa
 
 Para ser ejecutado en óptimas condiciones se necesita que se cumplan con ciertos requerimientos mínimos tanto en hardware y software. Para ello hemos establecido los siguientes parámetros:
 
-1. Requerimiento Hardware
+=== "Requerimiento Hardware"
     - Procesador Core i3 o superior.
     - Memoria RAM 4 GB o más.
     - Velocidad de Internet 1 MBITS o más.
-2. Requerimientos Software
+
+=== "Requerimientos Software"
     - Sistema Operativo Windows 10 de 32 o 64 bits.
     - Navegador de Internet: Google Chrome, Microsoft Edge o Firefox.
