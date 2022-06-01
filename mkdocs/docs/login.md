@@ -52,6 +52,10 @@ Los mensajes de respuesta pueden ser:
 
 Si la respuesta fue exitoso, procedemos a revisar el correo en nuestra bandeja de entrada y hacemos clic en ^^**Link**^^:
 
+???+ help
+
+    Importante: El ^^**Link**^^ tiene una hora de caducidad, usarlo lo mas pronto posible
+
 <figure markdown>
   [![Correo Restablecer Contraseña](./img/login/link-reset-password.jpg){ align=center }](./img/login/link-reset-password.jpg)
   <figcaption>Correo Restablecer Contraseña</figcaption>
@@ -77,6 +81,6 @@ Los mensajes de respuesta pueden ser:
 ???+ failure
 
     Si ocurre un error al validar indicara: 
-    
+
     - **No se pudo actualizar su contraseña. Comunicar a Sistemas**
     - **Servicio Suspendido Temporalmente :(**
