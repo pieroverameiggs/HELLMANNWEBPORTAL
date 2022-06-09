@@ -79,7 +79,13 @@ La ventana cuenta con la siguiente información:
 
 ## 3. :material-file-search: Ver Documentos
 
+En esta ventana se muestran los archivos del **módulo de operaciones (HellData)**, siempre y cuando este marcado para el cliente, agente, etc; en caso que sea un usuario interno, podra visualizar todos los documentos disponibles y podra visualizar o descargarlo para fines de trabajo.
 
+[![Documentación](./img/tracking/show-documents.jpg){ align=center }](./img/tracking/show-documents.jpg)   
+
+Para visualizar el archivo, nos ubicamos en la columna **Acciones** de la tabla y hacemos clic en el Icono, despues de eso se apertura una venta abriendo o descargando el archivo:
+
+[![Visualizando un Archivo](./img/tracking/tracking-detail-helldata-download.jpg){ align=center }](./img/tracking/tracking-detail-helldata-download.jpg) 
 
 ## 4. :material-eye-plus: Ver Más
 
