@@ -3,7 +3,7 @@
         <div class="itinerary">
 
         </div>
-        <div class="itinerary" *ngFor="let item of trackingModalTL; let i = index">                    
+        <div class="itinerary" *ngFor="let item of trackingModal; let i = index">                    
             <!-- Points -->
             <div class="l-route-line__element_station">
                 <div class="c-station_first">
@@ -93,7 +93,7 @@
             </dx-tooltip>
 
             <!-- Progress -->
-            <div class="l-route-line__element_segment" *ngIf="item.VCH_CODE!='ENTREGADO' && ((trackingModalSelectTL && item.INT_ITEM<=trackingModalSelectTL.INT_ITEM && item.CHR_STATE!='C'))">
+            <div class="l-route-line__element_segment" *ngIf="item.VCH_CODE!='ENTREGADO' && ((trackingModalSelect && item.INT_ITEM<=trackingModalSelect.INT_ITEM && item.CHR_STATE!='C'))">
                 <div class="c-segment">
                     <div class="c-segment__shipment">
                         <div class="c-segment__shipment__element_pasted" [class]="item.VCH_LINECOLOR">
@@ -112,7 +112,7 @@
             </div>
 
             <!-- Progress Null -->
-            <div class="l-route-line__element_segment" *ngIf="item.VCH_CODE!='ENTREGADO' && !trackingModalSelectTL">
+            <div class="l-route-line__element_segment" *ngIf="item.VCH_CODE!='ENTREGADO' && !trackingModalSelect">
                 <div class="c-segment">
                     <div class="c-segment__shipment">
                         <div class="c-segment__shipment__element_pasted_dashed">
@@ -123,7 +123,7 @@
             </div>
 
             <!-- Progress Incomplete -->
-            <div class="l-route-line__element_segment" *ngIf="item.VCH_CODE!='ENTREGADO' && ((trackingModalSelectTL && item.INT_ITEM>trackingModalSelectTL.INT_ITEM && item.CHR_STATE!='C'))">
+            <div class="l-route-line__element_segment" *ngIf="item.VCH_CODE!='ENTREGADO' && ((trackingModalSelect && item.INT_ITEM>trackingModalSelect.INT_ITEM && item.CHR_STATE!='C'))">
                 <div class="c-segment">
                     <div class="c-segment__shipment">
                         <div class="c-segment__shipment__element_pasted_dashed">

@@ -61,7 +61,7 @@ export class ModalEventService {
 
     this.filter = filter;
 
-    //this.getLoadTrackingLine(filter);    
+    this.getLoadTrackingLine(filter);    
     this.getLoadTrackingWin(filter);
     this.getLoadTrackingHellmann(filter);
   }
@@ -150,6 +150,8 @@ export class ModalEventService {
 
   hideModal() {
     this.popupEventVisible = false;
+    this.trackingModal = [];
+    this.trackingModalSelect = {} as TrackingModal;
   }
 
   showLoading() {
@@ -157,7 +159,7 @@ export class ModalEventService {
   }
 
   hideLoading() {
-    this.loading = false;
+    this.loading = false;    
   }
 
   showNotify(msg: string, type: string) {

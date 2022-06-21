@@ -30,7 +30,7 @@
             {{ modalEventService.origin }} <span class="fas"  [ngClass]="{'fa-ship': modalEventService.way == 'MARITIMA', 'fa-plane': modalEventService.way == 'AEREA'}" ></span> {{ modalEventService.destination }}
         </p>
                        
-        <app-timeline [filter]="modalEventService.filter" [way]="modalEventService.way" [searchValue]="''"></app-timeline>            
+        <app-timeline [trackingModal]="modalEventService.trackingModal" [trackingModalSelect]="modalEventService.trackingModalSelect" [filter]="modalEventService.filter" [way]="modalEventService.way" [searchValue]="''"></app-timeline>            
 
         <dx-tab-panel
             [loop]="true"

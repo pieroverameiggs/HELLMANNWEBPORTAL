@@ -12,11 +12,11 @@ import { TrackingService } from 'src/app/services/tracking.service';
 })
 export class TimelineComponent implements OnInit {
 
-  public trackingModalTL: TrackingModal[] = [];
-  public trackingModalSelectTL: TrackingModal = {} as TrackingModal;
+  //public trackingModal: TrackingModal[] = [];
+  //public trackingModalSelect: TrackingModal = {} as TrackingModal;
 
-  //@Input() trackingModalTL: TrackingModal[] = [];
-  //@Input() trackingModalSelectTL: TrackingModal = {} as TrackingModal
+  @Input() trackingModal: TrackingModal[] = [];
+  @Input() trackingModalSelect: TrackingModal = {} as TrackingModal
   @Input() way: string = '';
   @Input() filter: any;
   @Input() searchValue: string = '';
@@ -36,8 +36,8 @@ export class TimelineComponent implements OnInit {
       this.trackingService.getTrackingEvent(filter.VCH_SYSTEM, filter.shipmentDocumentId)
         .subscribe((resp: any) => {
           if (resp.Code == eHttpStatusCode.OK) {
-            this.trackingModalTL = resp.List;
-            this.trackingModalSelectTL = resp.List.find((item: any) => (item.CHR_STATE == 'C' || item.CHR_STATE == 'T'))
+            this.trackingModal = resp.List;
+            this.trackingModalSelect = resp.List.find((item: any) => (item.CHR_STATE == 'C' || item.CHR_STATE == 'T'))
           }
         }, (err) => {
           if (err.status == eHttpStatusCode.UNAUTHORIZED) {
@@ -52,8 +52,8 @@ export class TimelineComponent implements OnInit {
       this.trackingService.getTrackingEventWin(filter.VCH_SYSTEM, filter.serviceRequestId, this.searchValue)
         .subscribe((resp: any) => {
           if (resp.Code == eHttpStatusCode.OK) {
-            this.trackingModalTL = resp.List;
-            this.trackingModalSelectTL = resp.List.find((item: any) => (item.CHR_STATE == 'C' || item.CHR_STATE == 'T'))
+            this.trackingModal = resp.List;
+            this.trackingModalSelect = resp.List.find((item: any) => (item.CHR_STATE == 'C' || item.CHR_STATE == 'T'))
           }
         }, (err) => {
           if (err.status == eHttpStatusCode.UNAUTHORIZED) {
