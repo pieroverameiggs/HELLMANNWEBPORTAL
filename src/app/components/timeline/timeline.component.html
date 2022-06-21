@@ -12,7 +12,9 @@
                         <div class="l-station-route">
                             <div class="l-station-route__frame">
                                 <div class="c-station__airport" placement="top">
-                                    {{item.VCH_CODE}}
+                                    <label [title]="item.VCH_CODE">
+                                        {{ item.VCH_CODE.length > 10 ? (item.VCH_CODE | slice:0:8)+'..':(item.VCH_CODE) }}
+                                    </label>                                    
                                 </div>
                                 <div class="c-station__detail" *ngIf="item.CHR_STATE=='C'">
                                     <div class="fas" [class]="item.VCH_ICON">
