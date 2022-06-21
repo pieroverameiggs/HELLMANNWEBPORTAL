@@ -7,8 +7,9 @@ import { TrackingWin } from 'src/app/interfaces/tracking-win.interface';
   styleUrls: ['./grig-win.component.scss']
 })
 export class GrigWinComponent implements OnInit {
-
+  
   @Input() key: string = '';
+  @Input() heigthGP: number = 300;
   @Input() trackingWinTW: TrackingWin[] = [];
   @Input() airSeaPortLabelTW: string = '';
   @Input() transportSeaPortLabelTW: string = '';
