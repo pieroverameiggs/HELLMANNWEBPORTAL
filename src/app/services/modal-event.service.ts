@@ -101,7 +101,7 @@ export class ModalEventService {
             }
           });
           
-          console.log(dataContainersDistinct);
+          //console.log(dataContainersDistinct);
           this.trackingContainersWin = dataContainersDistinct;
         }
       }, (err) => {
