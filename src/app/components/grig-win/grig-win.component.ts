@@ -8,13 +8,17 @@ import { TrackingWin } from 'src/app/interfaces/tracking-win.interface';
 })
 export class GrigWinComponent implements OnInit {
 
+  @Input() key: string = '';
   @Input() trackingWinTW: TrackingWin[] = [];
   @Input() airSeaPortLabelTW: string = '';
   @Input() transportSeaPortLabelTW: string = '';
 
-  constructor() { }
+  constructor() { 
+    this.trackingWinTW = this.trackingWinTW.filter(container => container.VCH_SEARCHVALUEWIN==this.key);    
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

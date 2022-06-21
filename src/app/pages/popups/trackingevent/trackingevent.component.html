@@ -30,7 +30,7 @@
             {{ modalEventService.origin }} <span class="fas"  [ngClass]="{'fa-ship': modalEventService.way == 'MARITIMA', 'fa-plane': modalEventService.way == 'AEREA'}" ></span> {{ modalEventService.destination }}
         </p>
                        
-        <app-timeline [trackingModalTL]="modalEventService.trackingModal" [trackingModalSelectTL]="modalEventService.trackingModalSelect" [way]="modalEventService.way"></app-timeline>            
+        <app-timeline [filter]="modalEventService.filter" [way]="modalEventService.way" [searchValue]="''"></app-timeline>            
 
         <dx-tab-panel
             [loop]="true"
@@ -42,7 +42,26 @@
             </dxo-tab-panel-options>
 
             <dxi-item title="Tracking Transportista" class="contentTabPanel">
-                <app-grig-win [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel"></app-grig-win>
+                <!-- <app-grig-win [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel"></app-grig-win> -->
+                <dx-data-grid
+                    id="gridContainerWin"
+                    [dataSource]="modalEventService.trackingContainersWin"
+                    keyExpr="VCH_SEARCHVALUEWIN"
+                    [showBorders]="true"
+                    >
+                    <dxi-column dataField="VCH_SEARCHVALUEWIN" caption="Contenedor/Guia"></dxi-column>                    
+                    <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
+                    <div *dxTemplate="let container of 'detail'" class="scrollview-detail-container">
+                        <!-- <div class="master-detail-caption">{{
+                            container.data.VCH_SEARCHVALUEWIN
+                        }}</div> -->
+                        <!--<dx-scroll-view width="100%" height="100%">-->
+                            <app-timeline [filter]="modalEventService.filter"  [way]="modalEventService.way" [searchValue]="container.data.VCH_SEARCHVALUEWIN"></app-timeline>
+
+                            <app-grig-win [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel"></app-grig-win>                        
+                        <!--</dx-scroll-view>-->
+                    </div>
+                </dx-data-grid>
             </dxi-item>
 
             <dxi-item title="Tracking Hellmann" class="contentTabPanel">

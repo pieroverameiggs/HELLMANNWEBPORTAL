@@ -8,5 +8,6 @@ export interface TrackingWin {
     VCH_DESCRIPTIONCODE: string;
     VCH_TRANSPORTNUMBER: string;
     DAT_EVENTDATE: Date;
-    VCH_EVENTSTATUS: string;    
+    VCH_EVENTSTATUS: string;
+    VCH_SEARCHVALUEWIN: string;    
 }

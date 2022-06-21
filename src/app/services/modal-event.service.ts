@@ -15,6 +15,7 @@ export class ModalEventService {
   public popupEventVisible: boolean = false;
   public trackingModal: TrackingModal[] = [];
   public trackingModalSelect: TrackingModal = {} as TrackingModal;
+  public filter:any;
 
   public loading: boolean = false;
   public origin: string = 'Sin Origin';
@@ -28,6 +29,7 @@ export class ModalEventService {
 
   // Win
   public trackingWin: TrackingWin[] = [];
+  public trackingContainersWin: any;
   public airSeaPortLabel: string = '';
   public transportSeaPortLabel: string = '';
   public serviceRequestId: number = 0;
@@ -57,7 +59,9 @@ export class ModalEventService {
     this.transportSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Nro Vuelo" : "Nro Viaje";    
     this.serviceRequestId = filter.serviceRequestId;
 
-    this.getLoadTrackingLine(filter);
+    this.filter = filter;
+
+    //this.getLoadTrackingLine(filter);    
     this.getLoadTrackingWin(filter);
     this.getLoadTrackingHellmann(filter);
   }
@@ -84,6 +88,21 @@ export class ModalEventService {
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {          
           this.trackingWin = resp.List;
+          
+          let dataContainersDistinct:any = [];
+          
+          resp.List.forEach((dataContainer:any)=>{
+            if(!dataContainersDistinct.find((item:any) => (item.INT_SERVICEREQUESTID==dataContainer.INT_SERVICEREQUESTID)))
+            {
+              dataContainersDistinct.push({
+                INT_SERVICEREQUESTID: dataContainer.INT_SERVICEREQUESTID,
+                VCH_SEARCHVALUEWIN: dataContainer.VCH_SEARCHVALUEWIN                
+              });
+            }
+          });
+          
+          console.log(dataContainersDistinct);
+          this.trackingContainersWin = dataContainersDistinct;
         }
       }, (err) => {
         if (err.status == eHttpStatusCode.UNAUTHORIZED) {
@@ -151,6 +170,9 @@ export class ModalEventService {
         at: 'center top',
       },
     }, type, 8000);
+  }
 
+  onlyUnique(value:any, index:any, self:any){
+    return self.indexOf(value) == index;
   }
 }

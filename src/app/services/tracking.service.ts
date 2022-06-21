@@ -43,6 +43,10 @@ export class TrackingService {
     return this.http.get(`${base_url}/Operation/GetListTrackingEventBySystem?system=${system}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
 
+  getTrackingEventWin(system: string, serviceRequestId: number, searchValue: string) {
+    return this.http.get(`${base_url}/Operation/GetListTrackingEventBySearchValue?system=${system}&serviceRequestId=${serviceRequestId}&searchValue=${searchValue}`, this.headers);
+  }
+
   getTrackingIntegrationWin(system: string, serviceRequestId: number) {
     return this.http.get(`${base_url}/Operation/GetListTrackingWinById?system=${system}&serviceRequestId=${serviceRequestId}`, this.headers);
   }
