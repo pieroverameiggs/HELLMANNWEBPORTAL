@@ -48,9 +48,18 @@
                     id="gridContainerWin"
                     [dataSource]="modalEventService.trackingContainersWin"
                     keyExpr="VCH_SEARCHVALUEWIN"
+                    [height]="350"
                     [showBorders]="true"
                     *ngIf="modalEventService.way == 'MARITIMA'"
                     >
+                    <dxo-scrolling mode="infinite"></dxo-scrolling>
+                    <dxo-search-panel
+                    [visible]="false"
+                    [highlightCaseSensitive]="true"
+                    ></dxo-search-panel>
+                    <dxo-load-panel [enabled]="true"></dxo-load-panel>
+                    <dxo-selection mode="single"></dxo-selection>
+
                     <dxi-column dataField="VCH_SEARCHVALUEWIN" caption="Contenedor"></dxi-column>                    
                     <dxo-master-detail [enabled]="true" template="detail"></dxo-master-detail>
                     <div *dxTemplate="let container of 'detail'" class="scrollview-detail-container">
@@ -60,7 +69,7 @@
                         <!--<dx-scroll-view width="100%" height="100%">-->
                             <app-timeline [filter]="modalEventService.filter"  [way]="modalEventService.way" [searchValue]="container.data.VCH_SEARCHVALUEWIN"></app-timeline>
 
-                            <app-grig-win [heigthGP]="180" [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel"></app-grig-win>                        
+                            <app-grig-win [key]="container.data.VCH_SEARCHVALUEWIN" [heigthGP]="180" [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel"></app-grig-win>                        
                         <!--</dx-scroll-view>-->
                     </div>
                 </dx-data-grid>

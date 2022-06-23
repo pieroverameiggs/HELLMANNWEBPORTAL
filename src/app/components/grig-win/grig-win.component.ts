@@ -15,11 +15,11 @@ export class GrigWinComponent implements OnInit {
   @Input() transportSeaPortLabelTW: string = '';
 
   constructor() { 
-    this.trackingWinTW = this.trackingWinTW.filter(container => container.VCH_SEARCHVALUEWIN==this.key);    
+    
   }
 
   ngOnInit(): void {
-    
+    this.trackingWinTW = this.trackingWinTW.filter(container => container.VCH_SEARCHVALUEWIN==this.key);    
   }
 
 }

@@ -31,7 +31,7 @@ export class TimelineComponent implements OnInit {
   }
 
   getLoadTrackingLine(filter: any) {
-    debugger;
+    //debugger;
     if (this.searchValue.length==0) {
       this.trackingService.getTrackingEvent(filter.VCH_SYSTEM, filter.shipmentDocumentId)
         .subscribe((resp: any) => {

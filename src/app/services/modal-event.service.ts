@@ -92,7 +92,7 @@ export class ModalEventService {
           let dataContainersDistinct:any = [];
           
           resp.List.forEach((dataContainer:any)=>{
-            if(!dataContainersDistinct.find((item:any) => (item.INT_SERVICEREQUESTID==dataContainer.INT_SERVICEREQUESTID)))
+            if(!dataContainersDistinct.find((item:any) => (item.VCH_SEARCHVALUEWIN==dataContainer.VCH_SEARCHVALUEWIN)))
             {
               dataContainersDistinct.push({
                 INT_SERVICEREQUESTID: dataContainer.INT_SERVICEREQUESTID,
