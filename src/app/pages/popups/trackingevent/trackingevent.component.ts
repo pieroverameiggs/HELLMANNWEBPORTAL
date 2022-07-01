@@ -47,12 +47,12 @@ export class TrackingeventComponent implements OnInit {
     this.modalEventService.hideModal();
     if (table == 'OPE') {
       //this.router.navigate(['/dashboard/operation/' + id], { queryParams: { system, entity } });
-      pageDetail = `/dashboard/operation/${id}`;
+      pageDetail = `/portal/operation/${id}/entity/${entity}/system/${system}`;
       tabName = 'Operación';
     }
     else if (table == 'CUSTOMS') {
       //this.router.navigate(['/dashboard/customs/' + id], { queryParams: { system, entity } });
-      pageDetail = `/dashboard/customs/${id}`;
+      pageDetail = `/portal/customs/${id}/entity/${entity}/system/${system}`;
       tabName = 'Aduana';
     }
 

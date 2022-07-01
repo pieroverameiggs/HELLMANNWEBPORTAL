@@ -73,20 +73,23 @@ export class CustomsDetailComponent implements OnInit {
     this.modalEventService.hideLoading();
 
     this.activatedRoute.params
-    .subscribe(({ id }) => {
+      .subscribe(({ id, entity, system }) => {
 
-      this.activatedRoute.queryParamMap
-        .subscribe((params) => {
-          this.orderObj = { ...params.keys, ...params };
-          const { entity, system } = this.orderObj.params;
-          // console.log(entity);
-          // console.log(system);
-          if(entity && system)
-            this.loadCustoms(id, entity, system);
-        }
-        );
+        if (entity && system)
+          this.loadCustoms(id, entity, system);
 
-    });
+        // this.activatedRoute.queryParamMap
+        //   .subscribe((params) => {
+        //     this.orderObj = { ...params.keys, ...params };
+        //     const { entity, system } = this.orderObj.params;
+        //     // console.log(entity);
+        //     // console.log(system);
+        //     if(entity && system)
+        //       this.loadCustoms(id, entity, system);
+        //   }
+        //   );
+
+      });
   }
 
   loadCustoms(id: number, entity: number, system: string) {
@@ -103,12 +106,12 @@ export class CustomsDetailComponent implements OnInit {
           // Header
           this.carrierName = resp.Object.CARRIERNAME;
           this.serviceRequestCode = resp.Object.SERVICEREQUESTCODE;
-          
+
           // Labels
-          if (resp.Object.VCH_WAY == "AEREA") {            
+          if (resp.Object.VCH_WAY == "AEREA") {
             this.hiddenControls = false;
           }
-          else {            
+          else {
             this.hiddenControls = true;
           }
 

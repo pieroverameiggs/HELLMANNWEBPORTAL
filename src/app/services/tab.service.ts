@@ -39,14 +39,14 @@ export class TabService {
       const lengthTabs = this.tabs.length;
       this.tabs.push({ ...tab, id: lengthTabs });
       this.selectedIndex = lengthTabs;
-      this.router.navigate([tab.page], queryParams);
+      this.router.navigateByUrl(tab.page, { skipLocationChange: true });
     }
     else {
       this.selectedIndex = tabSearch.id;
       if (tab.text.includes("Detalle")) {
         this.modalTrackingService.hideLoading();
         this.modalEventService.hideLoading();    
-        this.router.navigate([tab.page], queryParams);
+        this.router.navigateByUrl(tab.page, { skipLocationChange: true });
       }
     }
   }

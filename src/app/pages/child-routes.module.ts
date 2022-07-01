@@ -15,8 +15,8 @@ const childRoutes: Routes = [
 
   //Seguimiento
   { path: 'trackings', canActivate: [AuthGuard], component: TrackingsComponent, data: { titulo: 'Mantenimiento de Seguimientos' } },
-  { path: 'operation/:id', canActivate: [AuthGuard], component: TrackingDetailComponent, data: { titulo: 'Mantenimiento de Operación' } },
-  { path: 'customs/:id', canActivate: [AuthGuard], component: CustomsDetailComponent, data: { titulo: 'Mantenimiento de Aduana' } },
+  { path: 'operation/:id/entity/:entity/system/:system', canActivate: [AuthGuard], component: TrackingDetailComponent, data: { titulo: 'Mantenimiento de Operación' } },
+  { path: 'customs/:id/entity/:entity/system/:system', canActivate: [AuthGuard], component: CustomsDetailComponent, data: { titulo: 'Mantenimiento de Aduana' } },
 
   //Configuración
   { path: 'notifications', canActivate: [AuthGuard], component: NotifyComponent, data: { titulo: 'Mantenimiento de Notificaciones' } },

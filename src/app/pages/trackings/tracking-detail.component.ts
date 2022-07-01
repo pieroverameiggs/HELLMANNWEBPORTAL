@@ -82,18 +82,21 @@ export class TrackingDetailComponent implements OnInit {
     this.modalEventService.hideLoading();
 
     this.activatedRoute.params
-      .subscribe(({ id }) => {
+      .subscribe(({ id, entity, system }) => {
 
-        this.activatedRoute.queryParamMap
-          .subscribe((params) => {
-            this.orderObj = { ...params.keys, ...params };
-            const { entity, system } = this.orderObj.params;
-            // console.log(entity);
-            // console.log(system);
-            if(entity && system)
-              this.loadOperation(id, entity, system);
-          }
-          );
+        if (entity && system)
+          this.loadOperation(id, entity, system);
+
+        // this.activatedRoute.queryParamMap
+        //   .subscribe((params) => {
+        //     this.orderObj = { ...params.keys, ...params };
+        //     const { entity, system } = this.orderObj.params;
+        //     // console.log(entity);
+        //     // console.log(system);
+        //     if(entity && system)
+        //       this.loadOperation(id, entity, system);
+        //   }
+        //   );
 
       });
   }
@@ -163,7 +166,7 @@ export class TrackingDetailComponent implements OnInit {
     window.open(pathFull, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
   }
 
-  tabSelected(tabName:string, $event: any){
+  tabSelected(tabName: string, $event: any) {
     debugger;
     $event.preventDefault();
     this.tabService.tabSelected(tabName);

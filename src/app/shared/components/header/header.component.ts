@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
           id: 0,
           text: 'Perfil',
           icon: 'user',
-          page: '/dashboard/profile'
+          page: '/portal/profile'
         });
       }
     },
