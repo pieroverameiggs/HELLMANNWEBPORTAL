@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
+import { ModalEventService } from 'src/app/services/modal-event.service';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
+import { TabService } from 'src/app/services/tab.service';
 import { TrackingService } from 'src/app/services/tracking.service';
 
 @Component({
@@ -34,14 +36,17 @@ export class CustomsDetailComponent implements OnInit {
     private trackingService: TrackingService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    public modalTrackingService: ModalTrackingService
+    public modalTrackingService: ModalTrackingService,
+    public tabService: TabService,
+    private modalEventService: ModalEventService
   ) {
 
     this.backButtonOptions = {
       type: 'back',
       onClick: () => {
         //notify('Back Operations');
-        return this.router.navigateByUrl('/dashboard/trackings');
+        //return this.router.navigateByUrl('/dashboard/trackings');
+        this.tabService.tabSelected('Seguimiento');
       },
     };
 
@@ -65,6 +70,7 @@ export class CustomsDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.modalTrackingService.hideLoading();
+    this.modalEventService.hideLoading();
 
     this.activatedRoute.params
     .subscribe(({ id }) => {
@@ -75,7 +81,8 @@ export class CustomsDetailComponent implements OnInit {
           const { entity, system } = this.orderObj.params;
           // console.log(entity);
           // console.log(system);
-          this.loadCustoms(id, entity, system);
+          if(entity && system)
+            this.loadCustoms(id, entity, system);
         }
         );
 

@@ -7,6 +7,7 @@ import { DxScrollViewModule, DxScrollViewComponent } from 'devextreme-angular/ui
 import { CommonModule } from '@angular/common';
 
 import { Router, NavigationEnd } from '@angular/router';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -31,7 +32,7 @@ export class SideNavOuterToolbarComponent implements OnInit {
   minMenuSize = 0;
   shaderEnabled = false;
 
-  constructor(private screen: ScreenService, private router: Router) { }
+  constructor(private screen: ScreenService, private router: Router, public tabService: TabService) { }
 
   ngOnInit() {
     this.menuOpened = this.screen.sizes['screen-large'];
@@ -66,6 +67,8 @@ export class SideNavOuterToolbarComponent implements OnInit {
   }
 
   navigationChanged(event: ItemClickEvent) {
+    //console.log(event);
+
     const path = (event.itemData as any).path;
     const pointerEvent = event.event;
 
@@ -73,7 +76,13 @@ export class SideNavOuterToolbarComponent implements OnInit {
       if (event.node?.selected) {
         pointerEvent?.preventDefault();
       } else {
-        this.router.navigate([path]);
+        //this.router.navigate([path]);
+        this.tabService.addTab({
+          id: Number(event.itemIndex),
+          text: event.itemData?.text||'',
+          icon: event.itemData?.icon||'',
+          page: event.itemData?.path
+        });
         this.scrollView.instance.scrollTo(0);
       }
 

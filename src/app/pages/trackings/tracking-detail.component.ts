@@ -4,6 +4,7 @@ import notify from 'devextreme/ui/notify';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
 import { ModalEventService } from 'src/app/services/modal-event.service';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
+import { TabService } from 'src/app/services/tab.service';
 import { TrackingService } from 'src/app/services/tracking.service';
 
 @Component({
@@ -44,14 +45,16 @@ export class TrackingDetailComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public modalTrackingService: ModalTrackingService,
-    public modalEventService: ModalEventService
+    public modalEventService: ModalEventService,
+    public tabService: TabService
   ) {
 
     this.backButtonOptions = {
       type: 'back',
       onClick: () => {
         //notify('Back Operations');
-        return this.router.navigateByUrl('/dashboard/trackings');
+        //return this.router.navigateByUrl('/dashboard/trackings');
+        this.tabService.tabSelected('Seguimiento');
       },
     };
 
@@ -87,7 +90,8 @@ export class TrackingDetailComponent implements OnInit {
             const { entity, system } = this.orderObj.params;
             // console.log(entity);
             // console.log(system);
-            this.loadOperation(id, entity, system);
+            if(entity && system)
+              this.loadOperation(id, entity, system);
           }
           );
 
@@ -157,6 +161,12 @@ export class TrackingDetailComponent implements OnInit {
     const pathFull = e.row.data.VCH_FILEROUTE;
 
     window.open(pathFull, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=10,left=30,width=1300,height=700");
+  }
+
+  tabSelected(tabName:string, $event: any){
+    debugger;
+    $event.preventDefault();
+    this.tabService.tabSelected(tabName);
   }
 
   showNotify(msg: string, type: string) {

@@ -5,6 +5,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { ModalEventService } from 'src/app/services/modal-event.service';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import * as saveAs from 'file-saver';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-trackingevent',
@@ -18,7 +19,8 @@ export class TrackingeventComponent implements OnInit {
 
   constructor(
     public modalEventService: ModalEventService,
-    private router: Router
+    private router: Router,
+    public tabService: TabService
   ) {
 
     this.detailButtonOptions = {
@@ -39,12 +41,27 @@ export class TrackingeventComponent implements OnInit {
   }
 
   showDetail(id: number, entity: number, system: string, table: string) {
+    let pageDetail = '';
+    let tabName = '';
     this.modalEventService.showLoading();
     this.modalEventService.hideModal();
-    if (table == 'OPE')
-      this.router.navigate(['/dashboard/operation/' + id], { queryParams: { system, entity } });
-    else if (table == 'CUSTOMS')
-      this.router.navigate(['/dashboard/customs/' + id], { queryParams: { system, entity } });
+    if (table == 'OPE') {
+      //this.router.navigate(['/dashboard/operation/' + id], { queryParams: { system, entity } });
+      pageDetail = `/dashboard/operation/${id}`;
+      tabName = 'Operación';
+    }
+    else if (table == 'CUSTOMS') {
+      //this.router.navigate(['/dashboard/customs/' + id], { queryParams: { system, entity } });
+      pageDetail = `/dashboard/customs/${id}`;
+      tabName = 'Aduana';
+    }
+
+    this.tabService.addTab({
+      id: Number(id),
+      text: `Detalle ${tabName}`,
+      icon: 'bulletlist',
+      page: pageDetail
+    }, { queryParams: { system, entity } });
   }
 
   exportTrackingHellmann(e: any) {
@@ -92,25 +109,25 @@ export class TrackingeventComponent implements OnInit {
 
     //console.log(e);
 
-    if (e.rowType !== "data")  
-        return 
+    if (e.rowType !== "data")
+      return
 
     if (e.data.VCH_ROWCOLOR == "RED") {
       // e.rowElement.style.backgroundColor = '#FF8E7F';
       e.rowElement.style.color = '#FF8E7F';
       e.rowElement.style.fontWeight = 'bold';
-      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
+      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", "");
     }
     else if (e.data.VCH_ROWCOLOR == "BLUE") {
       // e.rowElement.style.backgroundColor = '#1C8AFC';
       e.rowElement.style.color = '#1C8AFC';
       e.rowElement.style.fontWeight = 'bold';
-      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
+      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", "");
     }
     else if (e.data.VCH_ROWCOLOR == "LEAD") {
       e.rowElement.style.backgroundColor = '#ececec';
       //e.rowElement.style.color = '#fff';
-      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", ""); 
+      e.rowElement.className = e.rowElement.className.replace("dx-row-alt", "");
     }
   }
 

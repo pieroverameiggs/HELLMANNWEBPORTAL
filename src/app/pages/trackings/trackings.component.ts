@@ -20,6 +20,7 @@ import { ModalHelldataService } from 'src/app/services/modal-helldata.service';
 import { ModalTrackingService } from 'src/app/services/modal-tracking.service';
 import { ModalWinService } from 'src/app/services/modal-win.service';
 import { ModalEventService } from 'src/app/services/modal-event.service';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-trackings',
@@ -50,7 +51,8 @@ export class TrackingsComponent implements OnInit {
     private modalHelldataService: ModalHelldataService,
     private modalTrackingService: ModalTrackingService,
     private modalEventService: ModalEventService,
-    private modalWinService: ModalWinService
+    private modalWinService: ModalWinService,
+    public tabService: TabService
   ) {
     this.showEvent = this.showEvent.bind(this);
     this.showTrackingWin = this.showTrackingWin.bind(this);

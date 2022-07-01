@@ -4,8 +4,10 @@
   <!-- Content here -->
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
-      <li class="breadcrumb-item"><a routerLink="/dashboard/trackings">Seguimientos</a></li>
+      <!-- <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item"><a routerLink="/dashboard/trackings">Seguimientos</a></li> -->
+      <li class="breadcrumb-item"><a [routerLink]="null" (click)="tabSelected('Dashboard',$event)">Dashboard</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="null" (click)="tabSelected('Seguimiento',$event)">Seguimiento</a></li>
       <li class="breadcrumb-item active" aria-current="page">Detalle</li>
     </ol>
   </nav>

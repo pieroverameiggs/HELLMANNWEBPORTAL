@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { eHttpStatusCode } from 'src/app/model/enums.model';
 import { UserService } from 'src/app/services/user.service';
 import { ThemeService } from 'src/app/services/theme.service';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   templateUrl: 'profile.component.html',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private themeService: ThemeService
+    private themeService: ThemeService,
+    public tabService: TabService
   ) {
     this.userCurrent = JSON.parse(localStorage.getItem('user') || '{}');
 

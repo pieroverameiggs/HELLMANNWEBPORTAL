@@ -6,7 +6,45 @@
         <app-load-indicator [isLoadIndicatorVisible]="loading"></app-load-indicator>
         
         <!-- Rutas -->
-        <router-outlet></router-outlet>
+        <div class="container-fluid mt-2">
+            
+            <dx-tab-panel
+                [dataSource]="tabService.tabs"      
+                height="auto"      
+                itemTitleTemplate="title"
+                itemTemplate="item"
+                [deferRendering]="false"
+                [showNavButtons]="true"
+                [repaintChangesOnly]="true"
+                [animationEnabled]="true"
+                [loop]="false"
+                [selectedIndex]="tabService.selectedIndex"
+                (onSelectionChanged)="tabService.selectTabClick($event)"
+            >
+                <div *dxTemplate="let content of 'title'">
+                    <i class='iconTab' [ngClass]="content.icon.startsWith('fas')?content.icon:'dx-icon-'+content.icon"></i> 
+                    <span>{{ content.text }}</span>
+                    <i *ngIf="tabService.showCloseButton(content)"
+                    class="dx-icon dx-icon-close"
+                    (click)="tabService.closeButtonHandler(content)"
+                    ></i>
+                </div>
+
+                <div *dxTemplate="let tab of 'item'">                    
+                    <router-outlet></router-outlet>                    
+                </div>
+            </dx-tab-panel>
+            <!-- <dx-sortable
+            filter=".dx-tab"
+            [data]="tabService.tabs"
+            itemOrientation="horizontal"
+            dragDirection="horizontal"
+            (onDragStart)="tabService.onTabDragStart($event)"
+            (onReorder)="tabService.onTabDrop($event)"
+            >
+            </dx-sortable> -->
+        </div>   
+        <!-- <router-outlet></router-outlet> -->
 
         <app-footer>
             Copyright © {{appInfo.enterprise}}

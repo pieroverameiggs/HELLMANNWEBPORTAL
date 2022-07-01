@@ -14,6 +14,7 @@ import { GenericService } from 'src/app/services/generic.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { TrackingService } from 'src/app/services/tracking.service';
 import { custom } from 'devextreme/ui/dialog';
+import { TabService } from 'src/app/services/tab.service';
 
 @Component({
   selector: 'app-notify',
@@ -41,7 +42,8 @@ export class NotifyComponent implements OnInit {
     private genericService: GenericService,
     private trackingService: TrackingService,
     private notifyService: NotifyService,
-    private router: Router
+    private router: Router,
+    public tabService: TabService
   ) {
     this.onValueChangedEntity = this.onValueChangedEntity.bind(this);
     this.onSelectionChangedEntity = this.onSelectionChangedEntity.bind(this);

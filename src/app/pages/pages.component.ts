@@ -1,5 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { TabService } from '../services/tab.service';
 import { AppInfoService, ScreenService } from '../shared/services';
 
 @Component({
@@ -17,6 +18,7 @@ export class PagesComponent implements OnInit {
   
   constructor(
     public appInfo: AppInfoService,
+    public tabService: TabService,
     private screen: ScreenService,
     private router: Router
   ) { 
@@ -44,6 +46,8 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.navigateByUrl('/');
+    this.tabService.resetTabs();
   }
 
 }

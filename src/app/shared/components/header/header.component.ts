@@ -9,6 +9,7 @@ import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/interfaces/user.interface';
+import { TabService } from 'src/app/services/tab.service';
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -37,7 +38,13 @@ export class HeaderComponent implements OnInit {
       onClick: () => {
         //const payload = this.parseJwt(localStorage.getItem('token'));
         // console.log(payload);
-        this.router.navigate(['/dashboard/profile']);
+        //this.router.navigate(['/dashboard/profile']);
+        this.tabService.addTab({
+          id: 0,
+          text: 'Perfil',
+          icon: 'user',
+          page: '/dashboard/profile'
+        });
       }
     },
     {
@@ -62,7 +69,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private tabService: TabService
   ) {
     this.user = JSON.parse(localStorage.getItem('user') || '');
   }
