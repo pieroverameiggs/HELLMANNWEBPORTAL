@@ -115,7 +115,7 @@ export class ModalEventService {
   }
 
   getLoadTrackingHellmann(filter:any){
-    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.VCH_TABLE, filter.shipmentDocumentId)
+    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.VCH_TABLE, filter.serviceRequestId)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
 

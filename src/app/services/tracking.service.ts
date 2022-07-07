@@ -35,8 +35,8 @@ export class TrackingService {
     return this.http.get(`${base_url}/Operation/GetListHellDataById?system=${system}&table=${table}&entityId=${entityId}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
   }
 
-  getTracking(system: string, table:string, shipmentDocumentId: number) {
-    return this.http.get(`${base_url}/Operation/GetListTrackingById?system=${system}&table=${table}&shipmentDocumentId=${shipmentDocumentId}`, this.headers);
+  getTracking(system: string, table:string, registerId: number) {
+    return this.http.get(`${base_url}/Operation/GetListTrackingById?system=${system}&table=${table}&registerId=${registerId}`, this.headers);
   }
 
   getTrackingEvent(system: string, shipmentDocumentId: number) {
