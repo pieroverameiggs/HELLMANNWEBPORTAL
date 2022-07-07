@@ -28,7 +28,10 @@
                         <div attr.id="product{{i+searchValue}}" class="fas ivu-steps-cicon l-station-bullet c-station-dot" [class]="item.VCH_ICON" *ngIf="item.VCH_CODE!='INICIO' && item.VCH_CODE!='ENTREGADO'" >
                             
                         </div>
-                        <div attr.id="product{{i+searchValue}}" class="ivu-steps-cicon l-station-bullet c-station-dot-blue" *ngIf="item.VCH_CODE=='INICIO' || item.VCH_CODE=='ENTREGADO'" >
+                        <div attr.id="product{{i+searchValue}}" class="ivu-steps-cicon l-station-bullet c-station-dot-blue" *ngIf="((item.VCH_CODE=='INICIO' && trackingModalSelect && item.INT_ITEM<=trackingModalSelect.INT_ITEM) || (item.VCH_CODE=='ENTREGADO' && item.CHR_STATE=='C'))" >
+                            
+                        </div>
+                        <div attr.id="product{{i+searchValue}}" class="ivu-steps-cicon l-station-bullet c-station-dot-fff" *ngIf="((item.VCH_CODE=='INICIO' && !trackingModalSelect) || (item.VCH_CODE=='ENTREGADO' && item.CHR_STATE!='C'))" >
                             
                         </div>
                     </div>
