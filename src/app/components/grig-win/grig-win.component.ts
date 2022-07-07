@@ -13,6 +13,7 @@ export class GrigWinComponent implements OnInit {
   @Input() trackingWinTW: TrackingWin[] = [];
   @Input() airSeaPortLabelTW: string = '';
   @Input() transportSeaPortLabelTW: string = '';
+  @Input() showEventStatus: any;
 
   constructor() { 
     

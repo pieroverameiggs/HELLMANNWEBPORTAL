@@ -207,7 +207,7 @@ export class TrackingsComponent implements OnInit {
       VCH_DESTINATION: e.row.data.VCH_DESTINATION,
       VHC_WAY: e.row.data.VHC_WAY,
       ENTITYID: entityId,
-      shipmentDocumentId: e.row.key
+      shipmentDocumentId: e.row.data.INT_SHIPMENTDOCUMENTID
     }
 
     this.modalTrackingService.showModal(filter);
@@ -232,7 +232,7 @@ export class TrackingsComponent implements OnInit {
       VHC_WAY: e.row.data.VHC_WAY,
       ENTITYID: entityId,
       serviceRequestId: e.row.data.INT_SERVICEREQUESTID,
-      shipmentDocumentId: e.row.key
+      shipmentDocumentId: e.row.data.INT_SHIPMENTDOCUMENTID
     }
 
     this.modalEventService.showModal(filter);
@@ -255,7 +255,7 @@ export class TrackingsComponent implements OnInit {
     // console.log(e);
     // e.row.key
 
-    if (e.row.key == 0) {
+    if (e.row.data.INT_SHIPMENTDOCUMENTID == 0) {
       this.showNotify(`La Solicitud N° ${e.row.data.VCH_SERVICEREQUESTCODE} no tiene una Operación Registrado :(`, 'info');
       return;
     }
@@ -266,7 +266,7 @@ export class TrackingsComponent implements OnInit {
       VCH_SYSTEM: e.row.data.VCH_SYSTEM,
       VCH_TABLE: e.row.data.VCH_TABLE,
       ENTITYID: entityId,
-      shipmentDocumentId: e.row.key
+      shipmentDocumentId: e.row.data.INT_SHIPMENTDOCUMENTID
     }
 
     this.modalHelldataService.showModal(filter);

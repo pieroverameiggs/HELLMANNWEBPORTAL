@@ -42,7 +42,7 @@
             </dxo-tab-panel-options>
 
             <dxi-item title="Tracking Transportista" class="contentTabPanel">
-                <app-grig-win *ngIf="modalEventService.way == 'AEREA'" [heigthGP]="300" [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel"></app-grig-win>
+                <app-grig-win *ngIf="modalEventService.way == 'AEREA'" [heigthGP]="300" [trackingWinTW]="modalEventService.trackingWin" [airSeaPortLabelTW]="modalEventService.airSeaPortLabel" [transportSeaPortLabelTW]="modalEventService.transportSeaPortLabel" [showEventStatus]="modalEventService.showEventStatus"></app-grig-win>
                 
                 <dx-data-grid 
                     id="gridContainerWin"

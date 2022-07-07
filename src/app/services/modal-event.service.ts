@@ -15,7 +15,7 @@ export class ModalEventService {
   public popupEventVisible: boolean = false;
   public trackingModal: TrackingModal[] = [];
   public trackingModalSelect: TrackingModal = {} as TrackingModal;
-  public filter:any;
+  public filter: any;
 
   public loading: boolean = false;
   public origin: string = 'Sin Origin';
@@ -33,6 +33,7 @@ export class ModalEventService {
   public airSeaPortLabel: string = '';
   public transportSeaPortLabel: string = '';
   public serviceRequestId: number = 0;
+  public showEventStatus: boolean = false;
 
   // Hellmann
   public tracking: TrackingEvent[] = [];
@@ -55,13 +56,14 @@ export class ModalEventService {
     this.entity = filter.ENTITYID;
 
     // Win
-    this.airSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Aeropuerto" : "Puerto";  
-    this.transportSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Nro Vuelo" : "Nro Viaje";    
+    this.airSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Aeropuerto" : "Puerto";
+    this.transportSeaPortLabel = filter.VHC_WAY == "AEREA" ? "Nro Vuelo" : "Nro Viaje";
     this.serviceRequestId = filter.serviceRequestId;
+    this.showEventStatus = !(filter.VCH_SYSTEM == "SLINET" && filter.VHC_WAY == "AEREA");
 
     this.filter = filter;
 
-    this.getLoadTrackingLine(filter);    
+    this.getLoadTrackingLine(filter);
     this.getLoadTrackingWin(filter);
     this.getLoadTrackingHellmann(filter);
   }
@@ -86,21 +88,20 @@ export class ModalEventService {
   getLoadTrackingWin(filter: any) {
     this.trackingService.getTrackingIntegrationWin(filter.VCH_SYSTEM, filter.serviceRequestId)
       .subscribe((resp: any) => {
-        if (resp.Code == eHttpStatusCode.OK) {          
+        if (resp.Code == eHttpStatusCode.OK) {
           this.trackingWin = resp.List;
-          
-          let dataContainersDistinct:any = [];
-          
-          resp.List.forEach((dataContainer:any)=>{
-            if(!dataContainersDistinct.find((item:any) => (item.VCH_SEARCHVALUEWIN==dataContainer.VCH_SEARCHVALUEWIN)))
-            {
+
+          let dataContainersDistinct: any = [];
+
+          resp.List.forEach((dataContainer: any) => {
+            if (!dataContainersDistinct.find((item: any) => (item.VCH_SEARCHVALUEWIN == dataContainer.VCH_SEARCHVALUEWIN))) {
               dataContainersDistinct.push({
                 INT_SERVICEREQUESTID: dataContainer.INT_SERVICEREQUESTID,
-                VCH_SEARCHVALUEWIN: dataContainer.VCH_SEARCHVALUEWIN                
+                VCH_SEARCHVALUEWIN: dataContainer.VCH_SEARCHVALUEWIN
               });
             }
           });
-          
+
           //console.log(dataContainersDistinct);
           this.trackingContainersWin = dataContainersDistinct;
         }
@@ -111,11 +112,12 @@ export class ModalEventService {
         else {
           this.showNotify('Servicio Suspendido Temporalmente :(', 'error');
         }
-      });  
+      });
   }
 
-  getLoadTrackingHellmann(filter:any){
-    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.VCH_TABLE, filter.serviceRequestId)
+  getLoadTrackingHellmann(filter: any) {
+    let registerId = (filter.VCH_SYSTEM == 'CORE') ? filter.serviceRequestId : filter.shipmentDocumentId;
+    this.trackingService.getTracking(filter.VCH_SYSTEM, filter.VCH_TABLE, registerId)
       .subscribe((resp: any) => {
         if (resp.Code == eHttpStatusCode.OK) {
 
@@ -134,8 +136,8 @@ export class ModalEventService {
           else
             this.trackingSelect = { INT_IDEVENTTRACKING: 0 };
 
-          this.tracking = resp.List;          
-          
+          this.tracking = resp.List;
+
           // console.log(this.tracking);
         }
       }, (err) => {
@@ -159,7 +161,7 @@ export class ModalEventService {
   }
 
   hideLoading() {
-    this.loading = false;    
+    this.loading = false;
   }
 
   showNotify(msg: string, type: string) {
@@ -174,7 +176,7 @@ export class ModalEventService {
     }, type, 8000);
   }
 
-  onlyUnique(value:any, index:any, self:any){
+  onlyUnique(value: any, index: any, self: any) {
     return self.indexOf(value) == index;
   }
 }

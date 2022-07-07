@@ -6,6 +6,7 @@ import { ModalEventService } from 'src/app/services/modal-event.service';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import * as saveAs from 'file-saver';
 import { TabService } from 'src/app/services/tab.service';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-trackingevent',
@@ -41,6 +42,12 @@ export class TrackingeventComponent implements OnInit {
   }
 
   showDetail(id: number, entity: number, system: string, table: string) {
+    
+    if (id == 0) {
+      this.showNotify(`La Solicitud no tiene una Operación Registrado :(`, 'info');
+      return;
+    }
+    
     let pageDetail = '';
     let tabName = '';
     this.modalEventService.showLoading();
@@ -131,4 +138,16 @@ export class TrackingeventComponent implements OnInit {
     }
   }
 
+  showNotify(msg: string, type: string) {
+    notify({
+      message: msg,
+      width: 500,
+      // shading: true,
+      position: {
+        my: 'center top',
+        at: 'center top',
+      },
+    }, type, 8000);
+
+  }
 }
